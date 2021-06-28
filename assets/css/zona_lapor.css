@@ -1,0 +1,49 @@
+/*------------ header ------------*/
+.header-title {
+  margin: 5px 0;
+  text-align: center;
+}
+
+.header-button {
+  margin: 5px 0;
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  .header-title {
+    margin: 5px 0;
+    text-align: left;
+  }
+
+  .header-button {
+    margin: 5px 0;
+    text-align: right;
+  }
+}
+/*------------ header ------------*/
+
+/*------------ img-size ------------*/
+.img-w-50 {
+  width: 50px !important;
+}
+
+.img-w-75 {
+  width: 75px !important;
+}
+
+.img-w-150 {
+  width: 150px !important;
+}
+
+.img-w-200 {
+  width: 200px !important;
+}
+
+.img-w-250 {
+  width: 250px !important;
+}
+
+.img-w-300 {
+  width: 300px !important;
+}
+/*------------ img-size ------------*/
