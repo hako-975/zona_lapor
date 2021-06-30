@@ -104,7 +104,7 @@ class Pengaduan_model extends CI_Model
 	public function removePengaduan($id_pengaduan)
 	{
 		$dataUser = $this->admo->getDataUserAdmin();
-		$isi_log_2 = 'Pengaduan ' . $dataUser['username'] . ' mencoba menghapus pengaduan ber id ' . $id_pengaduan;
+		$isi_log_2 = 'User ' . $dataUser['username'] . ' mencoba menghapus pengaduan ber id ' . $id_pengaduan;
 		$this->admo->userPrivilege('pengaduan', $isi_log_2);
 		$data_pengaduan = $this->getPengaduanById($id_pengaduan);
 		$pengaduan  = $data_pengaduan['isi_laporan'];
@@ -115,6 +115,7 @@ class Pengaduan_model extends CI_Model
 			unlink(FCPATH . 'assets/img/img_pengaduan/' . $data_pengaduan['foto']);
 		}
 		
+		$this->db->delete('tanggapan', ['id_pengaduan' => $id_pengaduan]);
 		$this->db->delete('pengaduan', ['id_pengaduan' => $id_pengaduan]);
 		$isi_log = 'Pengaduan ' . $pengaduan . ' berhasil dihapus';
 		$this->lomo->addLog($isi_log, $dataUser['id_user']);

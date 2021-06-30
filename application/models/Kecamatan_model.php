@@ -58,7 +58,7 @@ class Kecamatan_model extends CI_Model
 	public function removeKecamatan($id_kecamatan)
 	{
 		$dataUser = $this->admo->getDataUserAdmin();
-		$isi_log_2 = 'Kecamatan ' . $dataUser['username'] . ' mencoba menghapus kecamatan ber id ' . $id_kecamatan;
+		$isi_log_2 = 'User ' . $dataUser['username'] . ' mencoba menghapus kecamatan ber id ' . $id_kecamatan;
 		$this->admo->userPrivilege('kecamatan', $isi_log_2);
 
 		$data_kecamatan = $this->getKecamatanById($id_kecamatan);

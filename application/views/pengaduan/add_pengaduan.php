@@ -41,8 +41,9 @@
 						</select>
 					</div>
 					<div class="form-group">
+						<label for="foto">Foto</label> <br>
 						<a href="<?= base_url('assets/img/img_pengaduan/default.png'); ?>" class="enlarge" id="check_enlarge_photo">
-							<img class="img-fluid rounded img-w-150" id="check_photo" src="<?= base_url('assets/img/img_pengaduan/default.png'); ?>" alt="Foto Pengaduan">
+							<img class="img-fluid rounded img-w-150 border border-dark" id="check_photo" src="<?= base_url('assets/img/img_pengaduan/default.png'); ?>" alt="Foto Pengaduan">
 						</a>
 						<br>
 					</div>

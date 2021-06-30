@@ -61,7 +61,7 @@ class Kelurahan_model extends CI_Model
 	public function removeKelurahan($id_kelurahan)
 	{
 		$dataUser = $this->admo->getDataUserAdmin();
-		$isi_log_2 = 'Kelurahan ' . $dataUser['username'] . ' mencoba menghapus kelurahan ber id ' . $id_kelurahan;
+		$isi_log_2 = 'User ' . $dataUser['username'] . ' mencoba menghapus kelurahan ber id ' . $id_kelurahan;
 		$this->admo->userPrivilege('kelurahan', $isi_log_2);
 
 		$data_kelurahan = $this->getKelurahanById($id_kelurahan);

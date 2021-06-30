@@ -66,7 +66,7 @@ class Masyarakat_model extends CI_Model
 	public function removeMasyarakat($id_masyarakat)
 	{
 		$dataUser = $this->admo->getDataUserAdmin();
-		$isi_log_2 = 'Masyarakat ' . $dataUser['username'] . ' mencoba menghapus masyarakat ber id ' . $id_masyarakat;
+		$isi_log_2 = 'User ' . $dataUser['username'] . ' mencoba menghapus masyarakat ber id ' . $id_masyarakat;
 		$this->admo->userPrivilege('masyarakat', $isi_log_2);
 
 		$data_masyarakat = $this->getMasyarakatById($id_masyarakat);
