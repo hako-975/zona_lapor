@@ -3,10 +3,10 @@
 		<div class="col-lg-6 p-3">
 			<div class="card">
 			  <div class="card-header">
-			  	<h3 class="my-auto"><i class="fas fa-fw fa-plus"></i> Tambah User</h3>
+			  	<h3 class="my-auto"><i class="fas fa-fw fa-plus"></i> Tambah Masyarakat</h3>
 			  </div>
 			  <div class="card-body">
-			  	<form action="<?= base_url('user/addUser'); ?>" method="post">
+			  	<form action="<?= base_url('masyarakat/addMasyarakat'); ?>" method="post">
 					<div class="form-group">
 						<label for="nama">Nama</label>
 						<input type="text" id="nama" class="form-control <?= (form_error('nama')) ? 'is-invalid' : ''; ?>" name="nama" required value="<?= set_value('nama'); ?>">
@@ -43,12 +43,10 @@
 			            </div>
 					</div>
 					<div class="form-group">
-						<label for="jabatan">Jabatan</label>
-						<select id="jabatan" class="custom-select <?= (form_error('jabatan')) ? 'is-invalid' : ''; ?>" name="jabatan">
-							<option value="operator">Operator</option>
-						</select>
+						<label for="alamat">Alamat</label>
+						<textarea id="alamat" class="form-control <?= (form_error('alamat')) ? 'is-invalid' : ''; ?>" name="alamat" required><?= set_value('alamat'); ?></textarea>
 						<div class="invalid-feedback">
-			              <?= form_error('jabatan'); ?>
+			              <?= form_error('alamat'); ?>
 			            </div>
 					</div>
 					<div class="form-group text-right">

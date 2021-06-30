@@ -30,10 +30,14 @@
 								<td><?= $du['nama']; ?></td>
 								<td><?= $du['no_telepon']; ?></td>
 								<td><?= $du['jabatan']; ?></td>
-								<td>
-									<a href="<?= base_url('user/editUser/' . $du['id_user']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
-									<a href="<?= base_url('user/removeUser/' . $du['id_user']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="<?= $du['username']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>
-								</td>
+								<?php if ($du['jabatan'] != 'administrator'): ?>
+									<td>
+										<a href="<?= base_url('user/editUser/' . $du['id_user']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
+										<a href="<?= base_url('user/removeUser/' . $du['id_user']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="<?= $du['username']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>
+									</td>
+								<?php else: ?>
+									<td></td>
+								<?php endif ?>
 							</tr>
 						<?php endforeach ?>
 					</tbody>

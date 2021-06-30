@@ -1,5 +1,5 @@
 <!-- jQuery -->
-<script src="<?= base_url('assets/vendor/jquery/jquery-3.5.1.min.js'); ?>"></script>
+<script src="<?= base_url('assets/vendor/jquery/jquery-3.6.0.min.js'); ?>"></script>
 <!-- popper -->
 <script src="<?= base_url('assets/vendor/popper/popper.min.js'); ?>"></script>
 <!-- Bootstrap 4 -->

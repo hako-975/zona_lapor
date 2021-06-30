@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row justify-content-center py-3">
 		<div class="col-lg header-title">
-			<h3><i class="fas fa-fw fa-history"></i> Riwayat</h3>
+			<h3><i class="fas fa-fw fa-history"></i> Aktivitas</h3>
 		</div>
 	</div>
 	<div class="row py-3">

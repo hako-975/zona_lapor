@@ -28,6 +28,22 @@ class Admin_model extends CI_Model
 		return $this->db->get_where('user', ['username' => $username])->row_array();
 	}
 
+	public function userPrivilege($redirect = 'admin', $isi2 = '')
+	{
+		$dataUser = $this->getDataUserAdmin();
+		if ($dataUser['jabatan'] != 'administrator') {
+			$isi = 'Akses ditolak! Karena jabatan anda sebagai ' . $dataUser['jabatan'] . '! Hubungi Administrator untuk melakukan perubahan! ';
+			$isi .= ucfirst($isi2);
+
+			$this->session->set_flashdata('message-failed', $isi);
+			
+			$id_user = $dataUser['id_user'];
+			$this->lomo->addLog($isi, $id_user);
+			redirect($redirect);
+			exit();
+		}
+	}
+
 	public function changePassword()
 	{
 		$dataUser 	= $this->getDataUserAdmin();

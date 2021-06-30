@@ -52,6 +52,54 @@
             </a>
           <?php endif ?>
         </li>
+        <li class="nav-item">
+          <?php if (
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/kecamatan' || 
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/kecamatan/'
+          ): ?>
+            <a href="<?= base_url('kecamatan'); ?>" class="nav-link active">
+              <i class="fas fa-file nav-icon"></i>
+              <p>Kecamatan</p>
+            </a>
+          <?php else: ?>
+            <a href="<?= base_url('kecamatan'); ?>" class="nav-link">
+              <i class="fas fa-file nav-icon"></i>
+              <p>Kecamatan</p>
+            </a>
+          <?php endif ?>
+        </li>
+        <li class="nav-item">
+          <?php if (
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/kelurahan' || 
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/kelurahan/'
+          ): ?>
+            <a href="<?= base_url('kelurahan'); ?>" class="nav-link active">
+              <i class="fas fa-file nav-icon"></i>
+              <p>Kelurahan</p>
+            </a>
+          <?php else: ?>
+            <a href="<?= base_url('kelurahan'); ?>" class="nav-link">
+              <i class="fas fa-file nav-icon"></i>
+              <p>Kelurahan</p>
+            </a>
+          <?php endif ?>
+        </li>
+        <li class="nav-item">
+          <?php if (
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/masyarakat' || 
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/masyarakat/'
+          ): ?>
+            <a href="<?= base_url('masyarakat'); ?>" class="nav-link active">
+              <i class="fas fa-users nav-icon"></i>
+              <p>Masyarakat</p>
+            </a>
+          <?php else: ?>
+            <a href="<?= base_url('masyarakat'); ?>" class="nav-link">
+              <i class="fas fa-users nav-icon"></i>
+              <p>Masyarakat</p>
+            </a>
+          <?php endif ?>
+        </li>
         <!-- <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="fas fa-file nav-icon"></i>
@@ -62,7 +110,7 @@
         <li class="nav-item">
           <a href="<?= base_url('log'); ?>" class="nav-link">
             <i class="fas fa-fw fa-history nav-icon"></i>
-            <p>Riwayat</p>
+            <p>Aktivitas</p>
           </a>
         </li>
       </ul>
