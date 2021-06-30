@@ -100,6 +100,22 @@
             </a>
           <?php endif ?>
         </li>
+        <li class="nav-item">
+          <?php if (
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/pengaduan' || 
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/pengaduan/'
+          ): ?>
+            <a href="<?= base_url('pengaduan'); ?>" class="nav-link active">
+              <i class="fas fa-exclamation nav-icon"></i>
+              <p>Pengaduan</p>
+            </a>
+          <?php else: ?>
+            <a href="<?= base_url('pengaduan'); ?>" class="nav-link">
+              <i class="fas fa-exclamation nav-icon"></i>
+              <p>Pengaduan</p>
+            </a>
+          <?php endif ?>
+        </li>
         <!-- <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="fas fa-file nav-icon"></i>

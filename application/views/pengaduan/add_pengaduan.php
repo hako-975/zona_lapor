@@ -1,0 +1,67 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-6 p-3">
+			<div class="card">
+			  <div class="card-header">
+			  	<h3 class="my-auto"><i class="fas fa-fw fa-plus"></i> Tambah Pengaduan</h3>
+			  </div>
+			  <div class="card-body">
+			  	<form action="<?= base_url('pengaduan/addPengaduan'); ?>" method="post" enctype="multipart/form-data">
+			  		<div class="form-group">
+						<label for="isi_laporan">Isi Laporan</label>
+						<textarea id="isi_laporan" class="form-control <?= (form_error('isi_laporan')) ? 'is-invalid' : ''; ?>" name="isi_laporan" required><?= set_value('isi_laporan'); ?></textarea>
+						<div class="invalid-feedback">
+			              <?= form_error('isi_laporan'); ?>
+			            </div>
+					</div>
+					<div class="form-group">
+						<label for="id_masyarakat">Masyarakat</label>
+						<select id="id_masyarakat" class="custom-select <?= (form_error('id_masyarakat')) ? 'is-invalid' : ''; ?>" name="id_masyarakat">
+							<?php foreach ($masyarakat as $dm): ?>
+								<option value="<?= $dm['id_masyarakat']; ?>"><?= ucwords(strtolower($dm['username'])); ?></option>
+							<?php endforeach ?>
+						</select>
+						<div class="invalid-feedback">
+			              <?= form_error('id_masyarakat'); ?>
+			            </div>
+					</div>
+					<div class="form-group">
+						<label for="form_kecamatan">Kecamatan</label>
+						<select class="form-control" id="form_kecamatan">
+							<option value="0">Pilih Kecamatan</option>
+							<?php foreach ($kecamatan as $dataKecamatan): ?>
+								<option value="<?= $dataKecamatan['id_kecamatan']; ?>"><?= $dataKecamatan['kecamatan']; ?></option>
+							<?php endforeach ?>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="form_kelurahan">Kelurahan</label>
+						<select id="form_kelurahan" class="form-control" name="id_kelurahan">
+							<option value="0">Pilih Kecamatan</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<a href="<?= base_url('assets/img/img_pengaduan/default.png'); ?>" class="enlarge" id="check_enlarge_photo">
+							<img class="img-fluid rounded img-w-150" id="check_photo" src="<?= base_url('assets/img/img_pengaduan/default.png'); ?>" alt="Foto Pengaduan">
+						</a>
+						<br>
+					</div>
+					<div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text">Upload Foto</span>
+					  </div>
+					  <div class="custom-file">
+					    <input type="file" class="custom-file-input" id="foto" aria-describedby="foto" id="foto" name="foto">
+					    <label class="custom-file-label" for="foto">Pilih file</label>
+					  </div>
+					</div>
+					<div class="form-group text-right">
+						<button type="submit" class="btn btn-primary"><i class="fas fa-fw fa-save"></i> Simpan</button>
+					</div>
+				</form>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+

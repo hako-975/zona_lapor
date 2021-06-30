@@ -1,7 +1,6 @@
 $(document).ready(function() {
   $(".enlarge").fancybox();
 
-
   $('.custom-file-input').on('change', function() 
   {
     let photo = $(this).val().split('\\').pop();
@@ -13,7 +12,7 @@ $(document).ready(function() {
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        $('.check_photo').attr('src', e.target.result);
+        $('#check_photo').attr('src', e.target.result);
       }
 
       reader.readAsDataURL(input.files[0]);
@@ -25,18 +24,18 @@ $(document).ready(function() {
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        $('.check_enlarge_photo').attr('href', e.target.result);
+        $('#check_enlarge_photo').attr('href', e.target.result);
       }
 
       reader.readAsDataURL(a.files[0]);
     }
   }
 
-  $(".photo").change(function(){
+  $("#foto").change(function(){
      readPhoto(this);
   });
 
-  $(".photo").change(function(){
+  $("#foto").change(function(){
      enlargePhoto(this);
   });
 });

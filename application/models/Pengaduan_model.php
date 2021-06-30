@@ -14,7 +14,7 @@ class Pengaduan_model extends CI_Model
 	{
 		$this->db->join('masyarakat', 'pengaduan.id_masyarakat=masyarakat.id_masyarakat');
 		$this->db->join('kelurahan', 'pengaduan.id_kelurahan=kelurahan.id_kelurahan');
-		$this->db->order_by('pengaduan', 'asc');
+		$this->db->order_by('id_pengaduan', 'desc');
 		return $this->db->get('pengaduan')->result_array();
 	}
 
@@ -28,7 +28,22 @@ class Pengaduan_model extends CI_Model
 	public function addPengaduan()
 	{
 		$dataUser = $this->admo->getDataUserAdmin();
-
+		
+		$foto = $_FILES['foto']['name'];
+		if ($foto) {
+			$config['upload_path'] = './assets/img/img_pengaduan/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		
+			$this->load->library('upload', $config);
+		
+			if ($this->upload->do_upload('foto')) {
+				$new_foto = $this->upload->data('file_name');
+				$this->db->set('foto', $new_foto);
+			} else {
+				echo $this->upload->display_errors();
+			}
+		}
+		
 		$data = [
 			'isi_laporan'	=> $this->input->post('isi_laporan', true),
 			'id_masyarakat'	=> $this->input->post('id_masyarakat', true),
@@ -46,8 +61,32 @@ class Pengaduan_model extends CI_Model
 	public function editPengaduan($id_pengaduan)
 	{
 		$dataUser = $this->admo->getDataUserAdmin();
-
 		$data_pengaduan = $this->getPengaduanById($id_pengaduan);
+
+		$foto = $_FILES['foto']['name'];
+		if ($foto) 
+		{
+			$config['upload_path'] = './assets/img/img_pengaduan/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		
+			$this->load->library('upload', $config);
+		
+			if ($this->upload->do_upload('foto')) 
+			{
+				$old_foto = $data_pengaduan['foto'];
+				if ($old_foto != 'default.png') 
+				{
+					unlink(FCPATH . 'assets/img/img_pengaduan/' . $data_pengaduan['foto']);
+				}
+				$new_foto = $this->upload->data('file_name');
+				$this->db->set('foto', $new_foto);
+			}
+			else 
+			{
+				echo $this->upload->display_errors();
+			}
+		}
+
 		$data = [
 			'isi_laporan'	=> $this->input->post('isi_laporan', true),
 			'id_masyarakat'	=> $this->input->post('id_masyarakat', true),
@@ -56,7 +95,7 @@ class Pengaduan_model extends CI_Model
 
 		$this->db->update('pengaduan', $data, ['id_pengaduan' => $id_pengaduan]);
 
-		$isi_log = 'Pengaduan ' . $data['pengaduan'] . ' berhasil diubah';
+		$isi_log = 'Pengaduan ' . $data['isi_laporan'] . ' berhasil diubah';
 		$this->lomo->addLog($isi_log, $dataUser['id_user']);
 		$this->session->set_flashdata('message-success', $isi_log);
 		redirect('pengaduan');
@@ -67,11 +106,15 @@ class Pengaduan_model extends CI_Model
 		$dataUser = $this->admo->getDataUserAdmin();
 		$isi_log_2 = 'Pengaduan ' . $dataUser['username'] . ' mencoba menghapus pengaduan ber id ' . $id_pengaduan;
 		$this->admo->userPrivilege('pengaduan', $isi_log_2);
-
 		$data_pengaduan = $this->getPengaduanById($id_pengaduan);
 		$pengaduan  = $data_pengaduan['isi_laporan'];
 		
-		$this->db->delete('pengaduan', ['id_pengaduan' => $id_pengaduan]);
+		$old_foto = $data_pengaduan['foto'];
+		if ($old_foto != 'default.png') 
+		{
+			unlink(FCPATH . 'assets/img/img_pengaduan/' . $data_pengaduan['foto']);
+		}
+		
 		$this->db->delete('pengaduan', ['id_pengaduan' => $id_pengaduan]);
 		$isi_log = 'Pengaduan ' . $pengaduan . ' berhasil dihapus';
 		$this->lomo->addLog($isi_log, $dataUser['id_user']);
