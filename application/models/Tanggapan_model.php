@@ -29,10 +29,24 @@ class Tanggapan_model extends CI_Model
 	{
 		$dataUser = $this->admo->getDataUserAdmin();
 
+		// cek status tanggapan
+		$isi_tanggapan = $this->input->post('isi_tanggapan', true);
+
+		$status_tanggapan = strtolower($this->input->post('status_tanggapan', true));
+		
+		if ($status_tanggapan == null) 
+		{
+			$isi_log = 'Tanggapan ' . $isi_tanggapan . ' gagal ditambahkan';
+			$this->lomo->addLog($isi_log, $dataUser['id_user']);
+			$this->session->set_flashdata('message-failed', $isi_log);
+			redirect('tanggapan/index/' . $id_pengaduan);
+			exit;
+		}
+
 		$data = [
-			'isi_tanggapan'		=> $this->input->post('isi_tanggapan', true),
+			'isi_tanggapan'		=> $isi_tanggapan,
 			'tgl_tanggapan'		=> $this->input->post('tgl_tanggapan', true),
-			'status_tanggapan'	=> strtolower($this->input->post('status_tanggapan', true)),
+			'status_tanggapan'	=> $status_tanggapan,
 			'id_pengaduan'		=> $id_pengaduan,
 			'id_user' 			=> $dataUser['id_user']
 		];
@@ -79,7 +93,17 @@ class Tanggapan_model extends CI_Model
 	{
 		$dataUser = $this->admo->getDataUserAdmin();
 		$isi_log_2 = 'User ' . $dataUser['username'] . ' mencoba menghapus tanggapan ber id ' . $id_tanggapan;
-		$this->admo->userPrivilege('tanggapan', $isi_log_2);
+		$this->admo->userPrivilege('tanggapan/index/' . $id_pengaduan, $isi_log_2);
+		
+		// cek apakah tanggapan yang dihapus itu baris terakhir
+		$last_row = $this->db->select('*')->limit(1)->order_by('id_tanggapan','DESC')->get_where('tanggapan', ['id_pengaduan' => $id_pengaduan])->row_array()['id_tanggapan'];
+
+		if ($id_tanggapan != $last_row) 
+		{
+			$this->lomo->addLog($isi_log_2, $dataUser['id_user']);
+			redirect('tanggapan/index/' . $id_pengaduan);
+			exit;
+		}
 
 		$data_tanggapan = $this->getTanggapanById($id_tanggapan);
 		$status = explode('_', $data_tanggapan['status_tanggapan']);

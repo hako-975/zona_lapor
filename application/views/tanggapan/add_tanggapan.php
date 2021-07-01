@@ -1,3 +1,32 @@
+<?php 
+	$num_rows = $this->db->get_where('tanggapan', ['id_pengaduan' => $this->uri->segment(3)])->num_rows();
+
+	// cek apakah status sudah selesai
+	if ($num_rows == 4) 
+	{
+		redirect('tanggapan/index/' . $this->uri->segment(3));
+		exit;
+	}
+
+	$this->db->order_by('id_tanggapan', 'desc');
+	$tanggapan = $this->db->get_where('tanggapan', ['id_pengaduan' => $this->uri->segment(3)])->row_array();
+
+?>
+
+<?php if (validation_errors()): ?>
+  <div class="toast bg-danger" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" style="z-index: 999999; position: fixed; right: 1.5rem; bottom: 3.5rem">
+    <div class="toast-header">
+      <strong class="mr-auto">Gagal!</strong>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      <?= validation_errors(); ?>
+    </div>
+  </div>
+<?php endif ?>
+
 <div class="container">
 	<div class="row">
 		<div class="col-lg-6 p-3">
@@ -25,19 +54,48 @@
 			              <?= form_error('tgl_tanggapan'); ?>
 			            </div>
 					</div>
-					<label>Data Valid?</label>
-					<div class="form-check">
-					  <input class="form-check-input" type="radio" name="status_tanggapan" id="valid" value="valid" checked>
-					  <label class="form-check-label" for="valid">
-					    <i class="fas fa-fw fa-check"></i> Valid
-					  </label>
-					</div>
-					<div class="form-check">
-					  <input class="form-check-input" type="radio" name="status_tanggapan" id="invalid" value="tidak_valid">
-					  <label class="form-check-label" for="invalid">
-					    <i class="fas fa-fw fa-times"></i> Tidak Valid
-					  </label>
-					</div>
+					
+					<?php if ($num_rows == 0): ?>
+						<!-- valid -->
+						<label>Data Valid?</label>
+						<div class="form-check">
+						  <input class="form-check-input" type="radio" name="status_tanggapan" id="valid" value="valid" checked>
+						  <label class="form-check-label" for="valid">
+						    <i class="fas fa-fw fa-check"></i> Valid
+						  </label>
+						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="radio" name="status_tanggapan" id="invalid" value="tidak_valid">
+						  <label class="form-check-label" for="invalid">
+						    <i class="fas fa-fw fa-times"></i> Tidak Valid
+						  </label>
+						</div>
+						<!-- valid -->
+					<?php elseif ($num_rows == 1 && $tanggapan['status_tanggapan'] == 'valid'): ?>
+						<label>Dalam Proses?</label>
+						<div class="form-check">
+						  <input class="form-check-input" type="radio" name="status_tanggapan" id="proses" value="proses" checked>
+						  <label class="form-check-label" for="proses">
+						    <i class="fas fa-fw fa-sync"></i> Proses
+						  </label>
+						</div>
+					<?php elseif ($num_rows == 2 && $tanggapan['status_tanggapan'] == 'proses'): ?>
+						<label>Dalam Pengerjaan?</label>
+						<div class="form-check">
+						  <input class="form-check-input" type="radio" name="status_tanggapan" id="pengerjaan" value="pengerjaan" checked>
+						  <label class="form-check-label" for="pengerjaan">
+						    <i class="fas fa-fw fa-hammer"></i> Pengerjaan
+						  </label>
+						</div>
+					<?php elseif ($num_rows == 3 && $tanggapan['status_tanggapan'] == 'pengerjaan'): ?>
+						<label>Sudah Selesai?</label>
+						<div class="form-check">
+						  <input class="form-check-input" type="radio" name="status_tanggapan" id="selesai" value="selesai" checked>
+						  <label class="form-check-label" for="selesai">
+						    <i class="fas fa-fw fa-check-double"></i> Selesai
+						  </label>
+						</div>
+					<?php endif ?>
 					<div class="form-group text-right">
 						<button type="submit" class="btn btn-primary"><i class="fas fa-fw fa-save"></i> Simpan</button>
 					</div>
