@@ -1,3 +1,18 @@
+/*------------ Sticky Footer ------------*/
+main > .container {
+  padding: 60px 15px 0;
+}
+
+.footer {
+  background-color: #f5f5f5;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+/*------------ Sticky Footer ------------*/
+
 /*------------ header ------------*/
 .header-title {
   margin: 5px 0;
@@ -31,6 +46,10 @@
   width: 75px !important;
 }
 
+.img-w-100 {
+  width: 100px !important;
+}
+
 .img-w-150 {
   width: 150px !important;
 }
@@ -47,3 +66,81 @@
   width: 300px !important;
 }
 /*------------ img-size ------------*/
+
+/*------------ scroll to top ------------*/
+.scroll-to-top {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  display: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  text-align: center;
+  color: #fff;
+  background: rgba(220,53,69, 0.85);
+  line-height: 46px;
+}
+
+.scroll-to-top:focus, .scroll-to-top:hover {
+  color: white;
+}
+
+.scroll-to-top:hover {
+  background: rgba(220,53,69, 1);
+}
+
+.scroll-to-top i {
+  font-weight: 800;
+}
+/*------------ scroll to top ------------*/
+
+/*------------ textarea ------------*/
+textarea {
+  min-height: 90px;
+  max-height: 210px;
+}
+/*------------ textarea ------------*/
+
+/*------------ footer ------------*/
+.footer-copyright {
+  margin: 5px 0;
+  text-align: left;
+}
+
+.footer-sosial-media {
+  margin: 5px 0;
+  text-align: left;
+}
+
+@media (min-width: 992px) {
+  .footer-copyright {
+    margin: 5px 0;
+    text-align: left;
+  }
+
+  .footer-sosial-media {
+    margin: 5px 0;
+    text-align: right;
+  }
+}
+/*------------ footer ------------*/
+
+/*------------ btn login ------------*/
+.btn-login {
+  background: transparent !important;
+  border: 1px solid #DC3545;
+  color: #343a40 !important;
+}
+
+.btn-login:hover {
+  background: #DC3545 !important;
+  color: white !important;
+}
+
+.btn-login:focus {
+  color: #fff !important;
+  background-color: #c82333 !important;
+  border-color: #bd2130 !important;
+  box-shadow: 0 0 0 0.2rem rgba(225, 83, 97, 0.!imo;
+}
+/*------------ btn login ------------*/

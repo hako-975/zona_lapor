@@ -35,6 +35,107 @@
 			</div>
 		<?php endif ?>
 	</div>
+
+	<?php if ($num_rows > 0 && $tanggapan[$num_rows-1]['status_tanggapan'] != 'tidak_valid'): ?>
+		<div class="row my-2">
+			<div class="col-3">
+				<div class="text-center bg-danger py-3 rounded text-white">
+					<h6><i class="fas fa-fw fa-sync"></i></h6>
+					<h6>Proses</h6>
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="text-center bg-success py-3 rounded text-white">
+					<h6><i class="fas fa-fw fa-check"></i></h6>
+					<h6>Valid</h6>
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="text-center bg-warning py-3 rounded text-white">
+					<h6><i class="fas fa-fw fa-hammer"></i></h6>
+					<h6>Pengerjaan</h6>
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="text-center bg-primary py-3 rounded text-white">
+					<h6><i class="fas fa-fw fa-calendar-check"></i></h6>
+					<h6>Selesai</h6>
+				</div>
+			</div>
+		</div>
+	<?php elseif ($num_rows != 0): ?>
+		<div class="row my-2">
+			<div class="col-3">
+				<div class="text-center bg-secondary py-3 rounded text-white">
+    				<h6><i class="fas fa-fw fa-exclamation"></i></h6>
+    				<h6>Tidak Valid</h6>
+				</div>
+			</div>
+		</div>
+	<?php else: ?>
+		<div class="row my-2">
+			<div class="col-3">
+				<div class="text-center bg-danger py-3 rounded text-white">
+					<h6><i class="fas fa-fw fa-sync"></i></h6>
+					<h6>Proses</h6>
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="text-center bg-success py-3 rounded text-white">
+					<h6><i class="fas fa-fw fa-check"></i></h6>
+					<h6>Valid</h6>
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="text-center bg-warning py-3 rounded text-white">
+					<h6><i class="fas fa-fw fa-hammer"></i></h6>
+					<h6>Pengerjaan</h6>
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="text-center bg-primary py-3 rounded text-white">
+					<h6><i class="fas fa-fw fa-calendar-check"></i></h6>
+					<h6>Selesai</h6>
+				</div>
+			</div>
+		</div>
+	<?php endif ?>
+	<div class="row my-3">
+		<div class="col">
+			<?php if ($num_rows == 0): ?>
+				<div class="progress">
+					<div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+				</div>
+				<small class="text-danger">Tambahkan tanggapan untuk merubah status menjadi dalam proses.</small>
+			<?php else: ?>
+				<?php if ($tanggapan[$num_rows-1]['status_tanggapan'] == 'proses'): ?>
+					<div class="progress">
+					  <div class="progress-bar bg-danger" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="15"></div>
+					   <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+					<small class="text-success">Tambahkan tanggapan lagi untuk merubah status menjadi valid atau tidak valid.</small>
+				<?php elseif ($tanggapan[$num_rows-1]['status_tanggapan'] == 'valid'): ?>
+					<div class="progress">
+					  <div class="progress-bar bg-success" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="40"></div>
+					   <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+					<small class="text-warning">Tambahkan tanggapan lagi untuk merubah status menjadi dalam pengerjaan.</small>
+				<?php elseif ($tanggapan[$num_rows-1]['status_tanggapan'] == 'pengerjaan'): ?>
+					<div class="progress">
+					  <div class="progress-bar bg-warning" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="65"></div>
+					   <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+					<small class="text-warning">Tambahkan tanggapan lagi untuk merubah status menjadi selesai.</small>
+				<?php elseif ($tanggapan[$num_rows-1]['status_tanggapan'] == 'selesai'): ?>
+					<div class="progress">
+					  <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+					<small class="text-primary">Kasus pengaduan sudah selesai. Untuk mengubah status menjadi tidak valid hapus tanggapan sampai status valid.</small>
+				<?php endif ?>
+			<?php endif ?>
+		</div>
+	</div>
+	
 	<div class="row py-3">
 		<div class="col-lg">
 			<div class="table-responsive">

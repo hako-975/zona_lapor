@@ -5,7 +5,7 @@ class Landing extends CI_Controller
 {
 	public function index()
 	{
-		$data['title'] = 'Landing Page';
+		$data['title'] = 'Zona Lapor';
 		$this->load->view('templates/header', $data);
 		$this->load->view('landing/index', $data);
 		$this->load->view('templates/footer', $data);

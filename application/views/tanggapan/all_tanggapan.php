@@ -48,6 +48,7 @@
 							<th>Isi Tanggapan</th>
 							<th>Status</th>
 							<th>Penanggap</th>
+							<th>Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -75,6 +76,7 @@
 									<td class="bg-secondary"><i class="fas fa-fw fa-times"></i> <?= $status; ?></td>
 								<?php endif ?>
 								<td><?= $dt['username']; ?></td>
+								<td><a href="<?= base_url('tanggapan/index/' . $dt['id_pengaduan']); ?>" class="btn btn-primary"><i class="fas fa-fw fa-align-justify"></i></a></td>
 							</tr>
 						<?php endforeach ?>
 						<?php if ($all_tanggapan == null): ?>

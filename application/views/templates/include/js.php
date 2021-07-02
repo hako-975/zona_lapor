@@ -1,5 +1,6 @@
 <!-- jQuery -->
 <script src="<?= base_url('assets/vendor/jquery/jquery-3.6.0.min.js'); ?>"></script>
+<script src="<?= base_url('assets/vendor/jquery-easing/jquery.easing.min.js'); ?>"></script>
 <!-- popper -->
 <script src="<?= base_url('assets/vendor/popper/popper.min.js'); ?>"></script>
 <!-- Bootstrap 4 -->
@@ -17,6 +18,7 @@
 <script src="<?= base_url('assets/vendor/adminlte/js/adminlte.min.js'); ?>"></script>
 
 <!-- config -->
+<script src="<?= base_url('assets/js/jquery-easing-config.js'); ?>"></script>
 <script src="<?= base_url('assets/js/datatables-config.js'); ?>"></script>
 <script src="<?= base_url('assets/js/fancybox-config.js'); ?>"></script>
 <script src="<?= base_url('assets/js/sweetalert2-config.js'); ?>"></script>
