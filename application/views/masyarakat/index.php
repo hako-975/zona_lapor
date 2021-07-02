@@ -30,14 +30,19 @@
 								<td><?= $dm['nama']; ?></td>
 								<td><?= $dm['no_telepon']; ?></td>
 								<td><?= $dm['alamat']; ?></td>
-									<td>
-										<a href="<?= base_url('masyarakat/editMasyarakat/' . $dm['id_masyarakat']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
-										<?php if ($dataUser['jabatan'] == 'administrator'): ?>
-											<a href="<?= base_url('masyarakat/removeMasyarakat/' . $dm['id_masyarakat']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="<?= $dm['username']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>
-										<?php endif ?>
-									</td>
+								<td>
+									<a href="<?= base_url('masyarakat/editMasyarakat/' . $dm['id_masyarakat']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
+									<?php if ($dataUser['jabatan'] == 'administrator'): ?>
+										<a href="<?= base_url('masyarakat/removeMasyarakat/' . $dm['id_masyarakat']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="<?= $dm['username']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>
+									<?php endif ?>
+								</td>
 							</tr>
 						<?php endforeach ?>
+						<?php if ($masyarakat == null): ?>
+							<tr>
+								<td colspan="6" class="text-center">Tidak ada data.</td>
+							</tr>
+						<?php endif ?>
 					</tbody>
 				</table>
 			</div>

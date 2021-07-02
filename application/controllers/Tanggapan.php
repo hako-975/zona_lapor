@@ -13,13 +13,30 @@ class Tanggapan extends CI_Controller
 		$this->admo->checkLoginAdmin();
 	}
 
-	public function index($id_pengaduan)
+	public function allTanggapan($status_tanggapan = '')
 	{
+		$data['dataUser']		= $this->admo->getDataUserAdmin();
+		$data['title']  		= 'Semua Tanggapan';
+		$data['all_tanggapan']	= $this->tamo->getTanggapanGroupByIdPengaduan($status_tanggapan);
+
+		$this->load->view('templates/header-admin', $data);
+		$this->load->view('tanggapan/all_tanggapan', $data);
+		$this->load->view('templates/footer-admin', $data);
+	}
+
+	public function index($id_pengaduan = 0)
+	{
+		if ($id_pengaduan == 0) 
+		{
+			redirect('tanggapan/allTanggapan');
+			exit;
+		}
+
 		$data['id_pengaduan'] 	= $id_pengaduan;
 		$data['pengaduan']		= $this->pemo->getPengaduanById($id_pengaduan);
 		$data['dataUser']		= $this->admo->getDataUserAdmin();
 		$data['title']  		= 'Tanggapan - ' . $data['pengaduan']['isi_laporan'];
-		$data['tanggapan']		= $this->tamo->getTanggapan();
+		$data['tanggapan']		= $this->tamo->getTanggapanByIdPengaduan($id_pengaduan);
 
 		$this->load->view('templates/header-admin', $data);
 		$this->load->view('tanggapan/index', $data);
@@ -53,7 +70,6 @@ class Tanggapan extends CI_Controller
 
 		$this->form_validation->set_rules('isi_tanggapan', 'Isi Tanggapan', 'required|trim');
 		$this->form_validation->set_rules('tgl_tanggapan', 'Tanggal Tanggapan', 'required|trim');
-		$this->form_validation->set_rules('status_tanggapan', 'Status Tanggapan', 'required|trim');
 		if ($this->form_validation->run() == false) {
 		    $this->load->view('templates/header-admin', $data);
 		    $this->load->view('tanggapan/edit_tanggapan', $data);

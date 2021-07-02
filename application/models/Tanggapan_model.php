@@ -18,6 +18,27 @@ class Tanggapan_model extends CI_Model
 		return $this->db->get('tanggapan')->result_array();
 	}
 
+	public function getTanggapanByIdPengaduan($id_pengaduan)
+	{
+		$this->db->join('user', 'tanggapan.id_user=user.id_user');
+		$this->db->join('pengaduan', 'tanggapan.id_pengaduan=pengaduan.id_pengaduan');
+		$this->db->order_by('id_tanggapan', 'asc');
+		return $this->db->get_where('tanggapan', ['pengaduan.id_pengaduan' => $id_pengaduan])->result_array();
+	}
+
+	public function getTanggapanGroupByIdPengaduan($status_tanggapan = '')
+	{
+		if ($status_tanggapan != '') 
+		{
+			$this->db->where('status_tanggapan', $status_tanggapan);
+		}
+
+		$this->db->join('user', 'tanggapan.id_user=user.id_user');
+		$this->db->join('pengaduan', 'tanggapan.id_pengaduan=pengaduan.id_pengaduan');
+		$this->db->order_by('tanggapan.tgl_tanggapan', 'desc');
+		return $this->db->get('tanggapan')->result_array();
+	}
+
 	public function getTanggapanById($id_tanggapan)
 	{
 		$this->db->join('user', 'tanggapan.id_user=user.id_user');
@@ -67,23 +88,12 @@ class Tanggapan_model extends CI_Model
 		$data = [
 			'isi_tanggapan'		=> $this->input->post('isi_tanggapan', true),
 			'tgl_tanggapan'		=> $this->input->post('tgl_tanggapan', true),
-			'status_tanggapan'	=> strtolower($this->input->post('status_tanggapan', true)),
 			'id_user' 			=> $dataUser['id_user']
 		];
 
 		$this->db->update('tanggapan', $data, ['id_tanggapan' => $id_tanggapan]);
 
-		if ($data_tanggapan['status_tanggapan'] != $data['status_tanggapan']) 
-		{
-			$status = explode('_', $data['status_tanggapan']);
-			$status = implode(' ', $status);
-			$status = ucwords(strtolower($status));
-			$isi_log = 'Tanggapan ' . $data['isi_tanggapan'] . ' dengan status ' . $status . ' berhasil diubah';
-		}
-		else
-		{
-			$isi_log = 'Tanggapan ' . $data['isi_tanggapan'] . ' berhasil diubah';
-		}
+		$isi_log = 'Tanggapan ' . $data['isi_tanggapan'] . ' berhasil diubah';
 		$this->lomo->addLog($isi_log, $dataUser['id_user']);
 		$this->session->set_flashdata('message-success', $isi_log);
 		redirect('tanggapan/index/' . $id_pengaduan);

@@ -40,6 +40,11 @@
 								<?php endif ?>
 							</tr>
 						<?php endforeach ?>
+						<?php if ($user == null): ?>
+							<tr>
+								<td colspan="6" class="text-center">Tidak ada data.</td>
+							</tr>
+						<?php endif ?>
 					</tbody>
 				</table>
 			</div>

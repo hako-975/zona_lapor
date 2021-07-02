@@ -26,14 +26,19 @@
 								<td><?= $i++; ?></td>
 								<td><?= $dk['kelurahan']; ?></td>
 								<td><?= $dk['kecamatan']; ?></td>
-									<td>
-										<a href="<?= base_url('kelurahan/editKelurahan/' . $dk['id_kelurahan']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
-										<?php if ($dataUser['jabatan'] == 'administrator'): ?>
-											<a href="<?= base_url('kelurahan/removeKelurahan/' . $dk['id_kelurahan']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="<?= $dk['kelurahan']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>
-										<?php endif ?>
-									</td>
+								<td>
+									<a href="<?= base_url('kelurahan/editKelurahan/' . $dk['id_kelurahan']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
+									<?php if ($dataUser['jabatan'] == 'administrator'): ?>
+										<a href="<?= base_url('kelurahan/removeKelurahan/' . $dk['id_kelurahan']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="<?= $dk['kelurahan']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>
+									<?php endif ?>
+								</td>
 							</tr>
 						<?php endforeach ?>
+						<?php if ($kelurahan == null): ?>
+							<tr>
+								<td colspan="4" class="text-center">Tidak ada data.</td>
+							</tr>
+						<?php endif ?>
 					</tbody>
 				</table>
 			</div>
