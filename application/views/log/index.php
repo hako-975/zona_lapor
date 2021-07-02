@@ -11,8 +11,8 @@
 					<thead class="thead-dark">
 						<tr>
 							<th>No.</th>
-							<th>Isi Log</th>
 							<th>Tanggal Log</th>
+							<th>Isi Log</th>
 							<th>Username</th>
 						</tr>
 					</thead>

@@ -41,7 +41,7 @@
 					</div>
 					<div class="form-group">
 						<label for="form_kecamatan">Kecamatan</label>
-						<select class="custom-select" id="form_kecamatan">
+						<select class="form-control" id="form_kecamatan">
 							<option value="0">Pilih Kecamatan</option>
 							<?php foreach ($kecamatan as $dataKecamatan): ?>
 								<option value="<?= $dataKecamatan['id_kecamatan']; ?>"><?= $dataKecamatan['kecamatan']; ?></option>
@@ -50,7 +50,7 @@
 					</div>
 					<div class="form-group">
 						<label for="form_kelurahan">Kelurahan</label>
-						<select id="form_kelurahan" class="custom-select" name="id_kelurahan">
+						<select id="form_kelurahan" class="form-control" name="id_kelurahan">
 							<option value="0">Pilih Kecamatan</option>
 						</select>
 					</div>

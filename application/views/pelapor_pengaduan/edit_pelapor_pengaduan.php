@@ -20,40 +20,51 @@
 					<h3 class="my-auto"><i class="fas fa-fw fa-edit"></i> Ubah Pengaduan</h3>
 				</div>
 			  	<div class="card-body">
-					<form action="<?= base_url('pengaduan/editPengaduan/' . $pengaduan['id_pengaduan']); ?>" method="post" enctype="multipart/form-data">
-						<input type="hidden" name="id_pengaduan" value="<?= $pengaduan['id_pengaduan']; ?>">
-			  		<div class="form-group">
+					<form action="<?= base_url('pengaduan/editPengaduan/' . $pengaduan['id_pengaduan']); ?>" method="post">
+				  		<div class="form-group">
 							<label for="isi_laporan">Isi Laporan</label>
-							<textarea style="cursor: not-allowed;" disabled id="isi_laporan" class="form-control <?= (form_error('isi_laporan')) ? 'is-invalid' : ''; ?>" name="isi_laporan" required><?= (form_error('isi_laporan')) ? set_value('isi_laporan') : $pengaduan['isi_laporan']; ?></textarea>
+							<textarea id="isi_laporan" class="form-control <?= (form_error('isi_laporan')) ? 'is-invalid' : ''; ?>" name="isi_laporan" required><?= (form_error('isi_laporan')) ? set_value('isi_laporan') : $pengaduan['isi_laporan']; ?></textarea>
 							<div class="invalid-feedback">
-	              <?= form_error('isi_laporan'); ?>
-	            </div>
+				              <?= form_error('isi_laporan'); ?>
+				            </div>
 						</div>
 						<div class="form-group">
 							<label for="id_masyarakat">Pelapor</label>
-							<select style="cursor: not-allowed;" disabled id="id_masyarakat" class="custom-select <?= (form_error('id_masyarakat')) ? 'is-invalid' : ''; ?>" name="id_masyarakat">
-								<option value="<?= $pengaduan['id_masyarakat']; ?>"><?= ucwords(strtolower($pengaduan['username'])); ?></option>
+							<select id="id_masyarakat" class="custom-select <?= (form_error('id_masyarakat')) ? 'is-invalid' : ''; ?>" name="id_masyarakat">
+								<?php foreach ($masyarakat as $dm): ?>
+									<option value="<?= $dm['id_masyarakat']; ?>"><?= ucwords(strtolower($dm['username'])); ?></option>
+								<?php endforeach ?>
 							</select>
 							<div class="invalid-feedback">
-	              <?= form_error('id_masyarakat'); ?>
-	            </div>
+				              <?= form_error('id_masyarakat'); ?>
+				            </div>
 						</div>
 						<div class="form-group">
 							<label for="form_kecamatan">Kecamatan</label>
-							<select style="cursor: not-allowed;" disabled class="custom-select" id="form_kecamatan">
+							<select class="form-control" id="form_kecamatan">
 								<?php 
 									$getKecamatanByIdFromKelurahan = $this->db->get_where('kecamatan', ['id_kecamatan' => $pengaduan['id_kecamatan']])->row_array();
 								?>
 								<option value="<?= $getKecamatanByIdFromKelurahan['id_kecamatan']; ?>"><?= $getKecamatanByIdFromKelurahan['kecamatan']; ?></option>
+								<?php foreach ($kecamatan as $dataKecamatan): ?>
+									<?php if ($dataKecamatan['id_kecamatan'] != $getKecamatanByIdFromKelurahan['id_kecamatan']): ?>
+										<option value="<?= $dataKecamatan['id_kecamatan']; ?>"><?= $dataKecamatan['kecamatan']; ?></option>
+									<?php endif ?>
+								<?php endforeach ?>
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="form_kelurahan">Kelurahan</label>
-							<select style="cursor: not-allowed;" disabled class="custom-select" id="form_kelurahan" name="id_kelurahan">
+							<select id="form_kelurahan" class="form-control" name="id_kelurahan">
 								<?php 
 									$getKelurahanByIdKecamatan = $this->db->get_where('kelurahan', ['id_kecamatan' => $dataKecamatan['id_kecamatan']])->result_array();
 								?>
 								<option value="<?= $pengaduan['id_kelurahan']; ?>"><?= $pengaduan['kelurahan']; ?></option>
+								<?php foreach ($getKelurahanByIdKecamatan as $dataKelurahan): ?>
+									<?php if ($dataKelurahan['id_kelurahan'] != $pengaduan['id_kelurahan']): ?>
+										<option value="<?= $dataKelurahan['id_kelurahan']; ?>"><?= $dataKelurahan['kelurahan']; ?></option>
+									<?php endif ?>
+								<?php endforeach ?>
 							</select>
 						</div>
 						<div class="form-group">

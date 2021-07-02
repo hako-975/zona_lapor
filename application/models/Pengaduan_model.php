@@ -47,7 +47,8 @@ class Pengaduan_model extends CI_Model
 		$data = [
 			'isi_laporan'	=> $this->input->post('isi_laporan', true),
 			'id_masyarakat'	=> $this->input->post('id_masyarakat', true),
-			'id_kelurahan'	=> $this->input->post('id_kelurahan', true)
+			'id_kelurahan'	=> $this->input->post('id_kelurahan', true),
+			'tgl_pengaduan' => date('Y-m-d\TH:i:s')
 		];
 
 		$this->db->insert('pengaduan', $data);
@@ -86,12 +87,6 @@ class Pengaduan_model extends CI_Model
 				echo $this->upload->display_errors();
 			}
 		}
-
-		$data = [
-			'isi_laporan'	=> $this->input->post('isi_laporan', true),
-			'id_masyarakat'	=> $this->input->post('id_masyarakat', true),
-			'id_kelurahan'	=> $this->input->post('id_kelurahan', true)
-		];
 
 		$this->db->update('pengaduan', $data, ['id_pengaduan' => $id_pengaduan]);
 

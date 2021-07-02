@@ -59,11 +59,14 @@
 							<?php foreach ($pengaduan as $dp): ?>
 								<?php 
 									$tanggapan = $this->db->select('*')->limit(1)->order_by('id_tanggapan','DESC')->get_where('tanggapan', ['id_pengaduan' => $dp['id_pengaduan']])->row_array();
-									$status = $tanggapan['status_tanggapan'];
+									if ($tanggapan != null) 
+									{
+										$status = $tanggapan['status_tanggapan'];
+									}
 								?>
 								<tr>
 									<td class="align-middle"><?= $i++; ?></td>
-									<td style="width: 12rem" class="align-middle"><?= date("d-M-Y \P\u\k\u\l H:i", strtotime($tanggapan['tgl_tanggapan'])); ?></td>
+									<td style="width: 12rem" class="align-middle"><?= date("d-M-Y \P\u\k\u\l H:i", strtotime($dp['tgl_pengaduan'])); ?></td>
 									<td style="width: 12rem" class="align-middle"><?= $dp['isi_laporan']; ?></td>
 									<td style="width: 8rem" class="align-middle"><?= $dp['username']; ?></td>
 									<td class="align-middle"><?= $dp['kelurahan']; ?></td>
@@ -74,16 +77,20 @@
 									</td>
 
 									<td class="align-middle">
-									<?php if ($status == 'proses'): ?>
-										<button type="button" class="btn btn-danger text-white"> <i class="fas fa-fw fa-sync"></i>
-									<?php elseif ($status == 'valid'): ?>
-										<button type="button" class="btn btn-success text-white"> <i class="fas fa-fw fa-check"></i>
-									<?php elseif ($status == 'pengerjaan'): ?>
-										<button type="button" class="btn btn-warning text-white"> <i class="fas fa-fw fa-hammer"></i>
-									<?php elseif ($status == 'selesai'): ?>
-										<button type="button" class="btn btn-primary text-white"> <i class="fas fa-fw fa-check-double"></i>
-									<?php elseif ($status == 'tidak_valid'): ?>
-										<button type="button" class="btn btn-secondary text-white"> <i class="fas fa-fw fa-times"></i>
+									<?php if ($tanggapan != null): ?>
+										<?php if ($status == 'proses'): ?>
+											<button type="button" class="btn btn-danger text-white"> <i class="fas fa-fw fa-sync"></i>
+										<?php elseif ($status == 'valid'): ?>
+											<button type="button" class="btn btn-success text-white"> <i class="fas fa-fw fa-check"></i>
+										<?php elseif ($status == 'pengerjaan'): ?>
+											<button type="button" class="btn btn-warning text-white"> <i class="fas fa-fw fa-hammer"></i>
+										<?php elseif ($status == 'selesai'): ?>
+											<button type="button" class="btn btn-primary text-white"> <i class="fas fa-fw fa-check-double"></i>
+										<?php elseif ($status == 'tidak_valid'): ?>
+											<button type="button" class="btn btn-secondary text-white"> <i class="fas fa-fw fa-times"></i>
+										<?php else: ?>
+											<button type="button" class="btn">
+										<?php endif ?>
 									<?php else: ?>
 										<button type="button" class="btn">
 									<?php endif ?>
@@ -97,7 +104,7 @@
 										</button>
 									</td>
 									<td class="align-middle">
-										<a href="<?= base_url('tanggapan/index/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-info m-1"><i class="fas fa-fw fa-align-justify"></i> Detail</a>
+										<a href="<?= base_url('landing/detailPengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-info m-1"><i class="fas fa-fw fa-align-justify"></i> Detail</a>
 									</td>
 								</tr>
 							<?php endforeach ?>

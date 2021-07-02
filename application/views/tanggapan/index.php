@@ -130,7 +130,7 @@
 					<div class="progress">
 					  <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 					</div>
-					<small class="text-primary">Kasus pengaduan sudah selesai. Untuk mengubah status menjadi tidak valid hapus tanggapan sampai status valid.</small>
+					<small class="text-primary">Kasus pengaduan sudah selesai. Untuk ubah foto pengaduan, tekan tombol dibawah tabel. Untuk mengubah status menjadi tidak valid hapus tanggapan sampai status valid.</small>
 				<?php endif ?>
 			<?php endif ?>
 		</div>
@@ -142,29 +142,29 @@
 				<table class="table table-bordered">
 					<thead class="thead-dark">
 						<tr>
-							<th>No.</th>
-							<th>Tanggal Tanggapan</th>
-							<th>Isi Tanggapan</th>
-							<th>Status</th>
-							<th>Penanggap</th>
-							<th>Aksi</th>
+							<th class="align-middle">No.</th>
+							<th class="align-middle">Tanggal Tanggapan</th>
+							<th class="align-middle">Isi Tanggapan</th>
+							<th class="align-middle">Status</th>
+							<th class="align-middle">Penanggap</th>
+							<th class="align-middle">Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php $i = 1; ?>
 						<?php foreach ($tanggapan as $dt): ?>
 							<tr>
-								<td><?= $i++; ?></td>
-								<td><?= $dt['tgl_tanggapan']; ?></td>
-								<td><?= $dt['isi_tanggapan']; ?></td>
+								<td class="align-middle"><?= $i++; ?></td>
+								<td class="align-middle"><?= $dt['tgl_tanggapan']; ?></td>
+								<td class="align-middle"><?= $dt['isi_tanggapan']; ?></td>
 								<?php 
 									$status = explode('_', $dt['status_tanggapan']);
 									$status = implode(' ', $status);
 									$status = ucwords(strtolower($status));
 								?>
-								<td><?= $status; ?></td>
-								<td><?= $dt['username']; ?></td>
-								<td>
+								<td class="align-middle"><?= $status; ?></td>
+								<td class="align-middle"><?= $dt['username']; ?></td>
+								<td class="align-middle">
 									<a href="<?= base_url('tanggapan/editTanggapan/' . $pengaduan['id_pengaduan'] . '/' . $dt['id_tanggapan']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
 									<?php if ($dataUser['jabatan'] == 'administrator'): ?>
 										<?php if ($dt['id_tanggapan'] == $last_row): ?>
@@ -184,4 +184,12 @@
 			</div>
 		</div>
 	</div>
+
+	<?php if ($num_rows != 0): ?>
+		<div class="row py-3">
+			<div class="col-lg">
+				<a class="btn btn-primary" href="<?= base_url('pengaduan/editPengaduan/' . $pengaduan['id_pengaduan']); ?>"><i class="fas fa-fw fa-edit"></i> Ubah Foto Pengaduan</a>
+			</div>
+		</div>
+	<?php endif ?>
 </div>

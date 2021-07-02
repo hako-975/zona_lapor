@@ -38,33 +38,17 @@
         </li>
         <li class="nav-item">
           <?php if (
-            $_SERVER['REQUEST_URI'] == '/zona_lapor/pelapor/pengaduan' || 
-            $_SERVER['REQUEST_URI'] == '/zona_lapor/pelapor/pengaduan/'
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/pelaporPengaduan' || 
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/pelaporPengaduan/'
           ): ?>
-            <a href="<?= base_url('pelapor/pengaduan'); ?>" class="nav-link active">
+            <a href="<?= base_url('pelaporPengaduan'); ?>" class="nav-link active">
               <i class="fas fa-exclamation nav-icon"></i>
               <p>Pengaduan</p>
             </a>
           <?php else: ?>
-            <a href="<?= base_url('pelapor/pengaduan'); ?>" class="nav-link">
+            <a href="<?= base_url('pelaporPengaduan'); ?>" class="nav-link">
               <i class="fas fa-exclamation nav-icon"></i>
               <p>Pengaduan</p>
-            </a>
-          <?php endif ?>
-        </li>
-        <li class="nav-item">
-          <?php if (
-            $_SERVER['REQUEST_URI'] == '/zona_lapor/pelapor/tanggapan/allTanggapan' || 
-            $_SERVER['REQUEST_URI'] == '/zona_lapor/pelapor/tanggapan/allTanggapan/'
-          ): ?>
-            <a href="<?= base_url('pelapor/tanggapan/allTanggapan'); ?>" class="nav-link active">
-              <i class="fas fa-reply nav-icon"></i>
-              <p>Tanggapan</p>
-            </a>
-          <?php else: ?>
-            <a href="<?= base_url('pelapor/tanggapan/allTanggapan'); ?>" class="nav-link">
-              <i class="fas fa-reply nav-icon"></i>
-              <p>Tanggapan</p>
             </a>
           <?php endif ?>
         </li>

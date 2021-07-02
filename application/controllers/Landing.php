@@ -8,6 +8,7 @@ class Landing extends CI_Controller
 		parent::__construct();
 		$this->load->model('Pengaduan_model', 'pemo');
 		$this->load->model('Landing_model', 'lamo');
+		$this->load->model('Tanggapan_model', 'tamo');
 	}
 
 	public function checkLogin()
@@ -103,5 +104,23 @@ class Landing extends CI_Controller
 		} else {
 		    $this->lamo->saran();
 		}
+	}
+
+	public function detailPengaduan($id_pengaduan = 0)
+	{
+		if ($id_pengaduan == 0) 
+		{
+			redirect('landing');
+			exit;
+		}
+
+		$data['id_pengaduan'] 	= $id_pengaduan;
+		$data['pengaduan']		= $this->pemo->getPengaduanById($id_pengaduan);
+		$data['title']  		= 'Detail Pengaduan - ' . $data['pengaduan']['isi_laporan'];
+		$data['tanggapan']		= $this->tamo->getTanggapanByIdPengaduan($id_pengaduan);
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('landing/detail_pengaduan', $data);
+		$this->load->view('templates/footer', $data);
 	}
 }

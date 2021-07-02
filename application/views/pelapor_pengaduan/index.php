@@ -14,14 +14,11 @@
 					<thead class="thead-dark">
 						<tr>
 							<th class="align-middle">No.</th>
-							<th class="align-middle">Tanggal Pengaduan</th>
 							<th class="align-middle">Isi Laporan</th>
 							<th class="align-middle">Pelapor</th>
 							<th class="align-middle">Lokasi</th>
 							<th class="align-middle">Foto</th>
-							<?php if ($dataUser['jabatan'] == 'administrator'): ?>
-								<th class="align-middle">Aksi</th>
-							<?php endif ?>
+							<th class="align-middle">Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -29,7 +26,6 @@
 						<?php foreach ($pengaduan as $dp): ?>
 							<tr>
 								<td class="align-middle"><?= $i++; ?></td>
-								<td class="align-middle"><?= $dp['tgl_pengaduan']; ?></td>
 								<td class="align-middle"><?= $dp['isi_laporan']; ?></td>
 								<td class="align-middle"><?= $dp['username']; ?></td>
 								<td class="align-middle"><?= $dp['kelurahan']; ?></td>
@@ -38,15 +34,11 @@
 										<img src="<?= base_url('assets/img/img_pengaduan/') . $dp['foto']; ?>" class="img-fluid img-w-100-hm-100" alt="<?= $dp['foto']; ?>">
 									</a>
 								</td>
-								<?php if ($dataUser['jabatan'] == 'administrator'): ?>
-									<td class="align-middle text-center">
-										<a href="<?= base_url('tanggapan/index/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-info m-1"><i class="fas fa-fw fa-reply"></i></a>
-										<a href="<?= base_url('pengaduan/editPengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
-										<?php if ($dataUser['jabatan'] == 'administrator'): ?>
-											<a href="<?= base_url('pengaduan/removePengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="<?= $dp['isi_laporan']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>
-										<?php endif ?>
-									</td>
-								<?php endif ?>
+								<td class="align-middle text-center">
+									<a href="<?= base_url('tanggapan/index/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-info m-1"><i class="fas fa-fw fa-reply"></i></a>
+									<a href="<?= base_url('pengaduan/editPengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
+									<a href="<?= base_url('pengaduan/removePengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="<?= $dp['isi_laporan']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>
+								</td>
 							</tr>
 						<?php endforeach ?>
 						<?php if ($pengaduan == null): ?>
