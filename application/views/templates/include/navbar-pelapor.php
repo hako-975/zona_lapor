@@ -5,9 +5,6 @@
     <li class="nav-item">
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
-    <!-- <li class="nav-item d-none d-sm-inline-block">
-      <a href="<?= base_url('admin'); ?>" class="nav-link">Dasbor</a>
-    </li> -->
   </ul>
 
   <!-- SEARCH FORM -->
@@ -30,10 +27,10 @@
         <i class="far fa-user"></i>
       </a>
       <div class="dropdown-menu dropdown-menu-right">
-        <a href="<?= base_url('admin/profile'); ?>" class="dropdown-item">
+        <a href="<?= base_url('pelapor/profile'); ?>" class="dropdown-item">
           <i class="far fa-fw fa-user"></i> Profil
         </a>
-        <a href="<?= base_url('auth/logout'); ?>" class="dropdown-item">
+        <a href="<?= base_url('landing/logout'); ?>" class="dropdown-item">
           <i class="fas fa-fw fa-sign-out-alt"></i> Keluar
         </a>
       </div>

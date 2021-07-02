@@ -26,17 +26,16 @@ class Masyarakat_model extends CI_Model
 		$dataUser = $this->admo->getDataUserAdmin();
 
 		$data = [
-			'id_masyarakat'		=> $this->input->post('id_masyarakat', true),
 			'nama'		=> ucwords(strtolower($this->input->post('nama', true))),
 			'username'	=> $this->input->post('username', true),
-			'password'	=> $this->input->post('password', true),
+			'password'	=> password_hash($this->input->post('password', true), PASSWORD_DEFAULT),
 			'no_telepon'=> $this->input->post('no_telepon', true),
 			'alamat'	=> $this->input->post('alamat', true)
 		];
 
 		$this->db->insert('masyarakat', $data);
 
-		$isi_log = 'Masyarakat ' . $data['masyarakat'] . ' berhasil ditambahkan';
+		$isi_log = 'Masyarakat ' . $data['username'] . ' berhasil ditambahkan';
 		$this->lomo->addLog($isi_log, $dataUser['id_user']);
 		$this->session->set_flashdata('message-success', $isi_log);
 		redirect('masyarakat');
@@ -45,11 +44,9 @@ class Masyarakat_model extends CI_Model
 	public function editMasyarakat($id_masyarakat)
 	{
 		$dataUser = $this->admo->getDataUserAdmin();
-
 		$data_masyarakat = $this->getMasyarakatById($id_masyarakat);
-		$masyarakat  = $data_masyarakat['masyarakat'];
+		$masyarakat  = $data_masyarakat['username'];
 		$data = [
-			'id_masyarakat'	=> $this->input->post('id_masyarakat', true),
 			'nama'		=> ucwords(strtolower($this->input->post('nama', true))),
 			'no_telepon'=> $this->input->post('no_telepon', true),
 			'alamat'	=> $this->input->post('alamat', true)
@@ -57,7 +54,7 @@ class Masyarakat_model extends CI_Model
 
 		$this->db->update('masyarakat', $data, ['id_masyarakat' => $id_masyarakat]);
 
-		$isi_log = 'Masyarakat ' . $data['masyarakat'] . ' berhasil diubah';
+		$isi_log = 'Masyarakat ' . $masyarakat . ' berhasil diubah';
 		$this->lomo->addLog($isi_log, $dataUser['id_user']);
 		$this->session->set_flashdata('message-success', $isi_log);
 		redirect('masyarakat');
@@ -70,7 +67,7 @@ class Masyarakat_model extends CI_Model
 		$this->admo->userPrivilege('masyarakat', $isi_log_2);
 
 		$data_masyarakat = $this->getMasyarakatById($id_masyarakat);
-		$masyarakat  = $data_masyarakat['masyarakat'];
+		$masyarakat  = $data_masyarakat['username'];
 		
 		$this->db->delete('pengaduan', ['id_masyarakat' => $id_masyarakat]);
 		$this->db->delete('masyarakat', ['id_masyarakat' => $id_masyarakat]);

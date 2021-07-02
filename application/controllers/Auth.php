@@ -15,13 +15,17 @@ class Auth extends CI_Controller
 		{
 			redirect('admin');		
 		}
+		elseif ($this->session->userdata('id_masyarakat'))
+		{
+			redirect('pelapor');		
+		}
 	}
 
 	public function index()
 	{
 		$this->checkLogin();
 
-		$data['title'] = 'Login';
+		$data['title'] = 'Masuk Admin';
 		$this->form_validation->set_rules('username', 'Username', 'required|trim');
 		$this->form_validation->set_rules('password', 'Password', 'required|trim');
 		if ($this->form_validation->run() == false) {

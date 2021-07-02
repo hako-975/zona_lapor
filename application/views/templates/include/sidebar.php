@@ -58,12 +58,12 @@
             $_SERVER['REQUEST_URI'] == '/zona_lapor/kecamatan/'
           ): ?>
             <a href="<?= base_url('kecamatan'); ?>" class="nav-link active">
-              <i class="fas fa-file nav-icon"></i>
+              <i class="fas fa-city nav-icon"></i>
               <p>Kecamatan</p>
             </a>
           <?php else: ?>
             <a href="<?= base_url('kecamatan'); ?>" class="nav-link">
-              <i class="fas fa-file nav-icon"></i>
+              <i class="fas fa-city nav-icon"></i>
               <p>Kecamatan</p>
             </a>
           <?php endif ?>
@@ -74,12 +74,12 @@
             $_SERVER['REQUEST_URI'] == '/zona_lapor/kelurahan/'
           ): ?>
             <a href="<?= base_url('kelurahan'); ?>" class="nav-link active">
-              <i class="fas fa-file nav-icon"></i>
+              <i class="fas fa-building nav-icon"></i>
               <p>Kelurahan</p>
             </a>
           <?php else: ?>
             <a href="<?= base_url('kelurahan'); ?>" class="nav-link">
-              <i class="fas fa-file nav-icon"></i>
+              <i class="fas fa-building nav-icon"></i>
               <p>Kelurahan</p>
             </a>
           <?php endif ?>
@@ -140,10 +140,36 @@
         </li> -->
         <div class="dropdown-divider"></div>
         <li class="nav-item">
-          <a href="<?= base_url('log'); ?>" class="nav-link">
-            <i class="fas fa-fw fa-history nav-icon"></i>
-            <p>Aktivitas</p>
-          </a>
+          <?php if (
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/log' || 
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/log/'
+          ): ?>
+            <a href="<?= base_url('log'); ?>" class="nav-link active">
+              <i class="fas fa-history nav-icon"></i>
+              <p>Aktivitas</p>
+            </a>
+          <?php else: ?>
+            <a href="<?= base_url('log'); ?>" class="nav-link">
+              <i class="fas fa-history nav-icon"></i>
+              <p>Aktivitas</p>
+            </a>
+          <?php endif ?>
+        </li>
+        <li class="nav-item">
+          <?php if (
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/saran' || 
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/saran/'
+          ): ?>
+            <a href="<?= base_url('saran'); ?>" class="nav-link active">
+              <i class="fas fa-lightbulb nav-icon"></i>
+              <p>Saran</p>
+            </a>
+          <?php else: ?>
+            <a href="<?= base_url('saran'); ?>" class="nav-link">
+              <i class="fas fa-lightbulb nav-icon"></i>
+              <p>Saran</p>
+            </a>
+          <?php endif ?>
         </li>
       </ul>
     </nav>

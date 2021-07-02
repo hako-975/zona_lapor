@@ -13,30 +13,34 @@
 				<table class="table table-bordered" id="table_id">
 					<thead class="thead-dark">
 						<tr>
-							<th>No.</th>
-							<th>Username</th>
-							<th>Nama</th>
-							<th>No. Telepon</th>
-							<th>Jabatan</th>
-							<th>Aksi</th>
+							<th class="align-middle">No.</th>
+							<th class="align-middle">Username</th>
+							<th class="align-middle">Nama</th>
+							<th class="align-middle">No. Telepon</th>
+							<th class="align-middle">Jabatan</th>
+							<?php if ($dataUser['jabatan'] == 'administrator'): ?>
+								<th class="align-middle">Aksi</th>
+							<?php endif ?>
 						</tr>
 					</thead>
 					<tbody>
 						<?php $i = 1; ?>
 						<?php foreach ($user as $du): ?>
 							<tr>
-								<td><?= $i++; ?></td>
-								<td><?= $du['username']; ?></td>
-								<td><?= $du['nama']; ?></td>
-								<td><?= $du['no_telepon']; ?></td>
-								<td><?= $du['jabatan']; ?></td>
-								<?php if ($du['jabatan'] != 'administrator'): ?>
-									<td>
-										<a href="<?= base_url('user/editUser/' . $du['id_user']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
-										<a href="<?= base_url('user/removeUser/' . $du['id_user']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="<?= $du['username']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>
-									</td>
-								<?php else: ?>
-									<td></td>
+								<td class="align-middle"><?= $i++; ?></td>
+								<td class="align-middle"><?= $du['username']; ?></td>
+								<td class="align-middle"><?= $du['nama']; ?></td>
+								<td class="align-middle"><?= $du['no_telepon']; ?></td>
+								<td class="align-middle"><?= $du['jabatan']; ?></td>
+								<?php if ($dataUser['jabatan'] == 'administrator'): ?>
+									<?php if ($du['jabatan'] != 'administrator'): ?>
+										<td class="align-middle text-center">
+											<a href="<?= base_url('user/editUser/' . $du['id_user']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
+											<a href="<?= base_url('user/removeUser/' . $du['id_user']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="<?= $du['username']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>
+										</td>
+									<?php else: ?>
+										<td class="align-middle"></td>
+									<?php endif ?>
 								<?php endif ?>
 							</tr>
 						<?php endforeach ?>

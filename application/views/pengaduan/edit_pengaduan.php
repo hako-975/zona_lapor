@@ -29,7 +29,7 @@
 				            </div>
 						</div>
 						<div class="form-group">
-							<label for="id_masyarakat">Masyarakat</label>
+							<label for="id_masyarakat">Pelapor</label>
 							<select id="id_masyarakat" class="custom-select <?= (form_error('id_masyarakat')) ? 'is-invalid' : ''; ?>" name="id_masyarakat">
 								<?php foreach ($masyarakat as $dm): ?>
 									<option value="<?= $dm['id_masyarakat']; ?>"><?= ucwords(strtolower($dm['username'])); ?></option>

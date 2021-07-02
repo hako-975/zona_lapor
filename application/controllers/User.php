@@ -28,8 +28,8 @@ class User extends CI_Controller
 		$data['title'] 		= 'Tambah User';
 		$this->form_validation->set_rules('nama', 'Nama', 'required|trim');
 		$this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]');
-		$this->form_validation->set_rules('password', 'Password', 'required|trim|matches[password_verify]');
-		$this->form_validation->set_rules('password_verify', 'Verifikasi Password', 'required|trim|matches[password]');
+		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]|matches[password_verify]');
+		$this->form_validation->set_rules('password_verify', 'Verifikasi Password', 'required|trim|min_length[3]|matches[password]');
 		$this->form_validation->set_rules('no_telepon', 'No. Telepon', 'required|trim');
 		$this->form_validation->set_rules('jabatan', 'Jabatan', 'required|trim');
 		if ($this->form_validation->run() == false) {

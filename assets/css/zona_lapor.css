@@ -38,6 +38,11 @@ main > .container {
 /*------------ header ------------*/
 
 /*------------ img-size ------------*/
+.img-w-100-hm-100 {
+  max-height: 100px !important;
+  width: 100px !important;
+}
+
 .img-w-50 {
   width: 50px !important;
 }
@@ -103,23 +108,23 @@ textarea {
 
 /*------------ footer ------------*/
 .footer-copyright {
-  margin: 5px 0;
+  margin: 10px 0;
   text-align: left;
 }
 
 .footer-sosial-media {
-  margin: 5px 0;
+  margin: 10px 0;
   text-align: left;
 }
 
 @media (min-width: 992px) {
   .footer-copyright {
-    margin: 5px 0;
+    margin: 10px 0;
     text-align: left;
   }
 
   .footer-sosial-media {
-    margin: 5px 0;
+    margin: 10px 0;
     text-align: right;
   }
 }

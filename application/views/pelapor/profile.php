@@ -11,14 +11,14 @@
 					<li class="list-group-item"><strong>Username:</strong> <?= $dataUser['username']; ?></li>
 					<li class="list-group-item"><strong>Nama Lengkap:</strong> <?= $dataUser['nama']; ?></li>
 					<li class="list-group-item"><strong>No. Telepon:</strong> <?= $dataUser['no_telepon']; ?></li>
-					<li class="list-group-item"><strong>Jabatan:</strong> <?= $dataUser['jabatan']; ?></li>
+					<li class="list-group-item"><strong>Alamat:</strong> <?= $dataUser['alamat']; ?></li>
 					<li class="list-group-item">
 						<div class="row">
 							<div class="col">
-								<a href="<?= base_url('admin/changePassword'); ?>" class="btn btn-danger"><i class="fas fa-fw fa-lock"></i> Ganti Password</a>
+								<a href="<?= base_url('pelapor/changePassword'); ?>" class="btn btn-danger"><i class="fas fa-fw fa-lock"></i> Ganti Password</a>
 							</div>
 							<div class="col">
-								<a href="<?= base_url('admin/editProfile'); ?>" class="btn btn-success"><i class="fas fa-fw fa-user-edit"></i> Ubah Profil</a>
+								<a href="<?= base_url('pelapor/editProfile'); ?>" class="btn btn-success"><i class="fas fa-fw fa-user-edit"></i> Ubah Profil</a>
 							</div>
 						</div>
 					</li>

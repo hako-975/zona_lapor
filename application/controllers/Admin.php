@@ -38,8 +38,8 @@ class Admin extends CI_Controller
 		$data['dataUser']	= $this->admo->getDataUserAdmin();
 		$data['title'] 		= 'Ganti Password - ' . $data['dataUser']['username'];
 		$this->form_validation->set_rules('old_password', 'Password Lama', 'required|trim');
-		$this->form_validation->set_rules('new_password', 'Password Baru', 'required|trim|matches[verify_new_password]');
-		$this->form_validation->set_rules('verify_new_password', 'Verifikasi Password Baru', 'required|trim|matches[new_password]');
+		$this->form_validation->set_rules('new_password', 'Password Baru', 'required|trim|min_length[3]|matches[verify_new_password]');
+		$this->form_validation->set_rules('verify_new_password', 'Verifikasi Password Baru', 'required|trim|min_length[3]|matches[new_password]');
 		if ($this->form_validation->run() == false) {
 		    $this->load->view('templates/header-admin', $data);
 			$this->load->view('admin/change_password', $data);

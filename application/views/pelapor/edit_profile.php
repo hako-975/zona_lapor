@@ -20,7 +20,7 @@
 			  	<h3 class="my-auto"><i class="fas fa-fw fa-user"></i> Ubah Profil</h3>
 			  </div>
 			  <div class="card-body">
-			  	<form action="<?= base_url('admin/editProfile'); ?>" method="post">
+			  	<form action="<?= base_url('pelapor/editProfile'); ?>" method="post">
 						<div class="form-group">
 							<label for="nama"><i class="fas fa-fw fa-user"></i> Nama Lengkap</label>
 							<input type="text" id="nama" class="form-control <?= (form_error('nama')) ? 'is-invalid' : ''; ?>" name="nama" required value="<?= (form_error('nama')) ? set_value('nama') : $dataUser['nama']; ?>">
@@ -33,6 +33,13 @@
 							<input type="number" id="no_telepon" class="form-control <?= (form_error('no_telepon')) ? 'is-invalid' : ''; ?>" name="no_telepon" required value="<?= (form_error('no_telepon')) ? set_value('no_telepon') : $dataUser['no_telepon']; ?>">
 							<div class="invalid-feedback">
 	              <?= form_error('no_telepon'); ?>
+	            </div>
+						</div>
+						<div class="form-group">
+							<label for="alamat"><i class="fas fa-fw fa-map-marker-alt"></i> Alamat</label>
+							<textarea id="alamat" class="form-control <?= (form_error('alamat')) ? 'is-invalid' : ''; ?>" name="alamat" required><?= (form_error('alamat')) ? set_value('alamat') : $dataUser['alamat']; ?></textarea>
+							<div class="invalid-feedback">
+	              <?= form_error('alamat'); ?>
 	            </div>
 						</div>
 						<div class="form-group text-right">

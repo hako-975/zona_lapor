@@ -6,7 +6,7 @@
 			  	<h3 class="my-auto"><i class="fas fa-fw fa-lock"></i> Ganti Password</h3>
 			  </div>
 			  <div class="card-body">
-			  	<form action="<?= base_url('admin/changePassword'); ?>" method="post">
+			  	<form action="<?= base_url('pelapor/changePassword'); ?>" method="post">
 					<div class="form-group">
 						<label for="old_password"><i class="fas fa-fw fa-lock"></i> Password Lama</label>
 						<input type="password" id="old_password" class="form-control <?= (form_error('old_password')) ? 'is-invalid' : ''; ?>" name="old_password" required value="<?= set_value('old_password'); ?>">

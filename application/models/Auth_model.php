@@ -27,9 +27,15 @@ class Auth_model extends CI_Model
 				$this->session->set_userdata($dataSession);
 				redirect('admin');
 			}
+			else
+			{
+				$this->session->set_flashdata('message-failed', 'Gagal masuk, password yang anda masukkan salah');
+				redirect('auth');
+			}
 		}
 		else
 		{
+			$this->session->set_flashdata('message-failed', 'Gagal masuk, username yang anda masukkan salah');
 			redirect('auth');
 		}
 	}

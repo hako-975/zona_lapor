@@ -42,41 +42,41 @@
 				<table class="table table-bordered" id="table_id">
 					<thead class="thead-dark">
 						<tr>
-							<th>No.</th>
-							<th>Isi Laporan</th>
-							<th>Tanggal Tanggapan</th>
-							<th>Isi Tanggapan</th>
-							<th>Status</th>
-							<th>Penanggap</th>
-							<th>Aksi</th>
+							<th class="align-middle">No.</th>
+							<th class="align-middle">Isi Laporan</th>
+							<th class="align-middle">Tanggal Tanggapan</th>
+							<th class="align-middle">Isi Tanggapan</th>
+							<th class="align-middle">Status</th>
+							<th class="align-middle">Penanggap</th>
+							<th class="align-middle">Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php $i = 1; ?>
 						<?php foreach ($all_tanggapan as $dt): ?>
 							<tr>
-								<td><?= $i++; ?></td>
-								<td><?= $dt['isi_laporan']; ?></td>
-								<td><?= $dt['tgl_tanggapan']; ?></td>
-								<td><?= $dt['isi_tanggapan']; ?></td>
+								<td class="align-middle"><?= $i++; ?></td>
+								<td class="align-middle"><?= $dt['isi_laporan']; ?></td>
+								<td class="align-middle"><?= $dt['tgl_tanggapan']; ?></td>
+								<td class="align-middle"><?= $dt['isi_tanggapan']; ?></td>
 								<?php 
 									$status = explode('_', $dt['status_tanggapan']);
 									$status = implode(' ', $status);
 									$status = ucwords(strtolower($status));
 								?>
 								<?php if ($dt['status_tanggapan'] == 'proses'): ?>
-									<td class="bg-danger"><i class="fas fa-fw fa-sync"></i> <?= $status; ?></td>
+									<td class="align-middle text-center bg-danger"><i class="fas fa-fw fa-sync"></i> <?= $status; ?></td>
 								<?php elseif ($dt['status_tanggapan'] == 'valid'): ?>
-									<td class="bg-success"><i class="fas fa-fw fa-check"></i> <?= $status; ?></td>
+									<td class="align-middle text-center bg-success"><i class="fas fa-fw fa-check"></i> <?= $status; ?></td>
 								<?php elseif ($dt['status_tanggapan'] == 'pengerjaan'): ?>
-									<td class="bg-warning"><i class="fas fa-fw fa-hammer"></i> <?= $status; ?></td>
+									<td class="align-middle text-center bg-warning"><i class="fas fa-fw fa-hammer"></i> <?= $status; ?></td>
 								<?php elseif ($dt['status_tanggapan'] == 'selesai'): ?>
-									<td class="bg-primary"><i class="fas fa-fw fa-check-double"></i> <?= $status; ?></td>
+									<td class="align-middle text-center bg-primary"><i class="fas fa-fw fa-check-double"></i> <?= $status; ?></td>
 								<?php elseif ($dt['status_tanggapan'] == 'tidak_valid'): ?>
-									<td class="bg-secondary"><i class="fas fa-fw fa-times"></i> <?= $status; ?></td>
+									<td class="align-middle text-center bg-secondary"><i class="fas fa-fw fa-times"></i> <?= $status; ?></td>
 								<?php endif ?>
-								<td><?= $dt['username']; ?></td>
-								<td><a href="<?= base_url('tanggapan/index/' . $dt['id_pengaduan']); ?>" class="btn btn-primary"><i class="fas fa-fw fa-align-justify"></i></a></td>
+								<td class="align-middle"><?= $dt['username']; ?></td>
+								<td class="align-middle text-center"><a href="<?= base_url('tanggapan/index/' . $dt['id_pengaduan']); ?>" class="btn btn-primary"><i class="fas fa-fw fa-align-justify"></i></a></td>
 							</tr>
 						<?php endforeach ?>
 						<?php if ($all_tanggapan == null): ?>

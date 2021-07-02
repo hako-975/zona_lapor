@@ -3,9 +3,9 @@
 		<div class="col-lg header-title">
 			<h3><i class="fas fa-fw fa-exclamation"></i> Pengaduan</h3>
 		</div>
-		<div class="col-lg header-button">
+		<!-- <div class="col-lg header-button">
 			<a href="<?= base_url('pengaduan/addPengaduan'); ?>" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> Tambah Pengaduan</a>
-		</div>
+		</div> -->
 	</div>
 	<div class="row py-3">
 		<div class="col-lg">
@@ -13,34 +13,38 @@
 				<table class="table table-bordered" id="table_id">
 					<thead class="thead-dark">
 						<tr>
-							<th>No.</th>
-							<th>Isi Laporan</th>
-							<th>Username Masyarakat</th>
-							<th>Pengaduan</th>
-							<th>Foto</th>
-							<th>Aksi</th>
+							<th class="align-middle">No.</th>
+							<th class="align-middle">Isi Laporan</th>
+							<th class="align-middle">Pelapor</th>
+							<th class="align-middle">Lokasi</th>
+							<th class="align-middle">Foto</th>
+							<?php if ($dataUser['jabatan'] == 'administrator'): ?>
+								<th class="align-middle">Aksi</th>
+							<?php endif ?>
 						</tr>
 					</thead>
 					<tbody>
 						<?php $i = 1; ?>
 						<?php foreach ($pengaduan as $dp): ?>
 							<tr>
-								<td><?= $i++; ?></td>
-								<td><?= $dp['isi_laporan']; ?></td>
-								<td><?= $dp['username']; ?></td>
-								<td><?= $dp['kelurahan']; ?></td>
-								<td>
+								<td class="align-middle"><?= $i++; ?></td>
+								<td class="align-middle"><?= $dp['isi_laporan']; ?></td>
+								<td class="align-middle"><?= $dp['username']; ?></td>
+								<td class="align-middle"><?= $dp['kelurahan']; ?></td>
+								<td class="align-middle text-center">
 									<a href="<?= base_url('assets/img/img_pengaduan/') . $dp['foto']; ?>" class="enlarge">
-										<img src="<?= base_url('assets/img/img_pengaduan/') . $dp['foto']; ?>" class="img-fluid img-w-150" alt="<?= $dp['foto']; ?>">
+										<img src="<?= base_url('assets/img/img_pengaduan/') . $dp['foto']; ?>" class="img-fluid img-w-100-hm-100" alt="<?= $dp['foto']; ?>">
 									</a>
 								</td>
-								<td>
-									<a href="<?= base_url('tanggapan/index/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-info m-1"><i class="fas fa-fw fa-reply"></i></a>
-									<a href="<?= base_url('pengaduan/editPengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
-									<?php if ($dataUser['jabatan'] == 'administrator'): ?>
-										<a href="<?= base_url('pengaduan/removePengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="<?= $dp['isi_laporan']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>
-									<?php endif ?>
-								</td>
+								<?php if ($dataUser['jabatan'] == 'administrator'): ?>
+									<td class="align-middle text-center">
+										<a href="<?= base_url('tanggapan/index/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-info m-1"><i class="fas fa-fw fa-reply"></i></a>
+										<a href="<?= base_url('pengaduan/editPengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
+										<?php if ($dataUser['jabatan'] == 'administrator'): ?>
+											<a href="<?= base_url('pengaduan/removePengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="<?= $dp['isi_laporan']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>
+										<?php endif ?>
+									</td>
+								<?php endif ?>
 							</tr>
 						<?php endforeach ?>
 						<?php if ($pengaduan == null): ?>

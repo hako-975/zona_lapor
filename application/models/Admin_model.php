@@ -64,13 +64,15 @@ class Admin_model extends CI_Model
 
 			$isi_log = "Password berhasil diubah!";
 			$this->lomo->addLog($isi_log, $id_user);
-			redirect('admin');
+			$this->session->set_flashdata('message-success', $isi_log);
+			redirect('admin/profile');
 		}
 		else
 		{
 			$isi_log = "Password gagal diubah, password lama tidak sesuai";
 			$this->lomo->addLog($isi_log, $id_user);
-			redirect('admin');
+			$this->session->set_flashdata('message-failed', $isi_log);
+			redirect('admin/profile');
 		}
 	}
 
@@ -88,6 +90,7 @@ class Admin_model extends CI_Model
 
 		$isi_log = "Profil berhasil diubah!";
 		$this->lomo->addLog($isi_log, $id_user);
-		redirect('admin');
+		$this->session->set_flashdata('message-success', $isi_log);
+		redirect('admin/profile');
 	}
 }
