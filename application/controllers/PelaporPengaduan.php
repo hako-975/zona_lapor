@@ -57,6 +57,17 @@ class PelaporPengaduan extends CI_Controller
 		$data['pengaduan']	= $this->pepemo->getPengaduanById($id_pengaduan);
 		$data['title'] 		= 'Ubah Pengaduan - ' . $data['pengaduan']['isi_laporan'];
 
+		// cek status pengaduan
+		if ($tanggapan = $this->db->get_where('tanggapan', ['id_pengaduan' => $id_pengaduan])->row_array()) 
+		{
+			if ($tanggapan['status_tanggapan'] != null) 
+			{
+				$isi_log = 'Pengaduan ' . $data['pengaduan']['isi_laporan'] . ' tidak dapat diubah karena telah ditanggapi oleh petugas';
+				$this->session->set_flashdata('message-failed', $isi_log);
+				redirect('pelaporPengaduan');
+			}
+		}
+
 		$this->form_validation->set_rules('id_kelurahan', 'Kelurahan', 'required|trim|is_natural_no_zero');
 		$this->form_validation->set_rules('isi_laporan', 'Isi Laporan', 'required|trim');
 		if ($this->form_validation->run() == false) {
@@ -71,6 +82,19 @@ class PelaporPengaduan extends CI_Controller
 
 	public function removePelaporPengaduan($id_pengaduan)
 	{
+		$data['pengaduan']	= $this->pepemo->getPengaduanById($id_pengaduan);
+
+		// cek status pengaduan
+		if ($tanggapan = $this->db->get_where('tanggapan', ['id_pengaduan' => $id_pengaduan])->row_array()) 
+		{
+			if ($tanggapan['status_tanggapan'] != null) 
+			{
+				$isi_log = 'Pengaduan ' . $data['pengaduan']['isi_laporan'] . ' tidak dapat dihapus karena telah ditanggapi oleh petugas';
+				$this->session->set_flashdata('message-failed', $isi_log);
+				redirect('pelaporPengaduan');
+			}
+		}
+
 		$data['dataUser']	= $this->pelmo->getDataUser();
 		$this->pepemo->removePelaporPengaduan($id_pengaduan);
 	}
