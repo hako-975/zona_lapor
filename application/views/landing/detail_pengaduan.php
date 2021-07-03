@@ -131,6 +131,12 @@
 						  <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 					<?php endif ?>
+				<?php else: ?>
+					<div class="progress">
+					  <div class="progress-bar bg-secondary" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5"></div>
+					</div>
+					<br>
+					<small class="text-secondary">Belum ditanggapi</small>
 				<?php endif ?>
 			</div>
 		</div>

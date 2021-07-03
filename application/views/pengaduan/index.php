@@ -16,9 +16,10 @@
 							<th class="align-middle">No.</th>
 							<th class="align-middle">Tanggal Pengaduan</th>
 							<th class="align-middle">Isi Laporan</th>
-							<th class="align-middle">Pelapor</th>
 							<th class="align-middle">Lokasi</th>
 							<th class="align-middle">Foto</th>
+							<th class="align-middle">Pelapor</th>
+							<th class="align-middle">Status</th>
 							<?php if ($dataUser['jabatan'] == 'administrator'): ?>
 								<th class="align-middle">Aksi</th>
 							<?php endif ?>
@@ -27,17 +28,42 @@
 					<tbody>
 						<?php $i = 1; ?>
 						<?php foreach ($pengaduan as $dp): ?>
+							<?php 
+								$this->db->order_by('tanggapan.id_tanggapan', 'desc');
+								$getStatusTanggapan = $this->db->get_where('tanggapan', ['id_pengaduan' => $dp['id_pengaduan']])->row_array()['status_tanggapan'];
+								$status = explode('_', $getStatusTanggapan);
+								$status = implode(' ', $status);
+								$status = ucwords(strtolower($status));
+							?>
 							<tr>
 								<td class="align-middle"><?= $i++; ?></td>
 								<td class="align-middle"><?= $dp['tgl_pengaduan']; ?></td>
 								<td class="align-middle"><?= $dp['isi_laporan']; ?></td>
-								<td class="align-middle"><?= $dp['username']; ?></td>
 								<td class="align-middle"><?= $dp['kelurahan']; ?></td>
 								<td class="align-middle text-center">
 									<a href="<?= base_url('assets/img/img_pengaduan/') . $dp['foto']; ?>" class="enlarge">
 										<img src="<?= base_url('assets/img/img_pengaduan/') . $dp['foto']; ?>" class="img-fluid img-w-100-hm-100" alt="<?= $dp['foto']; ?>">
 									</a>
 								</td>
+								<td class="align-middle"><?= $dp['username']; ?></td>
+								<td class="align-middle">
+								<?php if ($getStatusTanggapan): ?>
+									<?php if ($getStatusTanggapan == 'proses'): ?>
+										<button type="button" class="btn text-center btn-danger"><i class="fas fa-fw fa-sync"></i> <?= $status; ?></td>
+									<?php elseif ($getStatusTanggapan == 'valid'): ?>
+										<button type="button" class="btn text-center btn-success"><i class="fas fa-fw fa-check"></i> <?= $status; ?></td>
+									<?php elseif ($getStatusTanggapan == 'pengerjaan'): ?>
+										<button type="button" class="btn text-center btn-warning"><i class="fas fa-fw fa-hammer"></i> <?= $status; ?></td>
+									<?php elseif ($getStatusTanggapan == 'selesai'): ?>
+										<button type="button" class="btn text-center btn-primary"><i class="fas fa-fw fa-check-double"></i> <?= $status; ?></td>
+									<?php elseif ($getStatusTanggapan == 'tidak_valid'): ?>
+										<button type="button" class="btn text-center btn-secondary"><i class="fas fa-fw fa-times"></i> <?= $status; ?></td>
+									<?php endif ?>
+								<?php else: ?>
+									<td class="align-middle text-center bg-secondary"><i class="fas fa-fw fa-times"></i> <?= $getStatusTanggapan; ?></td>
+								<?php endif ?>
+								</td>
+
 								<?php if ($dataUser['jabatan'] == 'administrator'): ?>
 									<td class="align-middle text-center">
 										<a href="<?= base_url('tanggapan/index/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-info m-1"><i class="fas fa-fw fa-reply"></i></a>

@@ -20,24 +20,14 @@
 					<h3 class="my-auto"><i class="fas fa-fw fa-edit"></i> Ubah Pengaduan</h3>
 				</div>
 			  	<div class="card-body">
-					<form action="<?= base_url('pengaduan/editPengaduan/' . $pengaduan['id_pengaduan']); ?>" method="post">
-				  		<div class="form-group">
+					<form action="<?= base_url('pelaporPengaduan/editPelaporPengaduan/' . $pengaduan['id_pengaduan']); ?>" method="post" enctype="multipart/form-data">
+						<small class="text-danger">Perhatian! Jika anda mengubah pengaduan maka, tanggal pengaduan akan berubah</small>
+			  		<div class="form-group">
 							<label for="isi_laporan">Isi Laporan</label>
 							<textarea id="isi_laporan" class="form-control <?= (form_error('isi_laporan')) ? 'is-invalid' : ''; ?>" name="isi_laporan" required><?= (form_error('isi_laporan')) ? set_value('isi_laporan') : $pengaduan['isi_laporan']; ?></textarea>
 							<div class="invalid-feedback">
-				              <?= form_error('isi_laporan'); ?>
-				            </div>
-						</div>
-						<div class="form-group">
-							<label for="id_masyarakat">Pelapor</label>
-							<select id="id_masyarakat" class="custom-select <?= (form_error('id_masyarakat')) ? 'is-invalid' : ''; ?>" name="id_masyarakat">
-								<?php foreach ($masyarakat as $dm): ?>
-									<option value="<?= $dm['id_masyarakat']; ?>"><?= ucwords(strtolower($dm['username'])); ?></option>
-								<?php endforeach ?>
-							</select>
-							<div class="invalid-feedback">
-				              <?= form_error('id_masyarakat'); ?>
-				            </div>
+	              <?= form_error('isi_laporan'); ?>
+	            </div>
 						</div>
 						<div class="form-group">
 							<label for="form_kecamatan">Kecamatan</label>

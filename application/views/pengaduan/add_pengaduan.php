@@ -36,23 +36,29 @@
 							<?php endforeach ?>
 						</select>
 						<div class="invalid-feedback">
-			              <?= form_error('id_masyarakat'); ?>
-			            </div>
+              <?= form_error('id_masyarakat'); ?>
+            </div>
 					</div>
 					<div class="form-group">
 						<label for="form_kecamatan">Kecamatan</label>
-						<select class="custom-select" id="form_kecamatan">
+						<select class="custom-select <?= (form_error('id_kecamatan')) ? 'is-invalid' : ''; ?>" id="form_kecamatan">
 							<option value="0">Pilih Kecamatan</option>
 							<?php foreach ($kecamatan as $dataKecamatan): ?>
 								<option value="<?= $dataKecamatan['id_kecamatan']; ?>"><?= $dataKecamatan['kecamatan']; ?></option>
 							<?php endforeach ?>
 						</select>
+						<div class="invalid-feedback">
+              <?= form_error('id_kecamatan'); ?>
+            </div>
 					</div>
 					<div class="form-group">
 						<label for="form_kelurahan">Kelurahan</label>
-						<select id="form_kelurahan" class="custom-select" name="id_kelurahan">
+						<select id="form_kelurahan" class="custom-select <?= (form_error('id_kelurahan')) ? 'is-invalid' : ''; ?>" name="id_kelurahan">
 							<option value="0">Pilih Kecamatan</option>
 						</select>
+						<div class="invalid-feedback">
+              <?= form_error('id_kelurahan'); ?>
+            </div>
 					</div>
 					<div class="form-group">
 						<label for="foto">Foto</label> <br>

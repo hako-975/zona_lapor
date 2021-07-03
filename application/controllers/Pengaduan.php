@@ -39,7 +39,7 @@ class Pengaduan extends CI_Controller
 		$data['kecamatan']	= $this->kemo->getKecamatan();
 		$data['title'] 		= 'Tambah Pengaduan';
 
-		$this->form_validation->set_rules('id_kelurahan', 'Kelurahan', 'required|trim');
+		$this->form_validation->set_rules('id_kelurahan', 'Kelurahan', 'required|trim|is_natural_no_zero');
 		$this->form_validation->set_rules('isi_laporan', 'Isi Laporan', 'required|trim');
 		if ($this->form_validation->run() == false) {
 		    $this->load->view('templates/header-admin', $data);

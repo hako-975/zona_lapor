@@ -66,7 +66,7 @@
 								?>
 								<tr>
 									<td class="align-middle"><?= $i++; ?></td>
-									<td style="width: 12rem" class="align-middle"><?= date("d-M-Y \P\u\k\u\l H:i", strtotime($dp['tgl_pengaduan'])); ?></td>
+									<td style="width: 12rem" class="align-middle"><?= date("d-M-Y, \P\u\k\u\l H:i", strtotime($dp['tgl_pengaduan'])); ?></td>
 									<td style="width: 12rem" class="align-middle"><?= $dp['isi_laporan']; ?></td>
 									<td style="width: 8rem" class="align-middle"><?= $dp['username']; ?></td>
 									<td class="align-middle"><?= $dp['kelurahan']; ?></td>
@@ -76,33 +76,33 @@
 										</a>
 									</td>
 
-									<td class="align-middle">
 									<?php if ($tanggapan != null): ?>
-										<?php if ($status == 'proses'): ?>
-											<button type="button" class="btn btn-danger text-white"> <i class="fas fa-fw fa-sync"></i>
-										<?php elseif ($status == 'valid'): ?>
-											<button type="button" class="btn btn-success text-white"> <i class="fas fa-fw fa-check"></i>
-										<?php elseif ($status == 'pengerjaan'): ?>
-											<button type="button" class="btn btn-warning text-white"> <i class="fas fa-fw fa-hammer"></i>
-										<?php elseif ($status == 'selesai'): ?>
-											<button type="button" class="btn btn-primary text-white"> <i class="fas fa-fw fa-check-double"></i>
-										<?php elseif ($status == 'tidak_valid'): ?>
-											<button type="button" class="btn btn-secondary text-white"> <i class="fas fa-fw fa-times"></i>
-										<?php else: ?>
-											<button type="button" class="btn">
-										<?php endif ?>
-									<?php else: ?>
-										<button type="button" class="btn">
-									<?php endif ?>
+										<td class="align-middle">
+											<?php if ($status == 'proses'): ?>
+												<button type="button" class="btn btn-danger text-white"> <i class="fas fa-fw fa-sync"></i>
+											<?php elseif ($status == 'valid'): ?>
+												<button type="button" class="btn btn-success text-white"> <i class="fas fa-fw fa-check"></i>
+											<?php elseif ($status == 'pengerjaan'): ?>
+												<button type="button" class="btn btn-warning text-white"> <i class="fas fa-fw fa-hammer"></i>
+											<?php elseif ($status == 'selesai'): ?>
+												<button type="button" class="btn btn-primary text-white"> <i class="fas fa-fw fa-check-double"></i>
+											<?php elseif ($status == 'tidak_valid'): ?>
+												<button type="button" class="btn btn-secondary text-white"> <i class="fas fa-fw fa-times"></i>
+											<?php else: ?>
+												<button type="button" class="btn">
+											<?php endif ?>
 
-										<?php 
-											$status = explode('_', $status);
-											$status = implode(' ', $status);
-											$status = ucwords(strtolower($status));
-										?>
-										<?= $status; ?>
-										</button>
-									</td>
+											<?php 
+												$status = explode('_', $status);
+												$status = implode(' ', $status);
+												$status = ucwords(strtolower($status));
+											?>
+											<?= $status; ?>
+											</button>
+										</td>
+									<?php else: ?>
+										<td class="align-middle"><button type="button" class="btn btn-xs btn-secondary text-white"><i class="fas fa-fw fa-times"></i> Belum ditanggapi</button></td>
+									<?php endif ?>
 									<td class="align-middle">
 										<a href="<?= base_url('landing/detailPengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-info m-1"><i class="fas fa-fw fa-align-justify"></i> Detail</a>
 									</td>
