@@ -18,8 +18,8 @@
 							<th class="align-middle">Isi Laporan</th>
 							<th class="align-middle">Lokasi</th>
 							<th style="width: 8rem" class="align-middle">Foto</th>
-							<th class="align-middle">Pelapor</th>
 							<th class="align-middle">Status</th>
+							<th class="align-middle">Tanggapan</th>
 							<th class="align-middle">Aksi</th>
 						</tr>
 					</thead>
@@ -27,10 +27,10 @@
 						<?php $i = 1; ?>
 						<?php foreach ($pengaduan as $dp): ?>
 							<?php 
-								$getStatusTanggapan = $this->db->order_by('tanggapan.id_tanggapan', 'desc')->get_where('tanggapan', ['id_pengaduan' => $dp['id_pengaduan']])->row_array();
-								if ($getStatusTanggapan) 
+								$getTanggapan = $this->db->order_by('tanggapan.id_tanggapan', 'desc')->get_where('tanggapan', ['id_pengaduan' => $dp['id_pengaduan']])->row_array();
+								if ($getTanggapan) 
 								{
-									$status = explode('_', $getStatusTanggapan['status_tanggapan']);
+									$status = explode('_', $getTanggapan['status_tanggapan']);
 									$status = implode(' ', $status);
 									$status = ucwords(strtolower($status));
 								}
@@ -45,27 +45,43 @@
 										<img src="<?= base_url('assets/img/img_pengaduan/') . $dp['foto']; ?>" class="img-fluid img-w-100-hm-100" alt="<?= $dp['foto']; ?>">
 									</a>
 								</td>
-								<td class="align-middle"><?= $dp['username']; ?></td>
 								<td class="align-middle">
-								<?php if ($getStatusTanggapan): ?>
-									<?php if ($getStatusTanggapan['status_tanggapan'] == 'proses'): ?>
-										<button type="button" class="btn text-center btn-danger"><i class="fas fa-fw fa-sync"></i> <?= $status; ?></button>
-									<?php elseif ($getStatusTanggapan['status_tanggapan'] == 'valid'): ?>
-										<button type="button" class="btn text-center btn-success"><i class="fas fa-fw fa-check"></i> <?= $status; ?></button>
-									<?php elseif ($getStatusTanggapan['status_tanggapan'] == 'pengerjaan'): ?>
-										<button type="button" class="btn text-center btn-warning"><i class="fas fa-fw fa-hammer"></i> <?= $status; ?></button>
-									<?php elseif ($getStatusTanggapan['status_tanggapan'] == 'selesai'): ?>
-										<button type="button" class="btn text-center btn-primary"><i class="fas fa-fw fa-check-double"></i> <?= $status; ?></button>
-									<?php elseif ($getStatusTanggapan['status_tanggapan'] == 'tidak_valid'): ?>
-										<button type="button" class="btn text-center btn-secondary"><i class="fas fa-fw fa-times"></i> <?= $status; ?></button>
+									<?php if ($getTanggapan): ?>
+										<?php if ($getTanggapan['status_tanggapan'] == 'proses'): ?>
+											<button type="button" class="btn btn-sm text-center btn-danger"><i class="fas fa-fw fa-sync"></i> <?= $status; ?></button>
+										<?php elseif ($getTanggapan['status_tanggapan'] == 'valid'): ?>
+											<button type="button" class="btn btn-sm text-center btn-success"><i class="fas fa-fw fa-check"></i> <?= $status; ?></button>
+										<?php elseif ($getTanggapan['status_tanggapan'] == 'pengerjaan'): ?>
+											<button type="button" class="btn btn-sm text-center btn-warning"><i class="fas fa-fw fa-hammer"></i> <?= $status; ?></button>
+										<?php elseif ($getTanggapan['status_tanggapan'] == 'selesai'): ?>
+											<button type="button" class="btn btn-sm text-center btn-primary"><i class="fas fa-fw fa-check-double"></i> <?= $status; ?></button>
+										<?php elseif ($getTanggapan['status_tanggapan'] == 'tidak_valid'): ?>
+											<button type="button" class="btn btn-sm text-center btn-secondary"><i class="fas fa-fw fa-times"></i> <?= $status; ?></button>
+										<?php endif ?>
+									<?php else: ?>
+										<button type="button" class="btn text-center btn-xs p-2 btn-secondary"><i class="fas fa-fw fa-times"></i> Belum ditanggapi</button>
 									<?php endif ?>
-								<?php else: ?>
-									<button type="button" class="btn text-center btn-xs p-2 btn-secondary"><i class="fas fa-fw fa-times"></i> Belum ditanggapi</button>
-								<?php endif ?>
+								</td>
+								<td class="align-middle">
+									<?php if ($getTanggapan): ?>
+										<?php if ($getTanggapan['status_tanggapan'] == 'proses'): ?>
+											<p><?= $getTanggapan['isi_tanggapan']; ?></p>
+										<?php elseif ($getTanggapan['status_tanggapan'] == 'valid'): ?>
+											<p><?= $getTanggapan['isi_tanggapan']; ?></p>
+										<?php elseif ($getTanggapan['status_tanggapan'] == 'pengerjaan'): ?>
+											<p><?= $getTanggapan['isi_tanggapan']; ?></p>
+										<?php elseif ($getTanggapan['status_tanggapan'] == 'selesai'): ?>
+											<p><?= $getTanggapan['isi_tanggapan']; ?></p>
+										<?php elseif ($getTanggapan['status_tanggapan'] == 'tidak_valid'): ?>
+											<p><?= $getTanggapan['isi_tanggapan']; ?></p>
+										<?php endif ?>
+									<?php else: ?>
+										<p>-</p>
+									<?php endif ?>
 								</td>
 								<td class="align-middle text-center">
 									<a href="<?= base_url('pelaporTanggapan/index/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-info m-1"><i class="fas fa-fw fa-reply"></i></a>
-									<?php if ($getStatusTanggapan == null): ?>
+									<?php if ($getTanggapan == null): ?>
 										<a href="<?= base_url('pelaporPengaduan/editPelaporPengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
 										<a href="<?= base_url('pelaporPengaduan/removePelaporPengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="<?= $dp['isi_laporan']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>
 									<?php endif ?>

@@ -38,6 +38,22 @@
         </li>
         <li class="nav-item">
           <?php if (
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/pelaporPengaduan/addPelaporPengaduan' || 
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/pelaporPengaduan/addPelaporPengaduan/'
+          ): ?>
+            <a href="<?= base_url('pelaporPengaduan/addPelaporPengaduan'); ?>" class="nav-link active">
+              <i class="fas fa-fw fa-plus nav-icon"></i>
+              <p>Tambah Pengaduan</p>
+            </a>
+          <?php else: ?>
+            <a href="<?= base_url('pelaporPengaduan/addPelaporPengaduan'); ?>" class="nav-link">
+              <i class="fas fa-fw fa-plus nav-icon"></i>
+              <p>Tambah Pengaduan</p>
+            </a>
+          <?php endif ?>
+        </li>
+        <li class="nav-item">
+          <?php if (
             $_SERVER['REQUEST_URI'] == '/zona_lapor/pelaporPengaduan' || 
             $_SERVER['REQUEST_URI'] == '/zona_lapor/pelaporPengaduan/'
           ): ?>

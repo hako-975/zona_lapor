@@ -1,4 +1,4 @@
-// <?php
+<?php
 	if ($tanggapan != null) 
 	{
 		$last_row = $this->db->select('*')->limit(1)->order_by('id_tanggapan','DESC')->get_where('tanggapan', ['id_pengaduan' => $pengaduan['id_pengaduan']])->row_array()['id_tanggapan'];
@@ -188,6 +188,43 @@
 							<?php endif ?>
 						</tbody>
 					</table>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="row py-3">
+			<div class="col-lg">
+				<div class="card">
+					<div class="card-header mt-2">
+						<h4><i class="fas fa-fw fa-id-card"></i> Data Pelapor</h4>
+					</div>
+					<div class="card-body">
+						<table>
+							<tr>
+								<th>Username</th>
+								<td style="width: 2rem; text-align: center;"> : </td>
+								<td><?= $pengaduan['username']; ?></td>
+							</tr>
+							
+							<tr>
+								<th>Nama Lengkap</th>
+								<td style="width: 2rem; text-align: center;"> : </td>
+								<td><?= $pengaduan['nama']; ?></td>
+							</tr>
+							
+							<tr>
+								<th>No. Telepon</th>
+								<td style="width: 2rem; text-align: center;"> : </td>
+								<td><?= $pengaduan['no_telepon']; ?></td>
+							</tr>
+
+							<tr>
+								<th>Alamat</th>
+								<td style="width: 2rem; text-align: center;"> : </td>
+								<td><?= $pengaduan['alamat']; ?></td>
+							</tr>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
