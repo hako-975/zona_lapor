@@ -55,13 +55,13 @@
 						  <div class="card-body text-center">
 						  	<i class="fas fa-fw fa-file-signature"></i>
 							<h4>Daftar</h4>
-							<p>Melakukan Pendaftaran, dengan menekan tombol daftar pada bagian atas kanan. Jika sudah mendaftar pilih tombol Masuk.</p>
+							<p>Melakukan Pendaftaran, dengan menekan tombol <a href="<?= base_url('landing/daftar'); ?>"> Daftar</a>. Jika sudah mendaftar tekan tombol <a href="<?= base_url('landing/masuk'); ?>"> Masuk</a>.</p>
 						  </div>
 						</div>
 					</div>
 					<div class="py-2 col-lg-1 my-auto card-guide">
 						<div class="progress rounded-pill">
-						  <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+						  <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 					</div>
 					<div class="py-2 col-xl-2 col-lg-3 col-md-3">
@@ -69,13 +69,13 @@
 						  <div class="card-body text-center">
 						  	<i class="fas fa-fw fa-sign-in-alt"></i>
 							<h4>Masuk</h4>
-							<p>Masuk, dengan mengisi username dan password yang telah Anda buat sebelumnya. Jika belum mendaftar tekan tombol Daftar.</p>
+							<p>Masuk, dengan mengisi username dan password yang telah Anda buat sebelumnya. Jika belum mendaftar tekan tombol <a href="<?= base_url('landing/daftar'); ?>"> Daftar</a>.</p>
 						  </div>
 						</div>
 					</div>
 					<div class="py-2 col-lg-1 my-auto card-guide">
 						<div class="progress rounded-pill">
-						  <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+						  <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 					</div>
 					<div class="py-2 col-xl-2 col-lg-3 col-md-3">
@@ -89,7 +89,7 @@
 					</div>
 					<div class="py-2 col-lg-1 my-auto card-guide">
 						<div class="progress rounded-pill">
-						  <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+						  <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 					</div>
 					<div class="py-2 col-xl-2 col-lg-3 col-md-3">
@@ -119,7 +119,7 @@
 						<thead class="thead-dark">
 							<tr>
 								<th class="align-middle">No.</th>
-								<th style="width: 13rem" class="align-middle">Tanggal Pengaduan</th>
+								<th style="width: 12rem" class="align-middle">Tanggal Pengaduan</th>
 								<th style="width: 12rem" class="align-middle">Isi Laporan</th>
 								<th class="align-middle">Lokasi</th>
 								<th style="width: 6.5rem" class="align-middle">Foto</th>
@@ -191,7 +191,7 @@
 							<?php endforeach ?>
 							<?php if ($pengaduan == null): ?>
 								<tr>
-									<td colspan="6" class="text-center">Tidak ada data.</td>
+									<td colspan="8" class="text-center">Tidak ada data.</td>
 								</tr>
 							<?php endif ?>
 						</tbody>
@@ -234,7 +234,7 @@
 		            		</div>
 						</div>
 						<div class="form-group text-right">
-							<button type="submit" class="btn btn-primary"><i class="fas fa-fw fa-paper-plane"></i> Kirim</button>
+							<button type="submit" class="btn btn-danger"><i class="fas fa-fw fa-paper-plane"></i> Kirim</button>
 						</div>
 					</form>
 				</div>

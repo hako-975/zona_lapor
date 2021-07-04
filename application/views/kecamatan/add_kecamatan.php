@@ -25,8 +25,8 @@
 						<label for="kecamatan">Kecamatan</label>
 						<input type="text" id="kecamatan" class="form-control <?= (form_error('kecamatan')) ? 'is-invalid' : ''; ?>" name="kecamatan" required value="<?= set_value('kecamatan'); ?>">
 						<div class="invalid-feedback">
-			              <?= form_error('kecamatan'); ?>
-			            </div>
+              <?= form_error('kecamatan'); ?>
+            </div>
 					</div>
 					<div class="form-group text-right">
 						<button type="submit" class="btn btn-primary"><i class="fas fa-fw fa-save"></i> Simpan</button>

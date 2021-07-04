@@ -12,10 +12,10 @@
 						<tr>
 							<th>No.</th>
 							<th>Tanggal Saran</th>
+							<th>Isi Saran</th>
 							<th>Nama</th>
 							<th>No. Telepon</th>
 							<th>Alamat</th>
-							<th>Isi Saran</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -24,10 +24,10 @@
 							<tr>
 								<td><?= $i++; ?></td>
 								<td><?= $ds['tgl_saran']; ?></td>
+								<td><?= $ds['saran']; ?></td>
 								<td><?= $ds['nama']; ?></td>
 								<td><?= $ds['no_telepon']; ?></td>
 								<td><?= $ds['alamat']; ?></td>
-								<td><?= $ds['saran']; ?></td>
 							</tr>
 						<?php endforeach ?>
 						<?php if ($saran == null): ?>

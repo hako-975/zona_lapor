@@ -38,70 +38,6 @@
         </li>
         <li class="nav-item">
           <?php if (
-            $_SERVER['REQUEST_URI'] == '/zona_lapor/user' || 
-            $_SERVER['REQUEST_URI'] == '/zona_lapor/user/'
-          ): ?>
-            <a href="<?= base_url('user'); ?>" class="nav-link active">
-              <i class="fas fa-user nav-icon"></i>
-              <p>user</p>
-            </a>
-          <?php else: ?>
-            <a href="<?= base_url('user'); ?>" class="nav-link">
-              <i class="fas fa-user nav-icon"></i>
-              <p>user</p>
-            </a>
-          <?php endif ?>
-        </li>
-        <li class="nav-item">
-          <?php if (
-            $_SERVER['REQUEST_URI'] == '/zona_lapor/kecamatan' || 
-            $_SERVER['REQUEST_URI'] == '/zona_lapor/kecamatan/'
-          ): ?>
-            <a href="<?= base_url('kecamatan'); ?>" class="nav-link active">
-              <i class="fas fa-city nav-icon"></i>
-              <p>Kecamatan</p>
-            </a>
-          <?php else: ?>
-            <a href="<?= base_url('kecamatan'); ?>" class="nav-link">
-              <i class="fas fa-city nav-icon"></i>
-              <p>Kecamatan</p>
-            </a>
-          <?php endif ?>
-        </li>
-        <li class="nav-item">
-          <?php if (
-            $_SERVER['REQUEST_URI'] == '/zona_lapor/kelurahan' || 
-            $_SERVER['REQUEST_URI'] == '/zona_lapor/kelurahan/'
-          ): ?>
-            <a href="<?= base_url('kelurahan'); ?>" class="nav-link active">
-              <i class="fas fa-building nav-icon"></i>
-              <p>Kelurahan</p>
-            </a>
-          <?php else: ?>
-            <a href="<?= base_url('kelurahan'); ?>" class="nav-link">
-              <i class="fas fa-building nav-icon"></i>
-              <p>Kelurahan</p>
-            </a>
-          <?php endif ?>
-        </li>
-        <li class="nav-item">
-          <?php if (
-            $_SERVER['REQUEST_URI'] == '/zona_lapor/masyarakat' || 
-            $_SERVER['REQUEST_URI'] == '/zona_lapor/masyarakat/'
-          ): ?>
-            <a href="<?= base_url('masyarakat'); ?>" class="nav-link active">
-              <i class="fas fa-users nav-icon"></i>
-              <p>Masyarakat</p>
-            </a>
-          <?php else: ?>
-            <a href="<?= base_url('masyarakat'); ?>" class="nav-link">
-              <i class="fas fa-users nav-icon"></i>
-              <p>Masyarakat</p>
-            </a>
-          <?php endif ?>
-        </li>
-        <li class="nav-item">
-          <?php if (
             $_SERVER['REQUEST_URI'] == '/zona_lapor/pengaduan' || 
             $_SERVER['REQUEST_URI'] == '/zona_lapor/pengaduan/'
           ): ?>
@@ -132,6 +68,99 @@
             </a>
           <?php endif ?>
         </li>
+        <?php if ($dataUser['jabatan'] == 'administrator'): ?>
+          <?php if (
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/user' || 
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/user/'||
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/kecamatan' || 
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/kecamatan/' ||
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/kelurahan' || 
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/kelurahan/' ||
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/masyarakat' || 
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/masyarakat/'
+          ): ?>
+            <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
+              <i class="fas fa-align-justify nav-icon"></i>
+              <p>Manajemen Data <i class="right fas fa-angle-left"></i></p>
+            </a>
+          <?php else: ?>
+            <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fas fa-align-justify nav-icon"></i>
+              <p>Manajemen Data <i class="right fas fa-angle-left"></i></p>
+            </a>
+          <?php endif ?>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <?php if (
+                  $_SERVER['REQUEST_URI'] == '/zona_lapor/user' || 
+                  $_SERVER['REQUEST_URI'] == '/zona_lapor/user/'
+                ): ?>
+                  <a href="<?= base_url('user'); ?>" class="nav-link active">
+                    <i class="fas fa-user nav-icon"></i>
+                    <p>User</p>
+                  </a>
+                <?php else: ?>
+                  <a href="<?= base_url('user'); ?>" class="nav-link">
+                    <i class="fas fa-user nav-icon"></i>
+                    <p>User</p>
+                  </a>
+                <?php endif ?>
+              </li> 
+              <li class="nav-item">
+                <?php if (
+                  $_SERVER['REQUEST_URI'] == '/zona_lapor/kecamatan' || 
+                  $_SERVER['REQUEST_URI'] == '/zona_lapor/kecamatan/'
+                ): ?>
+                  <a href="<?= base_url('kecamatan'); ?>" class="nav-link active">
+                    <i class="fas fa-city nav-icon"></i>
+                    <p>Kecamatan</p>
+                  </a>
+                <?php else: ?>
+                  <a href="<?= base_url('kecamatan'); ?>" class="nav-link">
+                    <i class="fas fa-city nav-icon"></i>
+                    <p>Kecamatan</p>
+                  </a>
+                <?php endif ?>
+              </li>
+              <li class="nav-item">
+                <?php if (
+                  $_SERVER['REQUEST_URI'] == '/zona_lapor/kelurahan' || 
+                  $_SERVER['REQUEST_URI'] == '/zona_lapor/kelurahan/'
+                ): ?>
+                  <a href="<?= base_url('kelurahan'); ?>" class="nav-link active">
+                    <i class="fas fa-building nav-icon"></i>
+                    <p>Kelurahan</p>
+                  </a>
+                <?php else: ?>
+                  <a href="<?= base_url('kelurahan'); ?>" class="nav-link">
+                    <i class="fas fa-building nav-icon"></i>
+                    <p>Kelurahan</p>
+                  </a>
+                <?php endif ?>
+              </li>
+              <li class="nav-item">
+                <?php if (
+                  $_SERVER['REQUEST_URI'] == '/zona_lapor/masyarakat' || 
+                  $_SERVER['REQUEST_URI'] == '/zona_lapor/masyarakat/'
+                ): ?>
+                  <a href="<?= base_url('masyarakat'); ?>" class="nav-link active">
+                    <i class="fas fa-users nav-icon"></i>
+                    <p>Masyarakat</p>
+                  </a>
+                <?php else: ?>
+                  <a href="<?= base_url('masyarakat'); ?>" class="nav-link">
+                    <i class="fas fa-users nav-icon"></i>
+                    <p>Masyarakat</p>
+                  </a>
+                <?php endif ?>
+              </li>
+            </ul>
+          </li>
+        <?php endif ?>
+
+        
         <!-- <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="fas fa-file nav-icon"></i>

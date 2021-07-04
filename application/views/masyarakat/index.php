@@ -3,9 +3,11 @@
 		<div class="col-lg header-title">
 			<h3><i class="fas fa-fw fa-users"></i> Masyarakat</h3>
 		</div>
-		<div class="col-lg header-button">
-			<a href="<?= base_url('masyarakat/addMasyarakat'); ?>" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> Tambah Masyarakat</a>
-		</div>
+		<?php if ($dataUser['jabatan'] == 'administrator'): ?>
+			<div class="col-lg header-button">
+				<a href="<?= base_url('masyarakat/addMasyarakat'); ?>" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> Tambah Masyarakat</a>
+			</div>
+		<?php endif ?>
 	</div>
 	<div class="row py-3">
 		<div class="col-lg">

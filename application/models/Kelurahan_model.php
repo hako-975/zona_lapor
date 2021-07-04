@@ -26,6 +26,8 @@ class Kelurahan_model extends CI_Model
 	public function addKelurahan()
 	{
 		$dataUser = $this->admo->getDataUserAdmin();
+		$isi_log_2 = 'User ' . $dataUser['username'] . ' mencoba menambahkan kelurahan';
+		$this->admo->userPrivilege('kelurahan', $isi_log_2);
 
 		$data = [
 			'kelurahan'		=> ucwords(strtolower($this->input->post('kelurahan', true))),
@@ -43,6 +45,8 @@ class Kelurahan_model extends CI_Model
 	public function editKelurahan($id_kelurahan)
 	{
 		$dataUser = $this->admo->getDataUserAdmin();
+		$isi_log_2 = 'User ' . $dataUser['username'] . ' mencoba mengubah kelurahan ber id ' . $id_kelurahan;
+		$this->admo->userPrivilege('kelurahan', $isi_log_2);
 
 		$data_kelurahan = $this->getKelurahanById($id_kelurahan);
 		$data = [

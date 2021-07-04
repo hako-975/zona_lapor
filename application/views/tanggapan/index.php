@@ -36,6 +36,15 @@
 		<?php endif ?>
 	</div>
 
+	<div class="row text-center py-3">
+		<div class="col-lg">
+			<a href="<?= base_url('assets/img/img_pengaduan/') . $pengaduan['foto']; ?>" class="enlarge">
+				<img src="<?= base_url('assets/img/img_pengaduan/') . $pengaduan['foto']; ?>" class="img-fluid img-hm-200" alt="<?= $pengaduan['foto']; ?>">
+			</a><br>
+			<small>Klik gambar untuk perbesar</small>
+		</div>
+	</div>
+
 	<?php if ($num_rows > 0 && $tanggapan[$num_rows-1]['status_tanggapan'] != 'tidak_valid'): ?>
 		<div class="row my-2">
 			<div class="col-3">
@@ -192,4 +201,42 @@
 			</div>
 		</div>
 	<?php endif ?>
+
+	<hr>
+	<div class="row py-3">
+		<div class="col-lg">
+			<div class="card">
+				<div class="card-header mt-2">
+					<h4><i class="fas fa-fw fa-id-card"></i> Data Pelapor</h4>
+				</div>
+				<div class="card-body">
+					<table>
+						<tr>
+							<th>Username</th>
+							<td style="width: 2rem; text-align: center;"> : </td>
+							<td><?= $pengaduan['username']; ?></td>
+						</tr>
+						
+						<tr>
+							<th>Nama Lengkap</th>
+							<td style="width: 2rem; text-align: center;"> : </td>
+							<td><?= $pengaduan['nama']; ?></td>
+						</tr>
+						
+						<tr>
+							<th>No. Telepon</th>
+							<td style="width: 2rem; text-align: center;"> : </td>
+							<td><?= $pengaduan['no_telepon']; ?></td>
+						</tr>
+
+						<tr>
+							<th>Alamat</th>
+							<td style="width: 2rem; text-align: center;"> : </td>
+							<td><?= $pengaduan['alamat']; ?></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

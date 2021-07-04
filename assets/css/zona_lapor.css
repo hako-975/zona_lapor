@@ -60,6 +60,11 @@ main > .container {
   width: 100px !important;
 }
 
+.img-w-75-hm-100 {
+  max-height: 100px !important;
+  width: 75px !important;
+}
+
 .img-w-50 {
   width: 50px !important;
 }
@@ -87,6 +92,11 @@ main > .container {
 .img-w-300 {
   width: 300px !important;
 }
+
+.img-hm-200 {
+  max-height: 200px !important;
+}
+
 /*------------ img-size ------------*/
 
 /*------------ scroll to top ------------*/

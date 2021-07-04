@@ -42,7 +42,7 @@
 								<td class="align-middle"><?= $dp['kelurahan']; ?></td>
 								<td class="align-middle text-center">
 									<a href="<?= base_url('assets/img/img_pengaduan/') . $dp['foto']; ?>" class="enlarge">
-										<img src="<?= base_url('assets/img/img_pengaduan/') . $dp['foto']; ?>" class="img-fluid img-w-100-hm-100" alt="<?= $dp['foto']; ?>">
+										<img src="<?= base_url('assets/img/img_pengaduan/') . $dp['foto']; ?>" class="img-fluid img-w-75-hm-100" alt="<?= $dp['foto']; ?>">
 									</a>
 								</td>
 								<td class="align-middle">
@@ -76,7 +76,7 @@
 											<p><?= $getTanggapan['isi_tanggapan']; ?></p>
 										<?php endif ?>
 									<?php else: ?>
-										<p>-</p>
+										<p class="text-center">-</p>
 									<?php endif ?>
 								</td>
 								<td class="align-middle text-center">

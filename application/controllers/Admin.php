@@ -7,6 +7,7 @@ class Admin extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('Admin_model', 'admo');
+		$this->load->model('Pengaduan_model', 'pemo');
 	}
 
 	public function index()
@@ -14,6 +15,7 @@ class Admin extends CI_Controller
 		$this->admo->checkLoginAdmin();
 
 		$data['dataUser']	= $this->admo->getDataUserAdmin();
+		$data['pengaduan']	= $this->pemo->getPengaduan();
 		$data['title'] 		= 'Dasbor';
 		$this->load->view('templates/header-admin', $data);
 		$this->load->view('admin/index', $data);

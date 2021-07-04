@@ -24,6 +24,8 @@ class Kecamatan_model extends CI_Model
 	public function addKecamatan()
 	{
 		$dataUser = $this->admo->getDataUserAdmin();
+		$isi_log_2 = 'User ' . $dataUser['username'] . ' mencoba menambahkan kecamatan';
+		$this->admo->userPrivilege('kecamatan', $isi_log_2);
 
 		$data = [
 			'kecamatan'		=> ucwords(strtolower($this->input->post('kecamatan', true)))
@@ -40,6 +42,8 @@ class Kecamatan_model extends CI_Model
 	public function editKecamatan($id_kecamatan)
 	{
 		$dataUser = $this->admo->getDataUserAdmin();
+		$isi_log_2 = 'User ' . $dataUser['username'] . ' mencoba mengubah kecamatan ber id ' . $id_kecamatan;
+		$this->admo->userPrivilege('kecamatan', $isi_log_2);
 
 		$data_kecamatan = $this->getKecamatanById($id_kecamatan);
 		$kecamatan  = $data_kecamatan['kecamatan'];

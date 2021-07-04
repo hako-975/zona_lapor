@@ -18,6 +18,21 @@ class Pengaduan_model extends CI_Model
 		return $this->db->get('pengaduan')->result_array();
 	}
 
+	public function getPengaduanByStatusTanggapan($status_tanggapan = '')
+	{
+		$this->db->join('tanggapan', 'pengaduan.id_pengaduan=tanggapan.id_pengaduan', 'left');
+		$this->db->join('user', 'user.id_user=tanggapan.id_user', 'left');
+		$this->db->order_by('tanggapan.id_tanggapan', 'desc');
+		if ($status_tanggapan) 
+		{
+			return $this->db->get_where('pengaduan', ['tanggapan.status_tanggapan' => $status_tanggapan])->result_array();
+		} 
+		else 
+		{
+			return $this->db->get('pengaduan')->result_array();
+		}
+	}
+
 	public function getPengaduanById($id_pengaduan)
 	{
 		$this->db->join('masyarakat', 'pengaduan.id_masyarakat=masyarakat.id_masyarakat');

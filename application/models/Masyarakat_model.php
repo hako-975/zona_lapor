@@ -24,6 +24,8 @@ class Masyarakat_model extends CI_Model
 	public function addMasyarakat()
 	{
 		$dataUser = $this->admo->getDataUserAdmin();
+		$isi_log_2 = 'User ' . $dataUser['username'] . ' mencoba menambahkan masyarakat';
+		$this->admo->userPrivilege('masyarakat', $isi_log_2);
 
 		$data = [
 			'nama'		=> ucwords(strtolower($this->input->post('nama', true))),
@@ -44,6 +46,9 @@ class Masyarakat_model extends CI_Model
 	public function editMasyarakat($id_masyarakat)
 	{
 		$dataUser = $this->admo->getDataUserAdmin();
+		$isi_log_2 = 'User ' . $dataUser['username'] . ' mencoba mengubah masyarakat ber id ' . $id_masyarakat;
+		$this->admo->userPrivilege('masyarakat', $isi_log_2);
+
 		$data_masyarakat = $this->getMasyarakatById($id_masyarakat);
 		$masyarakat  = $data_masyarakat['username'];
 		$data = [

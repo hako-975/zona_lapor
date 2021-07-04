@@ -57,25 +57,41 @@
 							<tr>
 								<td class="align-middle"><?= $i++; ?></td>
 								<td class="align-middle"><?= $dt['isi_laporan']; ?></td>
-								<td class="align-middle"><?= $dt['tgl_tanggapan']; ?></td>
-								<td class="align-middle"><?= $dt['isi_tanggapan']; ?></td>
+								<?php if ($dt['tgl_tanggapan']): ?>
+									<td class="align-middle"><?= $dt['tgl_tanggapan']; ?></td>
+								<?php else: ?>
+									<td class="text-center align-middle">-</td>
+								<?php endif ?>
+								<?php if ($dt['isi_tanggapan']): ?>
+									<td class="align-middle"><?= $dt['isi_tanggapan']; ?></td>
+								<?php else: ?>
+									<td class="align-middle">Belum ditanggapi</td>
+								<?php endif ?>
 								<?php 
 									$status = explode('_', $dt['status_tanggapan']);
 									$status = implode(' ', $status);
 									$status = ucwords(strtolower($status));
 								?>
-								<?php if ($dt['status_tanggapan'] == 'proses'): ?>
-									<td class="align-middle text-center bg-danger"><i class="fas fa-fw fa-sync"></i> <?= $status; ?></td>
-								<?php elseif ($dt['status_tanggapan'] == 'valid'): ?>
-									<td class="align-middle text-center bg-success"><i class="fas fa-fw fa-check"></i> <?= $status; ?></td>
-								<?php elseif ($dt['status_tanggapan'] == 'pengerjaan'): ?>
-									<td class="align-middle text-center bg-warning"><i class="fas fa-fw fa-hammer"></i> <?= $status; ?></td>
-								<?php elseif ($dt['status_tanggapan'] == 'selesai'): ?>
-									<td class="align-middle text-center bg-primary"><i class="fas fa-fw fa-check-double"></i> <?= $status; ?></td>
-								<?php elseif ($dt['status_tanggapan'] == 'tidak_valid'): ?>
-									<td class="align-middle text-center bg-secondary"><i class="fas fa-fw fa-times"></i> <?= $status; ?></td>
+								<td class="align-middle">
+									<?php if ($dt['status_tanggapan'] == 'proses'): ?>
+										<button type="button" class="btn btn-sm btn-danger"><i class="fas fa-fw fa-sync"></i> <?= $status; ?></button>
+									<?php elseif ($dt['status_tanggapan'] == 'valid'): ?>
+										<button type="button" class="btn btn-sm btn-success"><i class="fas fa-fw fa-check"></i> <?= $status; ?></button>
+									<?php elseif ($dt['status_tanggapan'] == 'pengerjaan'): ?>
+										<button type="button" class="btn btn-sm btn-warning"><i class="fas fa-fw fa-hammer"></i> <?= $status; ?></button>
+									<?php elseif ($dt['status_tanggapan'] == 'selesai'): ?>
+										<button type="button" class="btn btn-sm btn-primary"><i class="fas fa-fw fa-check-double"></i> <?= $status; ?></button>
+									<?php elseif ($dt['status_tanggapan'] == 'tidak_valid'): ?>
+										<button type="button" class="btn btn-sm btn-secondary"><i class="fas fa-fw fa-times"></i> <?= $status; ?></button>
+									<?php else: ?>
+										<button type="button" class="btn btn-sm btn-secondary"><i class="fas fa-fw fa-times"></i> Belum ditanggapi</button>
+									<?php endif ?>
+								</td>
+								<?php if ($dt['username']): ?>
+									<td class="align-middle"><?= $dt['username']; ?></td>
+								<?php else: ?>
+									<td class="align-middle">Belum ditanggapi</td>
 								<?php endif ?>
-								<td class="align-middle"><?= $dt['username']; ?></td>
 								<td class="align-middle text-center"><a href="<?= base_url('tanggapan/index/' . $dt['id_pengaduan']); ?>" class="btn btn-primary"><i class="fas fa-fw fa-align-justify"></i></a></td>
 							</tr>
 						<?php endforeach ?>

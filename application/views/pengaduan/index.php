@@ -20,9 +20,7 @@
 							<th class="align-middle">Foto</th>
 							<th class="align-middle">Pelapor</th>
 							<th class="align-middle">Status</th>
-							<?php if ($dataUser['jabatan'] == 'administrator'): ?>
-								<th class="align-middle">Aksi</th>
-							<?php endif ?>
+							<th class="align-middle">Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -46,37 +44,35 @@
 								<td class="align-middle"><?= $dp['kelurahan']; ?></td>
 								<td class="align-middle text-center">
 									<a href="<?= base_url('assets/img/img_pengaduan/') . $dp['foto']; ?>" class="enlarge">
-										<img src="<?= base_url('assets/img/img_pengaduan/') . $dp['foto']; ?>" class="img-fluid img-w-100-hm-100" alt="<?= $dp['foto']; ?>">
+										<img src="<?= base_url('assets/img/img_pengaduan/') . $dp['foto']; ?>" class="img-fluid img-w-75-hm-100" alt="<?= $dp['foto']; ?>">
 									</a>
 								</td>
 								<td class="align-middle"><?= $dp['username']; ?></td>
 								<td class="align-middle">
 								<?php if ($getStatusTanggapan): ?>
 									<?php if ($getStatusTanggapan['status_tanggapan'] == 'proses'): ?>
-										<button type="button" class="btn text-center btn-danger"><i class="fas fa-fw fa-sync"></i> <?= $status; ?></button>
+										<button type="button" class="btn btn-sm text-center btn-danger"><i class="fas fa-fw fa-sync"></i> <?= $status; ?></button>
 									<?php elseif ($getStatusTanggapan['status_tanggapan'] == 'valid'): ?>
-										<button type="button" class="btn text-center btn-success"><i class="fas fa-fw fa-check"></i> <?= $status; ?></button>
+										<button type="button" class="btn btn-sm text-center btn-success"><i class="fas fa-fw fa-check"></i> <?= $status; ?></button>
 									<?php elseif ($getStatusTanggapan['status_tanggapan'] == 'pengerjaan'): ?>
-										<button type="button" class="btn text-center btn-warning"><i class="fas fa-fw fa-hammer"></i> <?= $status; ?></button>
+										<button type="button" class="btn btn-sm text-center btn-warning"><i class="fas fa-fw fa-hammer"></i> <?= $status; ?></button>
 									<?php elseif ($getStatusTanggapan['status_tanggapan'] == 'selesai'): ?>
-										<button type="button" class="btn text-center btn-primary"><i class="fas fa-fw fa-check-double"></i> <?= $status; ?></button>
+										<button type="button" class="btn btn-sm text-center btn-primary"><i class="fas fa-fw fa-check-double"></i> <?= $status; ?></button>
 									<?php elseif ($getStatusTanggapan['status_tanggapan'] == 'tidak_valid'): ?>
-										<button type="button" class="btn text-center btn-sm btn-secondary"><i class="fas fa-fw fa-times"></i> <?= $status; ?></button>
+										<button type="button" class="btn btn-sm text-center btn-secondary"><i class="fas fa-fw fa-times"></i> <?= $status; ?></button>
 									<?php endif ?>
 								<?php else: ?>
 									<button type="button" class="btn text-center btn-sm btn-secondary"><i class="fas fa-fw fa-times"></i> Belum ditanggapi</button>
 								<?php endif ?>
 								</td>
 
-								<?php if ($dataUser['jabatan'] == 'administrator'): ?>
-									<td class="align-middle text-center">
-										<a href="<?= base_url('tanggapan/index/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-info m-1"><i class="fas fa-fw fa-reply"></i></a>
-										<a href="<?= base_url('pengaduan/editPengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
-										<?php if ($dataUser['jabatan'] == 'administrator'): ?>
-											<a href="<?= base_url('pengaduan/removePengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="<?= $dp['isi_laporan']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>
-										<?php endif ?>
-									</td>
-								<?php endif ?>
+								<td class="align-middle text-center">
+									<a href="<?= base_url('tanggapan/index/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-info m-1"><i class="fas fa-fw fa-reply"></i></a>
+									<a href="<?= base_url('pengaduan/editPengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
+									<?php if ($dataUser['jabatan'] == 'administrator'): ?>
+										<a href="<?= base_url('pengaduan/removePengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="<?= $dp['isi_laporan']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>
+									<?php endif ?>
+								</td>
 							</tr>
 						<?php endforeach ?>
 						<?php if ($pengaduan == null): ?>

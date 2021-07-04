@@ -24,6 +24,8 @@ class User_model extends CI_Model
 	public function addUser()
 	{
 		$dataUser = $this->admo->getDataUserAdmin();
+		$isi_log_2 = 'Pengguna ' . $dataUser['username'] . ' mencoba menambahkan user';
+		$this->admo->userPrivilege('user', $isi_log_2);
 
 		$data = [
 			'nama' 			=> ucwords(strtolower($this->input->post('nama', true))),
@@ -44,6 +46,8 @@ class User_model extends CI_Model
 	public function editUser($id_user)
 	{
 		$dataUser = $this->admo->getDataUserAdmin();
+		$isi_log_2 = 'Pengguna ' . $dataUser['username'] . ' mencoba mengubah user ber id ' . $id_user;
+		$this->admo->userPrivilege('user', $isi_log_2);
 
 		$data_user = $this->getUserById($id_user);
 		$username  = $data_user['username'];

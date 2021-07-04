@@ -18,9 +18,9 @@
 	    </button>
 	    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 	      <div class="navbar-nav">
-	        <a class="nav-link page-scroll" href="#tentang"><h5 class="my-auto">Tentang</h5></a>
-	        <a class="nav-link page-scroll" href="#daftar_laporan"><h5 class="my-auto">Daftar Laporan</h5></a>
-	        <a class="nav-link page-scroll" href="#saran"><h5 class="my-auto">Saran</h5></a>
+	        <a class="nav-link page-scroll" href="<?= base_url('landing/'); ?>#tentang"><h5 class="my-auto">Tentang</h5></a>
+	        <a class="nav-link page-scroll" href="<?= base_url('landing/'); ?>#daftar_laporan"><h5 class="my-auto">Daftar Laporan</h5></a>
+	        <a class="nav-link page-scroll" href="<?= base_url('landing/'); ?>#saran"><h5 class="my-auto">Saran</h5></a>
 	      </div>
 	      <div class="navbar-nav ml-auto">
 	        <a class="nav-link btn btn-sm font-weight-bold m-1 btn-login" href="<?= base_url('landing/masuk'); ?>"><i class="fas fa-fw fa-sign-in-alt"></i> MASUK</a>
@@ -41,9 +41,15 @@
 		<div class="row text-center py-3">
 			<div class="col-lg">
 				<a href="<?= base_url('assets/img/img_pengaduan/') . $pengaduan['foto']; ?>" class="enlarge">
-					<img src="<?= base_url('assets/img/img_pengaduan/') . $pengaduan['foto']; ?>" class="img-fluid img-w-300" alt="<?= $pengaduan['foto']; ?>">
+					<img src="<?= base_url('assets/img/img_pengaduan/') . $pengaduan['foto']; ?>" class="img-fluid img-hm-200" alt="<?= $pengaduan['foto']; ?>">
 				</a><br>
 				<small>Klik gambar untuk perbesar</small>
+			</div>
+		</div>
+		<div class="row my-3">
+			<div class="col-lg">
+				<h5>Tanggal Pengaduan: <?= date('d-M-Y, \P\u\k\u\l H:i', strtotime($pengaduan['tgl_pengaduan'])); ?></h5>
+				<h5>Lokasi: <?= $pengaduan['kelurahan']; ?></h5>
 			</div>
 		</div>
 

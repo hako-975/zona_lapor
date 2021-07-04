@@ -36,7 +36,7 @@
 						<input type="password" id="password" class="form-control" name="password" required>
 					</div>
 					<div class="form-group text-right">
-						<button type="submit" class="btn btn-primary"><i class="fas fa-fw fa-sign-in-alt"></i> Masuk</button>
+						<button type="submit" class="btn btn-danger"><i class="fas fa-fw fa-sign-in-alt"></i> Masuk</button>
 					</div>
 				</form>
 			</div>
