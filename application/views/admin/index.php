@@ -5,29 +5,35 @@
 	$selesai = 0;
 	$tidak_valid = 0;
 
-	foreach ($pengaduan as $dp)
+	if ($pengaduan) 
 	{
-		$this->db->order_by('tanggapan.id_tanggapan', 'desc');
-		$getStatusTanggapan = $this->db->get_where('tanggapan', ['id_pengaduan' => $dp['id_pengaduan']])->row_array();
-		if ($getStatusTanggapan['status_tanggapan'] == 'proses') 
+		foreach ($pengaduan as $dp)
 		{
-			$proses += 1;
-		}
-		elseif ($getStatusTanggapan['status_tanggapan'] == 'valid') 
-		{
-			$valid += 1;
-		}
-		elseif ($getStatusTanggapan['status_tanggapan'] == 'pengerjaan') 
-		{
-			$pengerjaan += 1;
-		}
-		elseif ($getStatusTanggapan['status_tanggapan'] == 'selesai') 
-		{
-			$selesai += 1;
-		}
-		elseif ($getStatusTanggapan['status_tanggapan'] == 'tidak_valid') 
-		{
-			$tidak_valid += 1;
+			$this->db->order_by('tanggapan.id_tanggapan', 'desc');
+			$getStatusTanggapan = $this->db->get_where('tanggapan', ['id_pengaduan' => $dp['id_pengaduan']])->row_array();
+			if ($getStatusTanggapan) 
+			{
+				if ($getStatusTanggapan['status_tanggapan'] == 'proses') 
+				{
+					$proses += 1;
+				}
+				elseif ($getStatusTanggapan['status_tanggapan'] == 'valid') 
+				{
+					$valid += 1;
+				}
+				elseif ($getStatusTanggapan['status_tanggapan'] == 'pengerjaan') 
+				{
+					$pengerjaan += 1;
+				}
+				elseif ($getStatusTanggapan['status_tanggapan'] == 'selesai') 
+				{
+					$selesai += 1;
+				}
+				elseif ($getStatusTanggapan['status_tanggapan'] == 'tidak_valid') 
+				{
+					$tidak_valid += 1;
+				}
+			}
 		}
 	}
 ?>

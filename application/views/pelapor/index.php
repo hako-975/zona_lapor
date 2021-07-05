@@ -5,29 +5,35 @@
 	$selesai = 0;
 	$tidak_valid = 0;
 
-	foreach ($pengaduan as $dp)
+	if ($pengaduan) 
 	{
-		$this->db->order_by('tanggapan.id_tanggapan', 'desc');
-		$getStatusTanggapan = $this->db->get_where('tanggapan', ['id_pengaduan' => $dp['id_pengaduan']])->row_array();
-		if ($getStatusTanggapan['status_tanggapan'] == 'proses') 
+		foreach ($pengaduan as $dp)
 		{
-			$proses += 1;
-		}
-		elseif ($getStatusTanggapan['status_tanggapan'] == 'valid') 
-		{
-			$valid += 1;
-		}
-		elseif ($getStatusTanggapan['status_tanggapan'] == 'pengerjaan') 
-		{
-			$pengerjaan += 1;
-		}
-		elseif ($getStatusTanggapan['status_tanggapan'] == 'selesai') 
-		{
-			$selesai += 1;
-		}
-		elseif ($getStatusTanggapan['status_tanggapan'] == 'tidak_valid') 
-		{
-			$tidak_valid += 1;
+			$this->db->order_by('tanggapan.id_tanggapan', 'desc');
+			$getStatusTanggapan = $this->db->get_where('tanggapan', ['id_pengaduan' => $dp['id_pengaduan']])->row_array();
+			if ($getStatusTanggapan) 
+			{
+				if ($getStatusTanggapan['status_tanggapan'] == 'proses') 
+				{
+					$proses += 1;
+				}
+				elseif ($getStatusTanggapan['status_tanggapan'] == 'valid') 
+				{
+					$valid += 1;
+				}
+				elseif ($getStatusTanggapan['status_tanggapan'] == 'pengerjaan') 
+				{
+					$pengerjaan += 1;
+				}
+				elseif ($getStatusTanggapan['status_tanggapan'] == 'selesai') 
+				{
+					$selesai += 1;
+				}
+				elseif ($getStatusTanggapan['status_tanggapan'] == 'tidak_valid') 
+				{
+					$tidak_valid += 1;
+				}
+			}
 		}
 	}
 ?>
@@ -114,44 +120,42 @@
 								}
 							?>
 
-							<?php if ($getStatusTanggapan): ?>
-								<tr>
-									<td class="align-middle"><?= $i++; ?></td>
-									<td class="align-middle"><?= date('d-M-Y,\P\u\k\u\l H:i', strtotime($dp['tgl_pengaduan'])); ?></td>
-									<td class="align-middle"><?= $dp['isi_laporan']; ?></td>
-									<td class="align-middle"><?= $dp['kelurahan']; ?></td>
-									<td class="align-middle text-center">
-										<a href="<?= base_url('assets/img/img_pengaduan/') . $dp['foto']; ?>" class="enlarge">
-											<img src="<?= base_url('assets/img/img_pengaduan/') . $dp['foto']; ?>" class="img-fluid img-w-75-hm-100" alt="<?= $dp['foto']; ?>">
-										</a>
-									</td>
-									<td class="align-middle"><?= $dp['username']; ?></td>
-									<td class="align-middle">
-										<?php if ($getStatusTanggapan): ?>
-											<?php if ($getStatusTanggapan['status_tanggapan'] == 'proses'): ?>
-												<button type="button" class="btn btn-sm text-center btn-danger"><i class="fas fa-fw fa-sync"></i> <?= $status; ?></button>
-											<?php elseif ($getStatusTanggapan['status_tanggapan'] == 'valid'): ?>
-												<button type="button" class="btn btn-sm text-center btn-success"><i class="fas fa-fw fa-check"></i> <?= $status; ?></button>
-											<?php elseif ($getStatusTanggapan['status_tanggapan'] == 'pengerjaan'): ?>
-												<button type="button" class="btn btn-sm text-center btn-warning"><i class="fas fa-fw fa-hammer"></i> <?= $status; ?></button>
-											<?php elseif ($getStatusTanggapan['status_tanggapan'] == 'selesai'): ?>
-												<button type="button" class="btn btn-sm text-center btn-primary"><i class="fas fa-fw fa-check-double"></i> <?= $status; ?></button>
-											<?php elseif ($getStatusTanggapan['status_tanggapan'] == 'tidak_valid'): ?>
-												<button type="button" class="btn btn-sm text-center btn-secondary"><i class="fas fa-fw fa-times"></i> <?= $status; ?></button>
-											<?php endif ?>
-										<?php else: ?>
-											<button type="button" class="btn text-center btn-xs p-2 btn-secondary"><i class="fas fa-fw fa-times"></i> Belum ditanggapi</button>
+							<tr>
+								<td class="align-middle"><?= $i++; ?></td>
+								<td class="align-middle"><?= date('d-M-Y,\P\u\k\u\l H:i', strtotime($dp['tgl_pengaduan'])); ?></td>
+								<td class="align-middle"><?= $dp['isi_laporan']; ?></td>
+								<td class="align-middle"><?= $dp['kelurahan']; ?></td>
+								<td class="align-middle text-center">
+									<a href="<?= base_url('assets/img/img_pengaduan/') . $dp['foto']; ?>" class="enlarge">
+										<img src="<?= base_url('assets/img/img_pengaduan/') . $dp['foto']; ?>" class="img-fluid img-w-75-hm-100" alt="<?= $dp['foto']; ?>">
+									</a>
+								</td>
+								<td class="align-middle"><?= $dp['username']; ?></td>
+								<td class="align-middle">
+									<?php if ($getStatusTanggapan): ?>
+										<?php if ($getStatusTanggapan['status_tanggapan'] == 'proses'): ?>
+											<button type="button" class="btn btn-sm text-center btn-danger"><i class="fas fa-fw fa-sync"></i> <?= $status; ?></button>
+										<?php elseif ($getStatusTanggapan['status_tanggapan'] == 'valid'): ?>
+											<button type="button" class="btn btn-sm text-center btn-success"><i class="fas fa-fw fa-check"></i> <?= $status; ?></button>
+										<?php elseif ($getStatusTanggapan['status_tanggapan'] == 'pengerjaan'): ?>
+											<button type="button" class="btn btn-sm text-center btn-warning"><i class="fas fa-fw fa-hammer"></i> <?= $status; ?></button>
+										<?php elseif ($getStatusTanggapan['status_tanggapan'] == 'selesai'): ?>
+											<button type="button" class="btn btn-sm text-center btn-primary"><i class="fas fa-fw fa-check-double"></i> <?= $status; ?></button>
+										<?php elseif ($getStatusTanggapan['status_tanggapan'] == 'tidak_valid'): ?>
+											<button type="button" class="btn btn-sm text-center btn-secondary"><i class="fas fa-fw fa-times"></i> <?= $status; ?></button>
 										<?php endif ?>
-									</td>
-									<td class="align-middle text-center">
-										<a href="<?= base_url('pelaporTanggapan/index/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-info m-1"><i class="fas fa-fw fa-reply"></i></a>
-										<?php if ($getStatusTanggapan == null): ?>
-											<a href="<?= base_url('pelaporPengaduan/editPelaporPengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
-											<a href="<?= base_url('pelaporPengaduan/removePelaporPengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="<?= $dp['isi_laporan']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>
-										<?php endif ?>
-									</td>
-								</tr>
-							<?php endif ?>
+									<?php else: ?>
+										<button type="button" class="btn text-center btn-xs p-2 btn-secondary"><i class="fas fa-fw fa-times"></i> Belum ditanggapi</button>
+									<?php endif ?>
+								</td>
+								<td class="align-middle text-center">
+									<a href="<?= base_url('pelaporTanggapan/index/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-info m-1"><i class="fas fa-fw fa-reply"></i></a>
+									<?php if ($getStatusTanggapan == null): ?>
+										<a href="<?= base_url('pelaporPengaduan/editPelaporPengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
+										<a href="<?= base_url('pelaporPengaduan/removePelaporPengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="<?= $dp['isi_laporan']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>
+									<?php endif ?>
+								</td>
+							</tr>
 						<?php endforeach ?>
 					</tbody>
 				</table>

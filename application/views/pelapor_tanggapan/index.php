@@ -9,10 +9,48 @@
 <div class="container">
 	<div class="row justify-content-center py-3">
 		<div class="col-lg header-title">
-			<h3><i class="fas fa-fw fa-reply"></i> Tanggapan - <?= $pengaduan['isi_laporan']; ?></h3>
+			<?php 
+				if (strlen($pengaduan['isi_laporan']) > 30) 
+				{
+					$isi_laporan = substr($pengaduan['isi_laporan'], 0, 30) . '...';
+				}
+				else
+				{
+					$isi_laporan = $pengaduan['isi_laporan'];
+				}
+			?>
+			<h3><i class="fas fa-fw fa-reply"></i> Tanggapan - <?= $isi_laporan; ?></h3>
 		</div>
 	</div>
-
+	<div class="row text-center py-3">
+		<div class="col-lg">
+			<a href="<?= base_url('assets/img/img_pengaduan/') . $pengaduan['foto']; ?>" class="enlarge">
+				<img src="<?= base_url('assets/img/img_pengaduan/') . $pengaduan['foto']; ?>" class="img-fluid img-hm-200" alt="<?= $pengaduan['foto']; ?>">
+			</a><br>
+			<small>Klik gambar untuk perbesar</small>
+		</div>
+	</div>
+	<div class="row my-3">
+		<div class="col-lg">
+			<table>
+				<tr>
+					<th class="align-middle">Isi Laporan</th>
+					<td style="width: 3rem" class="align-middle text-center">:</td>
+					<td class="align-middle"><?= $pengaduan['isi_laporan']; ?></td>
+				</tr>
+				<tr>
+					<th class="align-middle">Tanggal Pengaduan</th>
+					<td style="width: 3rem" class="align-middle text-center">:</td>
+					<td class="align-middle"><?= date('d-M-Y, \P\u\k\u\l H:i', strtotime($pengaduan['tgl_pengaduan'])); ?></td>
+				</tr>
+				<tr>
+					<th class="align-middle">Lokasi</th>
+					<td style="width: 3rem" class="align-middle text-center">:</td>
+					<td class="align-middle"><?= $pengaduan['kelurahan']; ?></td>
+				</tr>
+			</table>
+		</div>
+	</div>
 	<?php if ($num_rows > 0 && $tanggapan[$num_rows-1]['status_tanggapan'] != 'tidak_valid'): ?>
 		<div class="row my-2">
 			<div class="col-3">
@@ -124,7 +162,7 @@
 						<?php foreach ($tanggapan as $dt): ?>
 							<tr>
 								<td class="align-middle"><?= $i++; ?></td>
-								<td class="align-middle"><?= $dt['tgl_tanggapan']; ?></td>
+								<td class="align-middle"><?= date('d-M-Y,\P\u\k\u\l H:i', strtotime($dt['tgl_tanggapan'])); ?></td>
 								<td class="align-middle"><?= $dt['isi_tanggapan']; ?></td>
 								<?php 
 									$status = explode('_', $dt['status_tanggapan']);
@@ -135,11 +173,6 @@
 								<td class="align-middle"><?= $dt['username']; ?></td>
 							</tr>
 						<?php endforeach ?>
-						<?php if ($tanggapan == null): ?>
-							<tr>
-								<td colspan="6" class="text-center">Tidak ada data.</td>
-							</tr>
-						<?php endif ?>
 					</tbody>
 				</table>
 			</div>

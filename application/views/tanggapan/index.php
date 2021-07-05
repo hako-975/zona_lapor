@@ -9,31 +9,18 @@
 <div class="container">
 	<div class="row justify-content-center py-3">
 		<div class="col-lg header-title">
-			<h3><i class="fas fa-fw fa-reply"></i> Tanggapan - <?= $pengaduan['isi_laporan']; ?></h3>
+			<?php 
+				if (strlen($pengaduan['isi_laporan']) > 30) 
+				{
+					$isi_laporan = substr($pengaduan['isi_laporan'], 0, 30) . '...';
+				}
+				else
+				{
+					$isi_laporan = $pengaduan['isi_laporan'];
+				}
+			?>
+			<h3><i class="fas fa-fw fa-reply"></i> Tanggapan - <?= $isi_laporan; ?></h3>
 		</div>
-		<?php if ($num_rows != 4): ?>
-			<?php if ($num_rows == 0): ?>
-				<div class="col-lg header-button">
-					<a href="<?= base_url('tanggapan/addTanggapan/' . $pengaduan['id_pengaduan']); ?>" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> Tambah Tanggapan</a>
-				</div>
-			<?php else: ?>
-					<?php if ($tanggapan[$num_rows-1]['status_tanggapan'] != 'tidak_valid'): ?>
-						<div class="col-lg header-button">
-							<a href="<?= base_url('tanggapan/addTanggapan/' . $pengaduan['id_pengaduan']); ?>" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> Tambah Tanggapan</a>
-						</div>
-					<?php else: ?>
-						<div class="col-lg header-button">
-							<button class="btn btn-primary" type="button" disabled><i class="fas fa-fw fa-plus"></i> Tambah Tanggapan</button>
-							<br><small>Pengaduan Tidak Valid</small>
-						</div>
-					<?php endif ?>
-			<?php endif ?>
-		<?php else: ?>
-			<div class="col-lg header-button">
-				<button class="btn btn-primary" type="button" disabled><i class="fas fa-fw fa-plus"></i> Tambah Tanggapan</button>
-				<br><small>Pengaduan Sudah Selesai</small>
-			</div>
-		<?php endif ?>
 	</div>
 
 	<div class="row text-center py-3">
@@ -44,7 +31,27 @@
 			<small>Klik gambar untuk perbesar</small>
 		</div>
 	</div>
-
+	<div class="row my-3">
+		<div class="col-lg">
+			<table>
+				<tr>
+					<th class="align-middle">Isi Laporan</th>
+					<td style="width: 3rem" class="align-middle text-center">:</td>
+					<td class="align-middle"><?= $pengaduan['isi_laporan']; ?></td>
+				</tr>
+				<tr>
+					<th class="align-middle">Tanggal Pengaduan</th>
+					<td style="width: 3rem" class="align-middle text-center">:</td>
+					<td class="align-middle"><?= date('d-M-Y, \P\u\k\u\l H:i', strtotime($pengaduan['tgl_pengaduan'])); ?></td>
+				</tr>
+				<tr>
+					<th class="align-middle">Lokasi</th>
+					<td style="width: 3rem" class="align-middle text-center">:</td>
+					<td class="align-middle"><?= $pengaduan['kelurahan']; ?></td>
+				</tr>
+			</table>
+		</div>
+	</div>
 	<?php if ($num_rows > 0 && $tanggapan[$num_rows-1]['status_tanggapan'] != 'tidak_valid'): ?>
 		<div class="row my-2">
 			<div class="col-3">
@@ -109,6 +116,7 @@
 			</div>
 		</div>
 	<?php endif ?>
+
 	<div class="row my-3">
 		<div class="col">
 			<?php if ($num_rows == 0): ?>
@@ -144,7 +152,31 @@
 			<?php endif ?>
 		</div>
 	</div>
-	
+	<div class="row my-3">
+		<?php if ($num_rows != 4): ?>
+			<?php if ($num_rows == 0): ?>
+				<div class="col-lg">
+					<a href="<?= base_url('tanggapan/addTanggapan/' . $pengaduan['id_pengaduan']); ?>" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> Tambah Tanggapan</a>
+				</div>
+			<?php else: ?>
+					<?php if ($tanggapan[$num_rows-1]['status_tanggapan'] != 'tidak_valid'): ?>
+						<div class="col-lg">
+							<a href="<?= base_url('tanggapan/addTanggapan/' . $pengaduan['id_pengaduan']); ?>" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> Tambah Tanggapan</a>
+						</div>
+					<?php else: ?>
+						<div class="col-lg">
+							<button class="btn btn-primary" type="button" disabled><i class="fas fa-fw fa-plus"></i> Tambah Tanggapan</button>
+							<br><small>Pengaduan Tidak Valid</small>
+						</div>
+					<?php endif ?>
+			<?php endif ?>
+		<?php else: ?>
+			<div class="col-lg">
+				<button class="btn btn-primary" type="button" disabled><i class="fas fa-fw fa-plus"></i> Tambah Tanggapan</button>
+				<br><small>Pengaduan Sudah Selesai</small>
+			</div>
+		<?php endif ?>
+	</div>
 	<div class="row py-3">
 		<div class="col-lg">
 			<div class="table-responsive">
@@ -164,7 +196,7 @@
 						<?php foreach ($tanggapan as $dt): ?>
 							<tr>
 								<td class="align-middle"><?= $i++; ?></td>
-								<td class="align-middle"><?= $dt['tgl_tanggapan']; ?></td>
+								<td class="align-middle"><?= date('d-M-Y,\P\u\k\u\l H:i', strtotime($dt['tgl_tanggapan'])); ?></td>
 								<td class="align-middle"><?= $dt['isi_tanggapan']; ?></td>
 								<?php 
 									$status = explode('_', $dt['status_tanggapan']);
@@ -183,11 +215,6 @@
 								</td>
 							</tr>
 						<?php endforeach ?>
-						<?php if ($tanggapan == null): ?>
-							<tr>
-								<td colspan="6" class="text-center">Tidak ada data.</td>
-							</tr>
-						<?php endif ?>
 					</tbody>
 				</table>
 			</div>

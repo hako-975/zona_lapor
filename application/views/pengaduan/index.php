@@ -39,7 +39,7 @@
 							?>
 							<tr>
 								<td class="align-middle"><?= $i++; ?></td>
-								<td class="align-middle"><?= $dp['tgl_pengaduan']; ?></td>
+								<td class="align-middle"><?= date('d-M-Y,\P\u\k\u\l H:i', strtotime($dp['tgl_pengaduan'])); ?></td>
 								<td class="align-middle"><?= $dp['isi_laporan']; ?></td>
 								<td class="align-middle"><?= $dp['kelurahan']; ?></td>
 								<td class="align-middle text-center">

@@ -34,7 +34,7 @@
 	<div class="container mb-5">
 		<div class="row justify-content-center py-3">
 			<div class="col-lg header-title">
-				<h3><i class="fas fa-fw fa-reply"></i> Tanggapan - <?= $pengaduan['isi_laporan']; ?></h3>
+				<h3 class="text-center"><?= $pengaduan['isi_laporan']; ?></h3>
 			</div>
 		</div>
 
