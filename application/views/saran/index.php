@@ -30,11 +30,6 @@
 								<td><?= $ds['alamat']; ?></td>
 							</tr>
 						<?php endforeach ?>
-						<?php if ($saran == null): ?>
-							<tr>
-								<td colspan="6" class="text-center">Tidak ada data.</td>
-							</tr>
-						<?php endif ?>
 					</tbody>
 				</table>
 			</div>

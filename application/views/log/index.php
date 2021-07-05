@@ -26,11 +26,6 @@
 								<td><?= $dl['username']; ?></td>
 							</tr>
 						<?php endforeach ?>
-						<?php if ($log == null): ?>
-							<tr>
-								<td colspan="4" class="text-center">Tidak ada data.</td>
-							</tr>
-						<?php endif ?>
 					</tbody>
 				</table>
 			</div>

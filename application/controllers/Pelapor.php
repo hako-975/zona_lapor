@@ -7,6 +7,7 @@ class Pelapor extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('Pelapor_model', 'pelmo');
+		$this->load->model('PelaporPengaduan_model', 'pepemo');
 	}
 
 	public function index()
@@ -14,7 +15,8 @@ class Pelapor extends CI_Controller
 		$this->pelmo->checkLoginUser();
 
 		$data['dataUser']	= $this->pelmo->getDataUser();
-		$data['title'] 		= 'Dasbor';
+		$data['pengaduan']	= $this->pepemo->getPengaduanByIdMasyarakat($data['dataUser']['id_masyarakat']);
+ 		$data['title'] 		= 'Dasbor';
 		$this->load->view('templates/header-pelapor', $data);
 		$this->load->view('pelapor/index', $data);
 		$this->load->view('templates/footer-pelapor', $data);

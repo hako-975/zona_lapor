@@ -17,8 +17,8 @@ class Tanggapan extends CI_Controller
 	{
 		$data['dataUser']		= $this->admo->getDataUserAdmin();
 		$data['title']  		= 'Semua Tanggapan';
-		$data['all_tanggapan']	= $this->pemo->getPengaduanByStatusTanggapan($status_tanggapan);
-
+		$data['pengaduan']	= $this->pemo->getPengaduan();
+		
 		$this->load->view('templates/header-admin', $data);
 		$this->load->view('tanggapan/all_tanggapan', $data);
 		$this->load->view('templates/footer-admin', $data);

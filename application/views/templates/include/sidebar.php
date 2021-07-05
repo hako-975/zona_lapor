@@ -52,7 +52,7 @@
             </a>
           <?php endif ?>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <?php if (
             $_SERVER['REQUEST_URI'] == '/zona_lapor/tanggapan/allTanggapan' || 
             $_SERVER['REQUEST_URI'] == '/zona_lapor/tanggapan/allTanggapan/'
@@ -67,7 +67,7 @@
               <p>Tanggapan</p>
             </a>
           <?php endif ?>
-        </li>
+        </li> -->
         <?php if ($dataUser['jabatan'] == 'administrator'): ?>
           <?php if (
             $_SERVER['REQUEST_URI'] == '/zona_lapor/user' || 

@@ -38,11 +38,6 @@
 								<?php endif ?>
 							</tr>
 						<?php endforeach ?>
-						<?php if ($kecamatan == null): ?>
-							<tr>
-								<td colspan="3" class="text-center">Tidak ada data.</td>
-							</tr>
-						<?php endif ?>
 					</tbody>
 				</table>
 			</div>

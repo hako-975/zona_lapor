@@ -189,11 +189,6 @@
 									</td>
 								</tr>
 							<?php endforeach ?>
-							<?php if ($pengaduan == null): ?>
-								<tr>
-									<td colspan="8" class="text-center">Tidak ada data.</td>
-								</tr>
-							<?php endif ?>
 						</tbody>
 					</table>
 				</div>
