@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Jul 2021 pada 22.12
+-- Waktu pembuatan: 05 Jul 2021 pada 23.46
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 7.4.19
 
@@ -130,26 +130,6 @@ CREATE TABLE `log` (
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `log`
---
-
-INSERT INTO `log` (`id_log`, `isi_log`, `tgl_log`, `id_user`) VALUES
-(1, 'Tanggapan Baik laporan Anda segera kami proses. berhasil ditambahkan', '2021-07-04 15:16:17', 1),
-(2, 'Tanggapan Baik segera kami verifikasi, apakah lampu itu rusak berhasil ditambahkan', '2021-07-04 16:14:39', 1),
-(3, 'Tanggapan Laporan Anda valid, akan segera kami betulkan berhasil ditambahkan', '2021-07-04 16:15:21', 1),
-(4, 'Tanggapan Laporan Anda valid, akan segera kami betulkan. berhasil diubah', '2021-07-04 16:15:29', 1),
-(5, 'Pengguna andri123 dengan jabatan operator berhasil ditambahkan', '2021-07-04 16:16:31', 1),
-(6, 'Tanggapan kami proses berhasil ditambahkan', '2021-07-05 02:49:51', 2),
-(7, 'Tanggapan laporan Anda valid berhasil ditambahkan', '2021-07-05 02:50:05', 2),
-(8, 'Akses ditolak! Karena jabatan anda sebagai operator! Hubungi Administrator untuk melakukan perubahan! User andri123 mencoba menghapus pengaduan ber id 3', '2021-07-05 02:51:09', 2),
-(9, 'Tanggapan Laporan Anda valid berhasil diubah', '2021-07-05 02:51:57', 2),
-(10, 'Akses ditolak! Karena jabatan anda sebagai operator! Hubungi Administrator untuk melakukan perubahan! Pengguna andri123 mencoba menghapus user ber id 1', '2021-07-05 03:01:15', 2),
-(11, 'Akses ditolak! Karena jabatan anda sebagai operator! Hubungi Administrator untuk melakukan perubahan! Pengguna andri123 mencoba menghapus user ber id 1', '2021-07-05 03:01:52', 2),
-(12, 'Akses ditolak! Karena jabatan anda sebagai operator! Hubungi Administrator untuk melakukan perubahan! Pengguna andri123 mencoba menghapus user ber id 1', '2021-07-05 03:03:23', 2),
-(13, 'Akses ditolak! Karena jabatan anda sebagai operator! Hubungi Administrator untuk melakukan perubahan! Pengguna andri123 mencoba menghapus user ber id 1', '2021-07-05 03:03:30', 2),
-(14, 'Akses ditolak! Karena jabatan anda sebagai operator! Hubungi Administrator untuk melakukan perubahan! Pengguna andri123 mencoba menambahkan user', '2021-07-05 03:05:36', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -165,15 +145,6 @@ CREATE TABLE `masyarakat` (
   `alamat` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `masyarakat`
---
-
-INSERT INTO `masyarakat` (`id_masyarakat`, `nama`, `username`, `password`, `no_telepon`, `alamat`) VALUES
-(1, 'Andre Farhan Saputra', 'andre123', '$2y$10$np0VReX.hpfpyfGZMB61keaDNoe14ZSzZ9mAP0Zql6mSQuCYfWOla', '087733932416', 'Jl. AMD Babakan Pocis No. 100 RT02/02'),
-(2, 'Muhammad Irgi Al Ghithraf', 'irgi5', '$2y$10$51l3fVtvtoUTkuv8NajfjOaWxP7Y/T8Re2LMjmvciuQ0y2a5jgE3e', '085773094859', 'Perum Puri Serpong 1 Blok D5 No. 7 RT 08/02 Setu, Setu, Tangerang Selatan, Banten'),
-(3, 'Ableza Melani Putri', 'ableza23', '$2y$10$TgOf0IoXPIIrBdKLoMsbiOnr4/2iBynqT.Vasqr6DjQRgTknwxEtm', '089677646147', 'JL. AMD Babakan Pocis No. 7 RT 02/01 Bakti Jaya Setu Kota Tangerang Selatan');
-
 -- --------------------------------------------------------
 
 --
@@ -185,18 +156,10 @@ CREATE TABLE `pengaduan` (
   `isi_laporan` text NOT NULL,
   `tgl_pengaduan` datetime NOT NULL,
   `foto` text DEFAULT 'default.png',
+  `status_pengaduan` enum('belum_ditanggapi','proses','valid','pengerjaan','selesai','tidak_valid') NOT NULL DEFAULT 'belum_ditanggapi',
   `id_masyarakat` int(11) NOT NULL,
   `id_kelurahan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `pengaduan`
---
-
-INSERT INTO `pengaduan` (`id_pengaduan`, `isi_laporan`, `tgl_pengaduan`, `foto`, `id_masyarakat`, `id_kelurahan`) VALUES
-(1, 'Jalan rusak di daerah Bakti Jaya', '2021-07-04 15:15:04', 'jalan-rusak-2.jpg', 1, 53),
-(2, 'Lampu Taman Kota 2 pecah', '2021-07-04 16:08:49', 'lampu_taman_pecah.png', 2, 51),
-(3, 'Sungai Cisadane dipenuhi dengan sampah', '2021-07-04 16:41:53', '1149858024.jpg', 3, 53);
 
 -- --------------------------------------------------------
 
@@ -231,20 +194,10 @@ CREATE TABLE `tanggapan` (
   `isi_tanggapan` text NOT NULL,
   `tgl_tanggapan` datetime NOT NULL,
   `status_tanggapan` enum('proses','valid','pengerjaan','selesai','tidak_valid') NOT NULL,
+  `foto_tanggapan` text NOT NULL DEFAULT 'default.png',
   `id_pengaduan` int(11) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `tanggapan`
---
-
-INSERT INTO `tanggapan` (`id_tanggapan`, `isi_tanggapan`, `tgl_tanggapan`, `status_tanggapan`, `id_pengaduan`, `id_user`) VALUES
-(1, 'Baik laporan Anda segera kami proses.', '2021-07-04 15:15:54', 'proses', 1, 1),
-(2, 'Baik segera kami verifikasi, apakah lampu itu rusak', '2021-07-04 16:13:58', 'proses', 2, 1),
-(3, 'Laporan Anda valid, akan segera kami betulkan.', '2021-07-04 16:14:59', 'valid', 1, 1),
-(4, 'kami proses', '2021-07-05 02:49:45', 'proses', 3, 2),
-(5, 'Laporan Anda valid', '2021-07-05 08:49:58', 'valid', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -347,19 +300,19 @@ ALTER TABLE `kelurahan`
 -- AUTO_INCREMENT untuk tabel `log`
 --
 ALTER TABLE `log`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `masyarakat`
 --
 ALTER TABLE `masyarakat`
-  MODIFY `id_masyarakat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_masyarakat` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengaduan`
 --
 ALTER TABLE `pengaduan`
-  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `saran`
@@ -371,7 +324,7 @@ ALTER TABLE `saran`
 -- AUTO_INCREMENT untuk tabel `tanggapan`
 --
 ALTER TABLE `tanggapan`
-  MODIFY `id_tanggapan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_tanggapan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
