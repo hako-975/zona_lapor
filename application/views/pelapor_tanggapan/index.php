@@ -173,6 +173,11 @@
 								<td class="align-middle"><?= $dt['username']; ?></td>
 							</tr>
 						<?php endforeach ?>
+						<?php if ($tanggapan == null): ?>
+							<tr>
+								<td class="text-center align-middle" colspan="5">Tidak ada data.</td>
+							</tr>
+						<?php endif ?>
 					</tbody>
 				</table>
 			</div>
