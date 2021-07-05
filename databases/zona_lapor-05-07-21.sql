@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jul 2021 pada 09.21
+-- Waktu pembuatan: 05 Jul 2021 pada 10.17
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 7.4.19
 
@@ -148,7 +148,11 @@ INSERT INTO `log` (`id_log`, `isi_log`, `tgl_log`, `id_user`) VALUES
 (11, 'Akses ditolak! Karena jabatan anda sebagai operator! Hubungi Administrator untuk melakukan perubahan! Pengguna andri123 mencoba menghapus user ber id 1', '2021-07-05 03:01:52', 2),
 (12, 'Akses ditolak! Karena jabatan anda sebagai operator! Hubungi Administrator untuk melakukan perubahan! Pengguna andri123 mencoba menghapus user ber id 1', '2021-07-05 03:03:23', 2),
 (13, 'Akses ditolak! Karena jabatan anda sebagai operator! Hubungi Administrator untuk melakukan perubahan! Pengguna andri123 mencoba menghapus user ber id 1', '2021-07-05 03:03:30', 2),
-(14, 'Akses ditolak! Karena jabatan anda sebagai operator! Hubungi Administrator untuk melakukan perubahan! Pengguna andri123 mencoba menambahkan user', '2021-07-05 03:05:36', 2);
+(14, 'Akses ditolak! Karena jabatan anda sebagai operator! Hubungi Administrator untuk melakukan perubahan! Pengguna andri123 mencoba menambahkan user', '2021-07-05 03:05:36', 2),
+(15, 'Tanggapan Data yang Anda laporkan valid, terima kasih sudah membantu. berhasil ditambahkan', '2021-07-05 14:31:59', 1),
+(16, 'Tanggapan Jalanan rusak tersebut sedang kami perbaiki. berhasil ditambahkan', '2021-07-05 14:32:38', 1),
+(17, 'Tanggapan Kami sudah mengajak para warga dan tim dengan alat beratnya untuk membersihkan sungai tersebut. berhasil ditambahkan', '2021-07-05 14:33:19', 1),
+(18, 'Tanggapan Baik akan segera kami proses, terima kasih Annisa sudah berpartisipasi. berhasil ditambahkan', '2021-07-05 14:56:43', 1);
 
 -- --------------------------------------------------------
 
@@ -172,7 +176,8 @@ CREATE TABLE `masyarakat` (
 INSERT INTO `masyarakat` (`id_masyarakat`, `nama`, `username`, `password`, `no_telepon`, `alamat`) VALUES
 (1, 'Andre Farhan Saputra', 'andre123', '$2y$10$np0VReX.hpfpyfGZMB61keaDNoe14ZSzZ9mAP0Zql6mSQuCYfWOla', '087733932416', 'Jl. AMD Babakan Pocis No. 100 RT02/02'),
 (2, 'Muhammad Irgi Al Ghithraf', 'irgi5', '$2y$10$51l3fVtvtoUTkuv8NajfjOaWxP7Y/T8Re2LMjmvciuQ0y2a5jgE3e', '085773094859', 'Perum Puri Serpong 1 Blok D5 No. 7 RT 08/02 Setu, Setu, Tangerang Selatan, Banten'),
-(3, 'Ableza Melani Putri', 'ableza23', '$2y$10$TgOf0IoXPIIrBdKLoMsbiOnr4/2iBynqT.Vasqr6DjQRgTknwxEtm', '089677646147', 'JL. AMD Babakan Pocis No. 7 RT 02/01 Bakti Jaya Setu Kota Tangerang Selatan');
+(3, 'Ableza Melani Putri', 'ableza24', '$2y$10$xiVl2xqkEMAUvj3h2fnUeeuMnt.dxrHIO0m5jgEREujFQAYH1c1zG', '089677646147', 'JL. AMD Babakan Pocis No. 7 RT 02/01 Bakti Jaya Setu Kota Tangerang Selatan'),
+(4, 'Annisa Ulazijah Faqih', 'annisa98', '$2y$10$K287REWLi5fn/pCmi90HTumNG2DiwAPjxsGWvx5oDTbhK3aolTBqC', '087808564812', 'Kp. Jaletreng No. 41 RT 03/03 Serpong, Serpong');
 
 -- --------------------------------------------------------
 
@@ -196,7 +201,8 @@ CREATE TABLE `pengaduan` (
 INSERT INTO `pengaduan` (`id_pengaduan`, `isi_laporan`, `tgl_pengaduan`, `foto`, `id_masyarakat`, `id_kelurahan`) VALUES
 (1, 'Jalan rusak di daerah Bakti Jaya', '2021-07-04 15:15:04', 'jalan-rusak-2.jpg', 1, 53),
 (2, 'Lampu Taman Kota 2 pecah', '2021-07-04 16:08:49', 'lampu_taman_pecah.png', 2, 51),
-(3, 'Sungai Cisadane dipenuhi dengan sampah', '2021-07-04 16:41:53', '1149858024.jpg', 3, 53);
+(3, 'Sungai Cisadane dipenuhi dengan sampah', '2021-07-04 16:41:53', '1149858024.jpg', 3, 53),
+(4, 'Tanah longsor daerah Serpong, dekat Pesantren Hidayatullah Yayasan Al- Firdaus', '2021-07-05 14:49:33', 'IMG-20190808-WA0074.jpg', 4, 41);
 
 -- --------------------------------------------------------
 
@@ -244,7 +250,11 @@ INSERT INTO `tanggapan` (`id_tanggapan`, `isi_tanggapan`, `tgl_tanggapan`, `stat
 (2, 'Baik segera kami verifikasi, apakah lampu itu rusak', '2021-07-04 16:13:58', 'proses', 2, 1),
 (3, 'Laporan Anda valid, akan segera kami betulkan.', '2021-07-04 16:14:59', 'valid', 1, 1),
 (4, 'kami proses', '2021-07-05 02:49:45', 'proses', 3, 2),
-(5, 'Laporan Anda valid', '2021-07-05 08:49:58', 'valid', 3, 2);
+(5, 'Laporan Anda valid', '2021-07-05 08:49:58', 'valid', 3, 2),
+(6, 'Data yang Anda laporkan valid, terima kasih sudah membantu.', '2021-07-05 14:31:35', 'valid', 2, 1),
+(7, 'Jalanan rusak tersebut sedang kami perbaiki.', '2021-07-05 14:32:18', 'pengerjaan', 1, 1),
+(8, 'Kami sudah mengajak para warga dan tim dengan alat beratnya untuk membersihkan sungai tersebut.', '2021-07-05 14:32:50', 'pengerjaan', 3, 1),
+(9, 'Baik akan segera kami proses, terima kasih Annisa sudah berpartisipasi.', '2021-07-05 14:56:21', 'proses', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -347,19 +357,19 @@ ALTER TABLE `kelurahan`
 -- AUTO_INCREMENT untuk tabel `log`
 --
 ALTER TABLE `log`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `masyarakat`
 --
 ALTER TABLE `masyarakat`
-  MODIFY `id_masyarakat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_masyarakat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengaduan`
 --
 ALTER TABLE `pengaduan`
-  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `saran`
@@ -371,7 +381,7 @@ ALTER TABLE `saran`
 -- AUTO_INCREMENT untuk tabel `tanggapan`
 --
 ALTER TABLE `tanggapan`
-  MODIFY `id_tanggapan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_tanggapan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
