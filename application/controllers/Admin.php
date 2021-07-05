@@ -15,7 +15,7 @@ class Admin extends CI_Controller
 		$this->admo->checkLoginAdmin();
 
 		$data['dataUser']	= $this->admo->getDataUserAdmin();
-		$data['pengaduan']	= $this->pemo->getPengaduan();
+		$data['pengaduan_belum_ditanggapi']	= $this->pemo->getPengaduanByStatusPengaduan('belum_ditanggapi');
 		$data['title'] 		= 'Dasbor';
 		$this->load->view('templates/header-admin', $data);
 		$this->load->view('admin/index', $data);

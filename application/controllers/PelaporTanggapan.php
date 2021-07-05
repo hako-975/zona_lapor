@@ -17,7 +17,7 @@ class PelaporTanggapan extends CI_Controller
 	{
 		if ($id_pengaduan == 0) 
 		{
-			redirect('pelaporPengaduan/');
+			redirect('pelaporPengaduan');
 			exit;
 		}
 

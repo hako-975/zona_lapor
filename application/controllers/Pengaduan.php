@@ -20,11 +20,11 @@ class Pengaduan extends CI_Controller
 		$this->load->view('pengaduan/get_kelurahan', $data);
 	}
 
-	public function index()
+	public function index($status_pengaduan = '')
 	{
 		$data['dataUser']	= $this->admo->getDataUserAdmin();
 		$data['title']  	= 'Pengaduan';
-		$data['pengaduan']	= $this->pemo->getPengaduan();
+		$data['pengaduan']	= $this->pemo->getPengaduanByStatusPengaduan($status_pengaduan);
 
 		$this->load->view('templates/header-admin', $data);
 		$this->load->view('pengaduan/index', $data);

@@ -19,11 +19,11 @@ class PelaporPengaduan extends CI_Controller
 		$this->load->view('pelapor_pengaduan/get_kelurahan', $data);
 	}
 
-	public function index()
+	public function index($status_pengaduan = '')
 	{
 		$data['dataUser']	= $this->pelmo->getDataUser();
 		$data['title']  	= 'Pengaduan';
-		$data['pengaduan']	= $this->pepemo->getPengaduanByIdMasyarakat($data['dataUser']['id_masyarakat']);
+		$data['pengaduan']	= $this->pepemo->getPengaduanByStatusPengaduanByIdMasyarakat($status_pengaduan, $data['dataUser']['id_masyarakat']);
 
 		$this->load->view('templates/header-pelapor', $data);
 		$this->load->view('pelapor_pengaduan/index', $data);

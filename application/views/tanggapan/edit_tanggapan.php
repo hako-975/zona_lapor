@@ -25,7 +25,7 @@
 					<h3 class="my-auto"><i class="fas fa-fw fa-edit"></i> Ubah Tanggapan - <?= $status; ?></h3>
 				</div>
 			  	<div class="card-body">
-					<form action="<?= base_url('tanggapan/editTanggapan/' . $pengaduan['id_pengaduan'] . '/' . $tanggapan['id_tanggapan']); ?>" method="post">
+					<form action="<?= base_url('tanggapan/editTanggapan/' . $pengaduan['id_pengaduan'] . '/' . $tanggapan['id_tanggapan']); ?>" method="post" enctype="multipart/form-data">
 						<div class="form-group">
 							<label for="foto">Foto</label><br>
 							<a href="<?= base_url('assets/img/img_pengaduan/') . $pengaduan['foto']; ?>" class="enlarge">
@@ -37,17 +37,32 @@
 							<textarea style="cursor: not-allowed;" type="text" class="form-control" disabled><?= $pengaduan['isi_laporan']; ?></textarea>
 						</div>
 						<div class="form-group">
+							<label for="tgl_pengaduan">Tanggal Pengaduan</label>
+							<input disabled type="datetime-local" class="form-control" value="<?= date('Y-m-d\TH:i', strtotime($pengaduan['tgl_pengaduan'])); ?>">
+						</div>
+
+						<div class="form-group">
+							<label for="foto_tanggapan">Foto</label> <br>
+							<a href="<?= base_url('assets/img/img_tanggapan/') . $tanggapan['foto_tanggapan']; ?>" class="enlarge" id="check_enlarge_photo">
+								<img class="img-fluid rounded img-w-150 border border-dark" id="check_photo" src="<?= base_url('assets/img/img_tanggapan/') . $tanggapan['foto_tanggapan']; ?>" alt="<?= $tanggapan['foto_tanggapan']; ?>">
+							</a>
+							<br>
+						</div>
+						<div class="input-group mb-3">
+						  <div class="input-group-prepend">
+						    <span class="input-group-text">Upload Foto</span>
+						  </div>
+						  <div class="custom-file">
+						    <input type="file" class="custom-file-input" id="foto" aria-describedby="foto_tanggapan" name="foto_tanggapan">
+						    <label class="custom-file-label" for="foto_tanggapan">Pilih file</label>
+						  </div>
+						</div>
+
+						<div class="form-group">
 							<label for="isi_tanggapan">Isi Tanggapan</label>
 							<textarea id="isi_tanggapan" class="form-control <?= (form_error('isi_tanggapan')) ? 'is-invalid' : ''; ?>" name="isi_tanggapan" required><?= (form_error('isi_tanggapan')) ? set_value('isi_tanggapan') : $tanggapan['isi_tanggapan']; ?></textarea>
 							<div class="invalid-feedback">
-				              <?= form_error('isi_tanggapan'); ?>
-				            </div>
-						</div>
-						<div class="form-group">
-							<label for="tgl_tanggapan">Tanggal Tanggapan</label>
-							<input type="datetime-local" id="tgl_tanggapan" class="form-control <?= (form_error('tgl_tanggapan')) ? 'is-invalid' : ''; ?>" name="tgl_tanggapan" value="<?= (form_error('tgl_tanggapan')) ? set_value('tgl_tanggapan') : date('Y-m-d\TH:i:s', strtotime($tanggapan['tgl_tanggapan'])); ?>" required>
-							<div class="invalid-feedback">
-	              <?= form_error('tgl_tanggapan'); ?>
+	              <?= form_error('isi_tanggapan'); ?>
 	            </div>
 						</div>
 						<?php if ($tanggapan['status_tanggapan'] == 'tidak_valid'): ?>

@@ -15,7 +15,7 @@ class Pelapor extends CI_Controller
 		$this->pelmo->checkLoginUser();
 
 		$data['dataUser']	= $this->pelmo->getDataUser();
-		$data['pengaduan']	= $this->pepemo->getPengaduanByIdMasyarakat($data['dataUser']['id_masyarakat']);
+		$data['pengaduan_belum_ditanggapi_pelapor']	= $this->pepemo->getPengaduanByStatusPengaduanByIdMasyarakat('belum_ditanggapi', $data['dataUser']['id_masyarakat']);
  		$data['title'] 		= 'Dasbor';
 		$this->load->view('templates/header-pelapor', $data);
 		$this->load->view('pelapor/index', $data);

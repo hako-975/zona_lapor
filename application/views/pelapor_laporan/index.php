@@ -1,44 +1,70 @@
 <div class="container">
-	<div class="row justify-content-center py-3">
-		<div class="col-lg header-title">
-			<?php if ($this->uri->segment(3) == 'proses'): ?>
-				<h3><i class="fas fa-fw fa-exclamation"></i> Pengaduan Proses</h3>
-			<?php elseif ($this->uri->segment(3) == 'valid'): ?>
-				<h3><i class="fas fa-fw fa-exclamation"></i> Pengaduan Valid</h3>
-			<?php elseif ($this->uri->segment(3) == 'pengerjaan'): ?>
-				<h3><i class="fas fa-fw fa-exclamation"></i> Pengaduan Pengerjaan</h3>
-			<?php elseif ($this->uri->segment(3) == 'selesai'): ?>
-				<h3><i class="fas fa-fw fa-exclamation"></i> Pengaduan Selesai</h3>
-			<?php elseif ($this->uri->segment(3) == 'tidak_valid'): ?>
-				<h3><i class="fas fa-fw fa-exclamation"></i> Pengaduan Tidak Valid</h3>
-			<?php elseif ($this->uri->segment(3) == 'belum_ditanggapi'): ?>
-				<h3><i class="fas fa-fw fa-exclamation"></i> Pengaduan Belum ditanggapi</h3>
-			<?php else: ?>
-				<h3><i class="fas fa-fw fa-exclamation"></i> Semua Pengaduan</h3>
-			<?php endif ?>
+	<div class="row py-3">
+		<div class="col-lg">
+			<h3><i class="fas fa-fw fa-file-alt"></i> Laporan</h3>
 		</div>
 	</div>
-	<div class="row justify-content-center">
-		<div class="col text-center m-1">
-			<a href="<?= base_url('pelaporPengaduan/index'); ?>" class="btn btn-info"><i class="fas fa-fw fa-clipboard-list"></i> All</a>
-		</div>
-		<div class="col text-center m-1">
-			<a href="<?= base_url('pelaporPengaduan/index/belum_ditanggapi'); ?>" class="btn btn-sm btn-secondary"><i class="fas fa-fw fa-times"></i> Belum ditanggapi</a>
-		</div>
-		<div class="col text-center m-1">
-			<a href="<?= base_url('pelaporPengaduan/index/proses'); ?>" class="btn btn-danger"><i class="fas fa-fw fa-sync"></i> Proses</a>
-		</div>
-		<div class="col text-center m-1">
-			<a href="<?= base_url('pelaporPengaduan/index/valid'); ?>" class="btn btn-success"><i class="fas fa-fw fa-check"></i> Valid</a>
-		</div>
-		<div class="col text-center m-1">
-			<a href="<?= base_url('pelaporPengaduan/index/pengerjaan'); ?>" class="btn btn-warning"><i class="fas fa-fw fa-hammer"></i> Pengerjaan</a>
-		</div>
-		<div class="col text-center m-1">
-			<a href="<?= base_url('pelaporPengaduan/index/selesai'); ?>" class="btn btn-primary"><i class="fas fa-fw fa-check-double"></i> Selesai</a>
-		</div>
-		<div class="col text-center m-1">
-			<a href="<?= base_url('pelaporPengaduan/index/tidak_valid'); ?>" class="btn btn-secondary"><i class="fas fa-fw fa-times"></i> Tidak Valid</a>
+	<div class="row py-3">
+		<div class="col-lg-10">
+			<form method="post">
+				<div class="row">
+					<div class="col">
+						<div class="form-group">
+							<label for="dari_tgl">Dari Tanggal</label>
+							<?php if (isset($_POST['dari_tgl'])): ?>
+								<input type="date" id="dari_tgl" class="form-control" name="dari_tgl" value="<?= $_POST['dari_tgl']; ?>" required>
+							<?php else: ?>
+								<input type="date" id="dari_tgl" class="form-control" name="dari_tgl" value="<?= date('Y-m-01'); ?>" required>
+							<?php endif ?>
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label for="sampai_tgl">Sampai Tanggal</label>
+							<?php if (isset($_POST['sampai_tgl'])): ?>
+								<input type="date" id="sampai_tgl" class="form-control" name="sampai_tgl" value="<?= $_POST['sampai_tgl']; ?>" required>
+							<?php else: ?>
+								<input type="date" id="sampai_tgl" class="form-control" name="sampai_tgl" value="<?= date('Y-m-d'); ?>" required>
+							<?php endif ?>
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label for="status_pengaduan">Status</label>
+							<select name="status_pengaduan" id="status_pengaduan" class="custom-select">
+								<?php if (isset($_POST['status_pengaduan'])): ?>
+									<?php 
+										$status_pengaduan = explode('_', $_POST['status_pengaduan']);
+										$status_pengaduan = implode(' ', $status_pengaduan);
+										$status_pengaduan = ucwords($status_pengaduan);
+									?>
+									<option value="<?= strtolower($_POST['status_pengaduan']); ?>"><?= $status_pengaduan; ?></option>
+									<option disabled>---------</option>
+								<?php endif ?>
+								<option value="semua">Semua</option>
+								<option value="belum_ditanggapi">Belum ditanggapi</option>
+								<option value="proses">Proses</option>
+								<option value="valid">Valid</option>
+								<option value="pengerjaan">Pengerjaan</option>
+								<option value="selesai">Selesai</option>
+								<option value="tidak_valid">Tidak Valid</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn mr-1 btn-primary" name="btnFilter"><i class="fas fa-fw fa-filter"></i> Filter</button>
+					<a href="<?= base_url('pelaporLaporan'); ?>" class="btn mx-1 btn-danger"><i class="fas fa-fw fa-times"></i> Reset</a>
+					<?php if (isset($_POST['btnFilter'])): ?>
+						<?php 
+							$filter = implode('/', $_POST);
+						?>
+						<a target="_blank" href="<?= base_url('pelaporLaporan/printLaporan/' . $filter); ?>" class="btn ml-1 btn-success"><i class="fas fa-fw fa-print"></i> Cetak</a>
+					<?php else: ?>
+						<a target="_blank" href="<?= base_url('pelaporLaporan/printLaporan/'); ?>" class="btn ml-1 btn-success"><i class="fas fa-fw fa-print"></i> Cetak</a>
+					<?php endif ?>
+				</div>
+			</form>
 		</div>
 	</div>
 	<div class="row py-3">
@@ -54,7 +80,7 @@
 							<th class="align-middle">Lokasi</th>
 							<th class="align-middle">Foto</th>
 							<th class="align-middle">Status</th>
-							<th class="align-middle">Tangapan</th>
+							<th class="align-middle">Tanggapan</th>
 							<th class="align-middle">Aksi</th>
 						</tr>
 					</thead>
@@ -111,7 +137,7 @@
 									<?php endif ?>
 								</td>
 								<td class="align-middle text-center">
-									<a href="<?= base_url('pelaporTanggapan/index/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-info m-1"><i class="fas fa-fw fa-reply"></i></a>
+									<a href="<?= base_url('tanggapan/index/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-info m-1"><i class="fas fa-fw fa-reply"></i></a>
 								</td>
 							</tr>
 						<?php endforeach ?>

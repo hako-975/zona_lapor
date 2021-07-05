@@ -64,15 +64,32 @@ class Tanggapan_model extends CI_Model
 			exit;
 		}
 
+		$foto_tanggapan = $_FILES['foto_tanggapan']['name'];
+		if ($foto_tanggapan) {
+			$config['upload_path'] = './assets/img/img_tanggapan/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		
+			$this->load->library('upload', $config);
+		
+			if ($this->upload->do_upload('foto_tanggapan')) {
+				$new_foto_tanggapan = $this->upload->data('file_name');
+				$this->db->set('foto_tanggapan', $new_foto_tanggapan);
+			} else {
+				echo $this->upload->display_errors();
+			}
+		}
+		
+
 		$data = [
 			'isi_tanggapan'		=> $isi_tanggapan,
-			'tgl_tanggapan'		=> $this->input->post('tgl_tanggapan', true),
+			'tgl_tanggapan'		=> date('Y-m-d\TH:i:s'),
 			'status_tanggapan'	=> $status_tanggapan,
 			'id_pengaduan'		=> $id_pengaduan,
 			'id_user' 			=> $dataUser['id_user']
 		];
 
 		$this->db->insert('tanggapan', $data);
+		$this->db->update('pengaduan', ['status_pengaduan' => $status_tanggapan], ['id_pengaduan' => $id_pengaduan]);
 
 		$isi_log = 'Tanggapan ' . $data['isi_tanggapan'] . ' berhasil ditambahkan';
 		$this->lomo->addLog($isi_log, $dataUser['id_user']);
@@ -85,9 +102,34 @@ class Tanggapan_model extends CI_Model
 		$dataUser = $this->admo->getDataUserAdmin();
 
 		$data_tanggapan = $this->getTanggapanById($id_tanggapan);
+
+		$foto_tanggapan = $_FILES['foto_tanggapan']['name'];
+		if ($foto_tanggapan) 
+		{
+			$config['upload_path'] = './assets/img/img_tanggapan/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		
+			$this->load->library('upload', $config);
+		
+			if ($this->upload->do_upload('foto_tanggapan')) 
+			{
+				$old_foto = $data_tanggapan['foto_tanggapan'];
+				if ($old_foto != 'default.png') 
+				{
+					unlink(FCPATH . 'assets/img/img_tanggapan/' . $data_tanggapan['foto_tanggapan']);
+				}
+				$new_foto = $this->upload->data('file_name');
+				$this->db->set('foto_tanggapan', $new_foto);
+			}
+			else 
+			{
+				echo $this->upload->display_errors();
+			}
+		}
+
 		$data = [
 			'isi_tanggapan'		=> $this->input->post('isi_tanggapan', true),
-			'tgl_tanggapan'		=> $this->input->post('tgl_tanggapan', true),
+			'tgl_tanggapan'		=> date('Y-m-d\TH:i:s'),
 			'id_user' 			=> $dataUser['id_user']
 		];
 
@@ -119,8 +161,35 @@ class Tanggapan_model extends CI_Model
 		$status = explode('_', $data_tanggapan['status_tanggapan']);
 		$status = implode(' ', $status);
 		$status = ucwords(strtolower($status));
-		$tanggapan  = $data_tanggapan['isi_tanggapan'] . ' dengan status ' . $status;
+
+		if ($data_tanggapan['status_tanggapan'] == 'proses') 
+		{
+			$status_pengaduan = 'belum_ditanggapi';
+		}
+		elseif ($data_tanggapan['status_tanggapan'] == 'valid') 
+		{
+			$status_pengaduan = 'proses';
+		}
+		elseif ($data_tanggapan['status_tanggapan'] == 'pengerjaan') 
+		{
+			$status_pengaduan = 'valid';
+		}
+		elseif ($data_tanggapan['status_tanggapan'] == 'selesai') 
+		{
+			$status_pengaduan = 'pengerjaan';
+		}
+		elseif ($data_tanggapan['status_tanggapan'] == 'tidak_valid') 
+		{
+			$status_pengaduan = 'proses';
+		} 
+		else
+		{
+			$status_pengaduan = 'belum_ditanggapi';
+		}
 		
+		$this->db->update('pengaduan', ['status_pengaduan' => $status_pengaduan], ['id_pengaduan' => $id_pengaduan]);
+
+		$tanggapan  = $data_tanggapan['isi_tanggapan'] . ' dengan status ' . $status;
 		$this->db->delete('tanggapan', ['id_tanggapan' => $id_tanggapan]);
 		$isi_log = 'Tanggapan ' . $tanggapan . ' berhasil dihapus';
 		$this->lomo->addLog($isi_log, $dataUser['id_user']);

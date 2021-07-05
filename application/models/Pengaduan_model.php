@@ -18,14 +18,31 @@ class Pengaduan_model extends CI_Model
 		return $this->db->get('pengaduan')->result_array();
 	}
 
-	public function getPengaduanByStatusTanggapan($status_tanggapan = '')
+	public function getPengaduanFilter($dari_tgl, $sampai_tgl, $status_pengaduan)
 	{
-		$this->db->join('tanggapan', 'pengaduan.id_pengaduan=tanggapan.id_pengaduan', 'left');
-		$this->db->join('user', 'user.id_user=tanggapan.id_user', 'left');
-		$this->db->order_by('tanggapan.id_tanggapan', 'desc');
-		if ($status_tanggapan) 
+		$dari_tgl = date("Y-m-d\T00:00:01", strtotime($dari_tgl));
+		$sampai_tgl = date("Y-m-d\T23:59:59", strtotime($sampai_tgl));
+		$this->db->join('masyarakat', 'pengaduan.id_masyarakat=masyarakat.id_masyarakat');
+		$this->db->join('kelurahan', 'pengaduan.id_kelurahan=kelurahan.id_kelurahan');
+		$this->db->order_by('id_pengaduan', 'desc');
+		if ($status_pengaduan == 'semua')
 		{
-			return $this->db->get_where('pengaduan', ['tanggapan.status_tanggapan' => $status_tanggapan])->result_array();
+			return $this->db->get_where('pengaduan', ['tgl_pengaduan >=' => $dari_tgl, 'tgl_pengaduan <=' => $sampai_tgl])->result_array();
+		}
+		else
+		{
+			return $this->db->get_where('pengaduan', ['tgl_pengaduan >=' => $dari_tgl, 'tgl_pengaduan <=' => $sampai_tgl, 'status_pengaduan' => $status_pengaduan])->result_array();
+		}
+	}
+
+	public function getPengaduanByStatusPengaduan($status_pengaduan = '')
+	{
+		$this->db->join('masyarakat', 'pengaduan.id_masyarakat=masyarakat.id_masyarakat');
+		$this->db->join('kelurahan', 'pengaduan.id_kelurahan=kelurahan.id_kelurahan');
+		$this->db->order_by('id_pengaduan', 'desc');
+		if ($status_pengaduan) 
+		{
+			return $this->db->get_where('pengaduan', ['pengaduan.status_pengaduan' => $status_pengaduan])->result_array();
 		} 
 		else 
 		{

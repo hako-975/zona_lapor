@@ -68,6 +68,22 @@
             </a>
           <?php endif ?>
         </li>
+        <li class="nav-item">
+          <?php if (
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/pelaporLaporan' || 
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/pelaporLaporan/'
+          ): ?>
+            <a href="<?= base_url('pelaporLaporan'); ?>" class="nav-link active">
+              <i class="fas fa-file-alt nav-icon"></i>
+              <p>Laporan</p>
+            </a>
+          <?php else: ?>
+            <a href="<?= base_url('pelaporLaporan'); ?>" class="nav-link">
+              <i class="fas fa-file-alt nav-icon"></i>
+              <p>Laporan</p>
+            </a>
+          <?php endif ?>
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

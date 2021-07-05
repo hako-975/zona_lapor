@@ -52,22 +52,7 @@
             </a>
           <?php endif ?>
         </li>
-        <!-- <li class="nav-item">
-          <?php if (
-            $_SERVER['REQUEST_URI'] == '/zona_lapor/tanggapan/allTanggapan' || 
-            $_SERVER['REQUEST_URI'] == '/zona_lapor/tanggapan/allTanggapan/'
-          ): ?>
-            <a href="<?= base_url('tanggapan/allTanggapan'); ?>" class="nav-link active">
-              <i class="fas fa-reply nav-icon"></i>
-              <p>Tanggapan</p>
-            </a>
-          <?php else: ?>
-            <a href="<?= base_url('tanggapan/allTanggapan'); ?>" class="nav-link">
-              <i class="fas fa-reply nav-icon"></i>
-              <p>Tanggapan</p>
-            </a>
-          <?php endif ?>
-        </li> -->
+       
         <?php if ($dataUser['jabatan'] == 'administrator'): ?>
           <?php if (
             $_SERVER['REQUEST_URI'] == '/zona_lapor/user' || 
@@ -160,6 +145,22 @@
           </li>
         <?php endif ?>
 
+        <li class="nav-item">
+          <?php if (
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/laporan' || 
+            $_SERVER['REQUEST_URI'] == '/zona_lapor/laporan/'
+          ): ?>
+            <a href="<?= base_url('laporan'); ?>" class="nav-link active">
+              <i class="fas fa-file-alt nav-icon"></i>
+              <p>Laporan</p>
+            </a>
+          <?php else: ?>
+            <a href="<?= base_url('laporan'); ?>" class="nav-link">
+              <i class="fas fa-file-alt nav-icon"></i>
+              <p>Laporan</p>
+            </a>
+          <?php endif ?>
+        </li>
         
         <!-- <li class="nav-item">
           <a href="#" class="nav-link">
