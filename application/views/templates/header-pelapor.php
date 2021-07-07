@@ -3,6 +3,7 @@
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
+  <meta name="description" content="Zona Lapor adalah pengelolaan pengaduan pelayanan publik di daerah Tangerang Selatan, setiap organisasi penyelenggara di Indonesia belum terkelola..">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="google-site-verification" content="xaUarZWL3VoJS4CiE9yUf__juvjXQylk1XxwaUns0bk" />
   <?php include 'include/js.php'; ?>
