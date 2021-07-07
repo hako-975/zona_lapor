@@ -58,14 +58,11 @@ class PelaporPengaduan extends CI_Controller
 		$data['title'] 		= 'Ubah Pengaduan - ' . $data['pengaduan']['isi_laporan'];
 
 		// cek status pengaduan
-		if ($tanggapan = $this->db->get_where('tanggapan', ['id_pengaduan' => $id_pengaduan])->row_array()) 
+		if ($data['pengaduan']['status_pengaduan'] != 'belum_ditanggapi') 
 		{
-			if ($tanggapan['status_tanggapan'] != null) 
-			{
-				$isi_log = 'Pengaduan ' . $data['pengaduan']['isi_laporan'] . ' tidak dapat diubah karena telah ditanggapi oleh petugas';
-				$this->session->set_flashdata('message-failed', $isi_log);
-				redirect('pelaporPengaduan');
-			}
+			$isi_log = 'Pengaduan ' . $data['pengaduan']['isi_laporan'] . ' tidak dapat diubah karena telah ditanggapi oleh petugas';
+			$this->session->set_flashdata('message-failed', $isi_log);
+			redirect('pelaporPengaduan');
 		}
 
 		$this->form_validation->set_rules('id_kelurahan', 'Kelurahan', 'required|trim|is_natural_no_zero');

@@ -111,6 +111,9 @@
 									<?php endif ?>
 								</td>
 								<td class="align-middle text-center">
+									<?php if ($dp['status_pengaduan'] == 'belum_ditanggapi'): ?>
+										<a href="<?= base_url('pelaporPengaduan/editPelaporPengaduan/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
+									<?php endif ?>
 									<a href="<?= base_url('pelaporTanggapan/index/' . $dp['id_pengaduan']); ?>" class="btn btn-sm btn-info m-1"><i class="fas fa-fw fa-reply"></i></a>
 								</td>
 							</tr>
