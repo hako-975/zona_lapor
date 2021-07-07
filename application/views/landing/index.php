@@ -201,29 +201,29 @@
 							<label for="nama"><i class="fas fa-fw fa-id-card"></i> Nama Lengkap</label>
 							<input type="text" id="nama" class="form-control <?= (form_error('nama')) ? 'is-invalid' : ''; ?>" name="nama" required value="<?= set_value('nama'); ?>">
 							<div class="invalid-feedback">
-					          <?= form_error('nama'); ?>
-					        </div>
+			          <?= form_error('nama'); ?>
+			        </div>
 						</div>
 						<div class="form-group">
 							<label for="no_telepon"><i class="fas fa-fw fa-phone"></i> No. Telepon</label>
 							<input type="number" id="no_telepon" class="form-control <?= (form_error('no_telepon')) ? 'is-invalid' : ''; ?>" name="no_telepon" required placeholder="contoh: 08123456789" value="<?= set_value('no_telepon'); ?>">
 							<div class="invalid-feedback">
-				              <?= form_error('no_telepon'); ?>
-				            </div>
+	              <?= form_error('no_telepon'); ?>
+	            </div>
 						</div>
 						<div class="form-group">
 							<label for="alamat"><i class="fas fa-fw fa-map-marker-alt"></i> Alamat</label>
 							<textarea id="alamat" class="form-control <?= (form_error('alamat')) ? 'is-invalid' : ''; ?>" name="alamat" required><?= set_value('alamat'); ?></textarea>
 							<div class="invalid-feedback">
-			              		<?= form_error('alamat'); ?>
-		            		</div>
+            		<?= form_error('alamat'); ?>
+          		</div>
 						</div>
 						<div class="form-group">
 							<label for="saran"><i class="fas fa-fw fa-lightbulb"></i> Saran</label>
 							<textarea id="saran" class="form-control <?= (form_error('saran')) ? 'is-invalid' : ''; ?>" name="saran" required><?= set_value('saran'); ?></textarea>
 							<div class="invalid-feedback">
-			              		<?= form_error('saran'); ?>
-		            		</div>
+            		<?= form_error('saran'); ?>
+        			</div>
 						</div>
 						<div class="form-group text-right">
 							<button type="submit" class="btn btn-danger"><i class="fas fa-fw fa-paper-plane"></i> Kirim</button>

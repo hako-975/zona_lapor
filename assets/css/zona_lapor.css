@@ -132,17 +132,18 @@ main > .container {
   height: 2.75rem;
   text-align: center;
   color: #fff;
-  background: #DC3545;
+  background: #dc3545;
   line-height: 46px;
 }
 
-.scroll-to-top:focus, .scroll-to-top:hover {
+.scroll-to-top:focus {
+  background-color: #c82333;
   color: white;
-  background-color: #c82333 !important;
 }
 
 .scroll-to-top:hover {
-  background: rgba(220,53,69, 1);
+  background-color: #c82333;
+  color: white;
 }
 
 .scroll-to-top i {
