@@ -55,6 +55,12 @@ main > .container {
   height: 32rem !important;
 }
 
+@media (max-width: 576px) {
+  .h-500 {
+    height: 16rem !important;
+  }  
+}
+
 .img-w-100-hm-100 {
   max-height: 100px !important;
   width: 100px !important;
