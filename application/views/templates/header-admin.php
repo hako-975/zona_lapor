@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="google-site-verification" content="xaUarZWL3VoJS4CiE9yUf__juvjXQylk1XxwaUns0bk" />
   <?php include 'include/js.php'; ?>
   <?php include 'include/css.php'; ?>
   <title><?= $title; ?></title>
