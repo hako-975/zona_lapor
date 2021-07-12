@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jul 2021 pada 23.55
+-- Waktu pembuatan: 12 Jul 2021 pada 03.33
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 7.4.19
 
@@ -172,6 +172,13 @@ CREATE TABLE `pengaduan` (
   `id_kelurahan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `pengaduan`
+--
+
+INSERT INTO `pengaduan` (`id_pengaduan`, `isi_laporan`, `tgl_pengaduan`, `foto`, `status_pengaduan`, `id_masyarakat`, `id_kelurahan`) VALUES
+(1, 'Jembatan rusak', '2021-07-08 01:48:36', 'jembatan_rusak.jpg', 'belum_ditanggapi', 2, 39);
+
 -- --------------------------------------------------------
 
 --
@@ -323,7 +330,7 @@ ALTER TABLE `masyarakat`
 -- AUTO_INCREMENT untuk tabel `pengaduan`
 --
 ALTER TABLE `pengaduan`
-  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `saran`
