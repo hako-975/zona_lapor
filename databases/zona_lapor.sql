@@ -200,13 +200,6 @@ CREATE TABLE `saran` (
 --
 -- Dumping data untuk tabel `saran`
 --
-
-INSERT INTO `pengaduan` (`id_pengaduan`, `isi_laporan`, `tgl_pengaduan`, `foto`, `status_pengaduan`, `id_masyarakat`, `id_kelurahan`) VALUES
-(1, 'Telepon Umum rusak di daerah Bakti Jaya', '2021-07-04 11:57:52', '1604499518_image.png', 'selesai', 1, 53),
-(2, 'Jembatan antar desa rusak, di daerah Rawa buntu', '2021-07-04 13:06:00', 'jembatan_rusak.jpg', 'selesai', 2, 39),
-(3, 'Jalan di daerah pocis, bakti jaya, rusak parah. \r\nTerimakasih.', '2021-07-06 10:01:05', 'jalan-rusak.jpg', 'selesai', 3, 53),
-(4, 'Tanah longsor, daerah Serpong dekat Pesantren Hidayatullah Yayasan Al- Firdaus', '2021-07-07 08:22:12', 'IMG-20190808-WA0074.jpg', 'valid', 4, 41);
-
 -- --------------------------------------------------------
 
 --
