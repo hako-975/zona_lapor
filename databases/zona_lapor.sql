@@ -166,7 +166,7 @@ CREATE TABLE `pengaduan` (
   `id_pengaduan` int(11) NOT NULL,
   `isi_laporan` text NOT NULL,
   `tgl_pengaduan` datetime NOT NULL,
-  `foto` text DEFAULT 'default.png',
+  `foto` varchar(500) DEFAULT 'default.png',
   `status_pengaduan` enum('belum_ditanggapi','proses','valid','pengerjaan','selesai','tidak_valid') NOT NULL DEFAULT 'belum_ditanggapi',
   `id_masyarakat` int(11) NOT NULL,
   `id_kelurahan` int(11) NOT NULL
@@ -198,8 +198,11 @@ CREATE TABLE `saran` (
 -- Dumping data untuk tabel `saran`
 --
 
-INSERT INTO `saran` (`id_saran`, `nama`, `no_telepon`, `alamat`, `saran`, `tgl_saran`) VALUES
-(1, 'Andri Firman Saputra', '087808675313', 'Jl. AMD Babakan Pocis', 'Promosikan Ini', '2021-07-03 16:09:34');
+INSERT INTO `pengaduan` (`id_pengaduan`, `isi_laporan`, `tgl_pengaduan`, `foto`, `status_pengaduan`, `id_masyarakat`, `id_kelurahan`) VALUES
+(1, 'Telepon Umum rusak di daerah Bakti Jaya', '2021-07-04 11:57:52', '1604499518_image.png', 'selesai', 1, 53),
+(2, 'Jembatan antar desa rusak, di daerah Rawa buntu', '2021-07-04 13:06:00', 'jembatan_rusak.jpg', 'selesai', 2, 39),
+(3, 'Jalan di daerah pocis, bakti jaya, rusak parah. \r\nTerimakasih.', '2021-07-06 10:01:05', 'jalan-rusak.jpg', 'selesai', 3, 53),
+(4, 'Tanah longsor, daerah Serpong dekat Pesantren Hidayatullah Yayasan Al- Firdaus', '2021-07-07 08:22:12', 'IMG-20190808-WA0074.jpg', 'valid', 4, 41);
 
 -- --------------------------------------------------------
 
@@ -212,10 +215,26 @@ CREATE TABLE `tanggapan` (
   `isi_tanggapan` text NOT NULL,
   `tgl_tanggapan` datetime NOT NULL,
   `status_tanggapan` enum('proses','valid','pengerjaan','selesai','tidak_valid') NOT NULL,
-  `foto_tanggapan` text NOT NULL DEFAULT 'default.png',
+  `foto_tanggapan` varchar(500) NOT NULL DEFAULT 'default.png',
   `id_pengaduan` int(11) NOT NULL,
   `id_user` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `tanggapan` (`id_tanggapan`, `isi_tanggapan`, `tgl_tanggapan`, `status_tanggapan`, `foto_tanggapan`, `id_pengaduan`, `id_user`) VALUES
+(1, 'Baik laporan Anda kami proses', '2021-07-05 08:58:34', 'proses', 'default.png', 1, 1),
+(2, 'Laporan Anda valid, segera kami perbaiki', '2021-07-05 14:17:35', 'valid', '16044995182.png', 1, 1),
+(3, 'Dalam pengerjaan', '2021-07-05 15:05:58', 'pengerjaan', 'default.png', 1, 1),
+(4, 'Sudah selesai kami perbaiki.', '2021-07-06 08:01:14', 'selesai', 'telepon-umum-koin.jpg', 1, 1),
+(5, 'Baik kami segera mengecek ke TKP.', '2021-07-05 08:12:00', 'proses', 'default.png', 2, 2),
+(6, 'Laporan Anda valid, segera kami perbaiki.', '2021-07-05 11:16:22', 'valid', 'default.png', 2, 2),
+(7, 'dalam pengerjaan', '2021-07-06 09:03:00', 'pengerjaan', 'default.png', 2, 2),
+(8, 'Jembatan sudah selesai diperbaiki.', '2021-07-08 10:18:06', 'selesai', '015117800_1608202742-20201217_153411.jpg', 2, 2),
+(9, 'Baik segera kami proses.', '2021-07-06 12:01:49', 'proses', 'default.png', 3, 2),
+(10, 'Laporan Anda valid.', '2021-07-07 08:03:14', 'valid', '8-Tips-Saat-Menemui-Jalan-Yang-Rusak.jpg', 3, 2),
+(11, 'Jalan sedang dalam pengerjaan untuk diperbaiki.', '2021-07-07 12:04:08', 'pengerjaan', 'perbaikan-jalan-bergelomban.jpg', 3, 2),
+(12, 'Jalanan selesai diperbaiki.', '2021-07-07 16:23:06', 'selesai', 'proyek-pengaspalan-jalan-ciater-tangsel-jadi-sorotan-begini-proses-tendernya-cmh.jpg', 3, 2),
+(13, 'Baik, laporan Anda segera kami proses.', '2021-07-07 15:50:00', 'proses', 'default.png', 4, 1),
+(14, 'Laporan Anda valid, segera kami tangani.', '2021-07-08 09:10:13', 'valid', '5dfb1d22217f0.jpg', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -244,7 +263,6 @@ INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `no_telepon`, `ja
 -- Indexes for dumped tables
 --
 
---
 -- Indeks untuk tabel `kecamatan`
 --
 ALTER TABLE `kecamatan`
@@ -275,8 +293,8 @@ ALTER TABLE `masyarakat`
 --
 ALTER TABLE `pengaduan`
   ADD PRIMARY KEY (`id_pengaduan`),
-  ADD KEY `id_kelurahan` (`id_kelurahan`),
-  ADD KEY `id_masyarakat` (`id_masyarakat`);
+  ADD KEY `id_masyarakat` (`id_masyarakat`),
+  ADD KEY `id_kelurahan` (`id_kelurahan`);
 
 --
 -- Indeks untuk tabel `saran`
@@ -318,7 +336,7 @@ ALTER TABLE `kelurahan`
 -- AUTO_INCREMENT untuk tabel `log`
 --
 ALTER TABLE `log`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `masyarakat`
@@ -330,7 +348,7 @@ ALTER TABLE `masyarakat`
 -- AUTO_INCREMENT untuk tabel `pengaduan`
 --
 ALTER TABLE `pengaduan`
-  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `saran`
@@ -342,43 +360,13 @@ ALTER TABLE `saran`
 -- AUTO_INCREMENT untuk tabel `tanggapan`
 --
 ALTER TABLE `tanggapan`
-  MODIFY `id_tanggapan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tanggapan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
---
-
---
--- Ketidakleluasaan untuk tabel `kelurahan`
---
-ALTER TABLE `kelurahan`
-  ADD CONSTRAINT `kelurahan_ibfk_1` FOREIGN KEY (`id_kecamatan`) REFERENCES `kecamatan` (`id_kecamatan`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ketidakleluasaan untuk tabel `log`
---
-ALTER TABLE `log`
-  ADD CONSTRAINT `log_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Ketidakleluasaan untuk tabel `pengaduan`
---
-ALTER TABLE `pengaduan`
-  ADD CONSTRAINT `pengaduan_ibfk_1` FOREIGN KEY (`id_kelurahan`) REFERENCES `kelurahan` (`id_kelurahan`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pengaduan_ibfk_2` FOREIGN KEY (`id_masyarakat`) REFERENCES `masyarakat` (`id_masyarakat`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ketidakleluasaan untuk tabel `tanggapan`
---
-ALTER TABLE `tanggapan`
-  ADD CONSTRAINT `tanggapan_ibfk_2` FOREIGN KEY (`id_pengaduan`) REFERENCES `pengaduan` (`id_pengaduan`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tanggapan_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
