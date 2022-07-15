@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Jul 2021 pada 03.33
--- Versi server: 10.4.19-MariaDB
--- Versi PHP: 7.4.19
+-- Waktu pembuatan: 15 Jul 2022 pada 18.41
+-- Versi server: 10.4.24-MariaDB
+-- Versi PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -197,9 +197,6 @@ CREATE TABLE `saran` (
   `tgl_saran` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `saran`
---
 -- --------------------------------------------------------
 
 --
@@ -215,6 +212,10 @@ CREATE TABLE `tanggapan` (
   `id_pengaduan` int(11) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tanggapan`
+--
 
 INSERT INTO `tanggapan` (`id_tanggapan`, `isi_tanggapan`, `tgl_tanggapan`, `status_tanggapan`, `foto_tanggapan`, `id_pengaduan`, `id_user`) VALUES
 (1, 'Baik laporan Anda kami proses', '2021-07-05 08:58:34', 'proses', 'default.png', 1, 1),
@@ -259,6 +260,7 @@ INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `no_telepon`, `ja
 -- Indexes for dumped tables
 --
 
+--
 -- Indeks untuk tabel `kecamatan`
 --
 ALTER TABLE `kecamatan`
