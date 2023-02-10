@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Okt 2022 pada 11.22
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 8.1.6
+-- Waktu pembuatan: 10 Feb 2023 pada 09.26
+-- Versi server: 10.4.27-MariaDB
+-- Versi PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `kecamatan` (
   `id_kecamatan` int(11) NOT NULL,
   `kecamatan` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `kecamatan`
@@ -55,7 +55,7 @@ CREATE TABLE `kelurahan` (
   `id_kelurahan` int(11) NOT NULL,
   `kelurahan` varchar(100) NOT NULL,
   `id_kecamatan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `kelurahan`
@@ -128,7 +128,7 @@ CREATE TABLE `log` (
   `isi_log` text NOT NULL,
   `tgl_log` datetime NOT NULL,
   `id_user` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -143,7 +143,7 @@ CREATE TABLE `masyarakat` (
   `password` varchar(255) NOT NULL,
   `no_telepon` varchar(20) NOT NULL,
   `alamat` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `masyarakat`
@@ -170,7 +170,7 @@ CREATE TABLE `pengaduan` (
   `status_pengaduan` enum('belum_ditanggapi','proses','valid','pengerjaan','selesai','tidak_valid') NOT NULL DEFAULT 'belum_ditanggapi',
   `id_masyarakat` int(11) NOT NULL,
   `id_kelurahan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `pengaduan`
@@ -195,7 +195,7 @@ CREATE TABLE `saran` (
   `alamat` text NOT NULL,
   `saran` text NOT NULL,
   `tgl_saran` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -211,7 +211,7 @@ CREATE TABLE `tanggapan` (
   `foto_tanggapan` varchar(500) NOT NULL DEFAULT 'default.png',
   `id_pengaduan` int(11) NOT NULL,
   `id_user` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `tanggapan`
@@ -246,14 +246,14 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   `no_telepon` varchar(20) NOT NULL,
   `jabatan` enum('administrator','operator') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `no_telepon`, `jabatan`) VALUES
-(1, 'Administrator', 'admin', '$2y$10$L201Eud0B8zkRfT9wOctFeK1LSJWFxwDV8He41JDk4ggRLUb9aIC6', '08123456789', 'administrator'),
+(1, 'Administrator', 'admin', '$2y$10$JgOTcIkZLxeoNWwDcLtw8uI2xA2rjOdYzr21JSNyquf4IBedP1vqG', '08123456789', 'administrator'),
 (2, 'Andri Firman Saputra', 'andri123', '$2y$10$NbEgBbEr.Di9DwIo/OoXZOefgH7v/zQNxdLPleaJWZTQ7kKQbOCEa', '087808675313', 'operator');
 
 --
