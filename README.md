@@ -2,8 +2,8 @@
 
 <br> ## Administrator
 <br> url: http://zona-lapor.great-site.net/admin/
-<br> username: admin
-<br> password: admin
+<br> username: 
+<br> password: 
 <br> 
 <br> ## Operator
 <br> url: http://zona-lapor.great-site.net/admin/
